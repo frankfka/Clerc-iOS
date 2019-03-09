@@ -1,6 +1,0 @@
-framework module Pods_MobileCheckout {
-  umbrella header "Pods-MobileCheckout-umbrella.h"
-
-  export *
-  module * { export * }
-}

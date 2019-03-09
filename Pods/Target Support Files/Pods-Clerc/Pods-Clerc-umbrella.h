@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_MobileCheckoutVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_MobileCheckoutVersionString[];
+FOUNDATION_EXPORT double Pods_ClercVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_ClercVersionString[];
 

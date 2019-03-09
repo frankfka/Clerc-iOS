@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		113DBAE922341AD700383001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAE822341AD700383001 /* AppDelegate.swift */; };
-		113DBAEB22341AD700383001 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAEA22341AD700383001 /* ViewController.swift */; };
+		113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAEA22341AD700383001 /* HomeViewController.swift */; };
 		113DBAEE22341AD700383001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEC22341AD700383001 /* Main.storyboard */; };
 		113DBAF022341ADB00383001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEF22341ADB00383001 /* Assets.xcassets */; };
 		113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAF122341ADB00383001 /* LaunchScreen.storyboard */; };
-		5708365B1567AF117A5C1D00 /* Pods_MobileCheckout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F45AF7026D1168288F26DCC /* Pods_MobileCheckout.framework */; };
+		113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAFC2234512000383001 /* GoogleService-Info.plist */; };
+		AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		113DBAE522341AD700383001 /* MobileCheckout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileCheckout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		113DBAE522341AD700383001 /* Clerc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clerc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		113DBAE822341AD700383001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		113DBAEA22341AD700383001 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		113DBAEA22341AD700383001 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		113DBAED22341AD700383001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		113DBAEF22341ADB00383001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		113DBAF222341ADB00383001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		113DBAF422341ADB00383001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1CC666E4A648DC4D92F7BC53 /* Pods-MobileCheckout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileCheckout.release.xcconfig"; path = "Target Support Files/Pods-MobileCheckout/Pods-MobileCheckout.release.xcconfig"; sourceTree = "<group>"; };
-		1F45AF7026D1168288F26DCC /* Pods_MobileCheckout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileCheckout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3B35B02DBBA9809088852C2 /* Pods-MobileCheckout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileCheckout.debug.xcconfig"; path = "Target Support Files/Pods-MobileCheckout/Pods-MobileCheckout.debug.xcconfig"; sourceTree = "<group>"; };
+		113DBAFC2234512000383001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.debug.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.debug.xcconfig"; sourceTree = "<group>"; };
+		2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.release.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.release.xcconfig"; sourceTree = "<group>"; };
+		6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clerc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5708365B1567AF117A5C1D00 /* Pods_MobileCheckout.framework in Frameworks */,
+				AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +45,7 @@
 		113DBADC22341AD700383001 = {
 			isa = PBXGroup;
 			children = (
-				113DBAE722341AD700383001 /* MobileCheckout */,
+				113DBAE722341AD700383001 /* Clerc */,
 				113DBAE622341AD700383001 /* Products */,
 				EE3C11E5FBF917DBE023D908 /* Pods */,
 				D1D736CB4BB7CC5E03FADD5B /* Frameworks */,
@@ -53,28 +55,29 @@
 		113DBAE622341AD700383001 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				113DBAE522341AD700383001 /* MobileCheckout.app */,
+				113DBAE522341AD700383001 /* Clerc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		113DBAE722341AD700383001 /* MobileCheckout */ = {
+		113DBAE722341AD700383001 /* Clerc */ = {
 			isa = PBXGroup;
 			children = (
 				113DBAE822341AD700383001 /* AppDelegate.swift */,
-				113DBAEA22341AD700383001 /* ViewController.swift */,
+				113DBAEA22341AD700383001 /* HomeViewController.swift */,
 				113DBAEC22341AD700383001 /* Main.storyboard */,
 				113DBAEF22341ADB00383001 /* Assets.xcassets */,
 				113DBAF122341ADB00383001 /* LaunchScreen.storyboard */,
+				113DBAFC2234512000383001 /* GoogleService-Info.plist */,
 				113DBAF422341ADB00383001 /* Info.plist */,
 			);
-			path = MobileCheckout;
+			path = Clerc;
 			sourceTree = "<group>";
 		};
 		D1D736CB4BB7CC5E03FADD5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1F45AF7026D1168288F26DCC /* Pods_MobileCheckout.framework */,
+				6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -82,19 +85,18 @@
 		EE3C11E5FBF917DBE023D908 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C3B35B02DBBA9809088852C2 /* Pods-MobileCheckout.debug.xcconfig */,
-				1CC666E4A648DC4D92F7BC53 /* Pods-MobileCheckout.release.xcconfig */,
+				14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */,
+				2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		113DBAE422341AD700383001 /* MobileCheckout */ = {
+		113DBAE422341AD700383001 /* Clerc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 113DBAF722341ADB00383001 /* Build configuration list for PBXNativeTarget "MobileCheckout" */;
+			buildConfigurationList = 113DBAF722341ADB00383001 /* Build configuration list for PBXNativeTarget "Clerc" */;
 			buildPhases = (
 				54695718734106662DF9E7E9 /* [CP] Check Pods Manifest.lock */,
 				113DBAE122341AD700383001 /* Sources */,
@@ -107,9 +109,9 @@
 			);
 			dependencies = (
 			);
-			name = MobileCheckout;
+			name = Clerc;
 			productName = MobileCheckout;
-			productReference = 113DBAE522341AD700383001 /* MobileCheckout.app */;
+			productReference = 113DBAE522341AD700383001 /* Clerc.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -127,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 113DBAE022341AD700383001 /* Build configuration list for PBXProject "MobileCheckout" */;
+			buildConfigurationList = 113DBAE022341AD700383001 /* Build configuration list for PBXProject "Clerc" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -140,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				113DBAE422341AD700383001 /* MobileCheckout */,
+				113DBAE422341AD700383001 /* Clerc */,
 			);
 		};
 /* End PBXProject section */
@@ -151,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
+				113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
 			);
@@ -167,7 +170,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MobileCheckout/Pods-MobileCheckout-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Clerc/Pods-Clerc-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework",
@@ -206,7 +209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileCheckout/Pods-MobileCheckout-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Clerc/Pods-Clerc-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2F5068DD15B7506BF6565FD4 /* [CP] Copy Pods Resources */ = {
@@ -217,7 +220,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MobileCheckout/Pods-MobileCheckout-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Clerc/Pods-Clerc-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
@@ -232,7 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileCheckout/Pods-MobileCheckout-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Clerc/Pods-Clerc-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		54695718734106662DF9E7E9 /* [CP] Check Pods Manifest.lock */ = {
@@ -250,7 +253,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MobileCheckout-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Clerc-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -264,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				113DBAEB22341AD700383001 /* ViewController.swift in Sources */,
+				113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */,
 				113DBAE922341AD700383001 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,17 +412,17 @@
 		};
 		113DBAF822341ADB00383001 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3B35B02DBBA9809088852C2 /* Pods-MobileCheckout.debug.xcconfig */;
+			baseConfigurationReference = 14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2M6BCPR7S;
-				INFOPLIST_FILE = MobileCheckout/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Clerc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiafrank.MobileCheckout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paywithclerc.clerc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,17 +431,17 @@
 		};
 		113DBAF922341ADB00383001 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CC666E4A648DC4D92F7BC53 /* Pods-MobileCheckout.release.xcconfig */;
+			baseConfigurationReference = 2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2M6BCPR7S;
-				INFOPLIST_FILE = MobileCheckout/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Clerc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jiafrank.MobileCheckout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paywithclerc.clerc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +451,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		113DBAE022341AD700383001 /* Build configuration list for PBXProject "MobileCheckout" */ = {
+		113DBAE022341AD700383001 /* Build configuration list for PBXProject "Clerc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				113DBAF522341ADB00383001 /* Debug */,
@@ -457,7 +460,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		113DBAF722341ADB00383001 /* Build configuration list for PBXNativeTarget "MobileCheckout" */ = {
+		113DBAF722341ADB00383001 /* Build configuration list for PBXNativeTarget "Clerc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				113DBAF822341ADB00383001 /* Debug */,
