@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "462E1F9D121CF7331E1FFD1849776C91"
+               BlueprintIdentifier = "D172EB784054BB4FC1214EE00AE66C2E"
                BuildableName = "Pods-MobileCheckout.framework"
                BlueprintName = "Pods-MobileCheckout"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -10,6 +10,7 @@ target 'MobileCheckout' do
     pod 'SwiftEntryKit', '0.8.8'
     pod 'SVProgressHUD'
     pod 'EmptyDataSet-Swift', '~> 4.2.0'
+    pod 'BarcodeScanner'
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
     pod 'FirebaseUI/Auth'

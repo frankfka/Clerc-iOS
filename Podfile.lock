@@ -1,4 +1,5 @@
 PODS:
+  - BarcodeScanner (4.1.3)
   - BoringSSL-GRPC (0.0.2):
     - BoringSSL-GRPC/Implementation (= 0.0.2)
     - BoringSSL-GRPC/Interface (= 0.0.2)
@@ -126,6 +127,7 @@ PODS:
     - QuickLayout (= 2.1.1)
 
 DEPENDENCIES:
+  - BarcodeScanner
   - EmptyDataSet-Swift (~> 4.2.0)
   - Firebase/Core
   - Firebase/Firestore
@@ -137,6 +139,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BarcodeScanner
     - BoringSSL-GRPC
     - EmptyDataSet-Swift
     - Firebase
@@ -163,6 +166,7 @@ SPEC REPOS:
     - SwiftEntryKit
 
 SPEC CHECKSUMS:
+  BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
   EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
@@ -188,6 +192,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftEntryKit: c50f25a14772713ded1591c852d1c1dc74c95b9e
 
-PODFILE CHECKSUM: cc67a993fa3eff5020919d5abd1bd15e68d6438b
+PODFILE CHECKSUM: c43fce747028849319ed5d949b6a9ee05cf0360d
 
 COCOAPODS: 1.6.0
