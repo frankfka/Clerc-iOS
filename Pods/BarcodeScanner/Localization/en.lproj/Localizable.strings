@@ -1,7 +1,7 @@
-"SCAN_BARCODE_TITLE" = "Scan barcode";
-"BUTTON_CLOSE" = "Close";
+"SCAN_BARCODE_TITLE" = "Scan Barcode";
+"BUTTON_CLOSE" = "Cancel";
 "BUTTON_SETTINGS" = "Settings";
-"INFO_DESCRIPTION_TEXT" = "Place the barcode within the window to scan. The search will start automatically.";
-"INFO_LOADING_TITLE" = "Looking for your product...";
-"NO_PRODUCT_ERROR_TITLE" = "No product found.";
-"ASK_FOR_PERMISSION_TEXT" = "In order to scan barcodes you have to allow camera under your settings.";
+"INFO_DESCRIPTION_TEXT" = "Place the barcode in the view rectangle. Scanning will occur automatically.";
+"INFO_LOADING_TITLE" = "Searching...";
+"NO_PRODUCT_ERROR_TITLE" = "Not found.";
+"ASK_FOR_PERMISSION_TEXT" = "Please allow camera permissions in Settings to start scanning barcodes.";

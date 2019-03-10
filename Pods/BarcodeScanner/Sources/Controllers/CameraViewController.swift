@@ -66,7 +66,7 @@ public final class CameraViewController: UIViewController {
         captureDevice.unlockForConfiguration()
       } catch {}
 
-        flashButton.setImage(torchMode.image, for: UIControl.State())
+      flashButton.setImage(torchMode.image, for: UIControl.State())
     }
   }
 
@@ -173,7 +173,7 @@ public final class CameraViewController: UIViewController {
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(appWillEnterForeground),
-      name: UIApplication.didEnterBackgroundNotification,
+      name: UIApplication.willEnterForegroundNotification,
       object: nil
     )
   }

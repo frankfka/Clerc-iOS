@@ -32,7 +32,7 @@ public protocol BarcodeScannerDismissalDelegate: class {
  - Not found error message
  */
 open class BarcodeScannerViewController: UIViewController {
-  private static let footerHeight: CGFloat = 75
+  private static let footerHeight: CGFloat = 0
 
   // MARK: - Public properties
 
@@ -303,7 +303,7 @@ extension BarcodeScannerViewController: CameraViewControllerDelegate {
 
   func cameraViewControllerDidTapSettingsButton(_ controller: CameraViewController) {
     DispatchQueue.main.async {
-        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+      if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
         UIApplication.shared.openURL(settingsURL)
       }
     }

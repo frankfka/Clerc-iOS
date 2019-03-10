@@ -13,6 +13,11 @@
 		113DBAF022341ADB00383001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEF22341ADB00383001 /* Assets.xcassets */; };
 		113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAF122341ADB00383001 /* LaunchScreen.storyboard */; };
 		113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAFC2234512000383001 /* GoogleService-Info.plist */; };
+		113DBB032234857C00383001 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB022234857C00383001 /* FirebaseService.swift */; };
+		113DBB05223485B000383001 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB04223485B000383001 /* Vendor.swift */; };
+		113DBB072234866C00383001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB062234866C00383001 /* Product.swift */; };
+		113DBB092234CA3F00383001 /* ViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB082234CA3F00383001 /* ViewService.swift */; };
+		11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */; };
 		AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +30,11 @@
 		113DBAF222341ADB00383001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		113DBAF422341ADB00383001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		113DBAFC2234512000383001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		113DBB022234857C00383001 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		113DBB04223485B000383001 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
+		113DBB062234866C00383001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		113DBB082234CA3F00383001 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
+		11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.debug.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.debug.xcconfig"; sourceTree = "<group>"; };
 		2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.release.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.release.xcconfig"; sourceTree = "<group>"; };
 		6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clerc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,8 +73,11 @@
 		113DBAE722341AD700383001 /* Clerc */ = {
 			isa = PBXGroup;
 			children = (
+				113DBB012234856D00383001 /* Service */,
+				113DBB002234855B00383001 /* Controller */,
+				113DBAFF2234854C00383001 /* View */,
+				113DBAFE2234854400383001 /* Model */,
 				113DBAE822341AD700383001 /* AppDelegate.swift */,
-				113DBAEA22341AD700383001 /* HomeViewController.swift */,
 				113DBAEC22341AD700383001 /* Main.storyboard */,
 				113DBAEF22341ADB00383001 /* Assets.xcassets */,
 				113DBAF122341ADB00383001 /* LaunchScreen.storyboard */,
@@ -72,6 +85,40 @@
 				113DBAF422341ADB00383001 /* Info.plist */,
 			);
 			path = Clerc;
+			sourceTree = "<group>";
+		};
+		113DBAFE2234854400383001 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				113DBB04223485B000383001 /* Vendor.swift */,
+				113DBB062234866C00383001 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		113DBAFF2234854C00383001 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		113DBB002234855B00383001 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				113DBAEA22341AD700383001 /* HomeViewController.swift */,
+				11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		113DBB012234856D00383001 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				113DBB022234857C00383001 /* FirebaseService.swift */,
+				113DBB082234CA3F00383001 /* ViewService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		D1D736CB4BB7CC5E03FADD5B /* Frameworks */ = {
@@ -268,7 +315,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */,
+				113DBB032234857C00383001 /* FirebaseService.swift in Sources */,
+				11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */,
+				113DBB092234CA3F00383001 /* ViewService.swift in Sources */,
+				113DBB072234866C00383001 /* Product.swift in Sources */,
 				113DBAE922341AD700383001 /* AppDelegate.swift in Sources */,
+				113DBB05223485B000383001 /* Vendor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

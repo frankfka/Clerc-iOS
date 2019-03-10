@@ -127,7 +127,7 @@ PODS:
     - QuickLayout (= 2.1.1)
 
 DEPENDENCIES:
-  - BarcodeScanner
+  - BarcodeScanner (from `https://github.com/frankfka/BarcodeScanner.git`)
   - EmptyDataSet-Swift (~> 4.2.0)
   - Firebase/Core
   - Firebase/Firestore
@@ -139,7 +139,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - BarcodeScanner
     - BoringSSL-GRPC
     - EmptyDataSet-Swift
     - Firebase
@@ -165,8 +164,17 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftEntryKit
 
+EXTERNAL SOURCES:
+  BarcodeScanner:
+    :git: https://github.com/frankfka/BarcodeScanner.git
+
+CHECKOUT OPTIONS:
+  BarcodeScanner:
+    :commit: 47a5839f76296854d8a2f2fb6935e7e67970f3f5
+    :git: https://github.com/frankfka/BarcodeScanner.git
+
 SPEC CHECKSUMS:
-  BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
+  BarcodeScanner: 8bb7fedfe654a257642434a162cdd74ea508c7d2
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
   EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
   Firebase: 59d557e064217fab6a03ff00baa73c06e73832e6
@@ -192,6 +200,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftEntryKit: c50f25a14772713ded1591c852d1c1dc74c95b9e
 
-PODFILE CHECKSUM: 1f913f5deb4458ae131a8acbeb44ee6963893ab8
+PODFILE CHECKSUM: 8c7d8025cd4b1989d788c35fa7062581069ead89
 
 COCOAPODS: 1.6.0
