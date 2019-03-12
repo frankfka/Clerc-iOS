@@ -18,6 +18,11 @@
 		113DBB072234866C00383001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB062234866C00383001 /* Product.swift */; };
 		113DBB092234CA3F00383001 /* ViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB082234CA3F00383001 /* ViewService.swift */; };
 		11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */; };
+		11B6ECD72236031000C7716D /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECD52236031000C7716D /* ConfirmationDialog.swift */; };
+		11B6ECD82236031000C7716D /* ConfirmationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECD62236031000C7716D /* ConfirmationDialog.xib */; };
+		11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */; };
+		11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */; };
+		11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDF2236101E00C7716D /* TextFormatterService.swift */; };
 		AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +40,11 @@
 		113DBB062234866C00383001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		113DBB082234CA3F00383001 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
 		11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
+		11B6ECD52236031000C7716D /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
+		11B6ECD62236031000C7716D /* ConfirmationDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationDialog.xib; sourceTree = "<group>"; };
+		11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemTableViewCell.swift; sourceTree = "<group>"; };
+		11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingItemTableViewCell.xib; sourceTree = "<group>"; };
+		11B6ECDF2236101E00C7716D /* TextFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatterService.swift; sourceTree = "<group>"; };
 		14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.debug.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.debug.xcconfig"; sourceTree = "<group>"; };
 		2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.release.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.release.xcconfig"; sourceTree = "<group>"; };
 		6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clerc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +109,8 @@
 		113DBAFF2234854C00383001 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				11B6ECDA22360BA800C7716D /* TableCell */,
+				11B6ECD922360B9C00C7716D /* Dialog */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,8 +129,27 @@
 			children = (
 				113DBB022234857C00383001 /* FirebaseService.swift */,
 				113DBB082234CA3F00383001 /* ViewService.swift */,
+				11B6ECDF2236101E00C7716D /* TextFormatterService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		11B6ECD922360B9C00C7716D /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				11B6ECD52236031000C7716D /* ConfirmationDialog.swift */,
+				11B6ECD62236031000C7716D /* ConfirmationDialog.xib */,
+			);
+			path = Dialog;
+			sourceTree = "<group>";
+		};
+		11B6ECDA22360BA800C7716D /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */,
+				11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */,
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 		D1D736CB4BB7CC5E03FADD5B /* Frameworks */ = {
@@ -199,9 +230,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B6ECD82236031000C7716D /* ConfirmationDialog.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
 				113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
+				11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +351,10 @@
 				113DBB032234857C00383001 /* FirebaseService.swift in Sources */,
 				11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */,
 				113DBB092234CA3F00383001 /* ViewService.swift in Sources */,
+				11B6ECD72236031000C7716D /* ConfirmationDialog.swift in Sources */,
+				11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */,
 				113DBB072234866C00383001 /* Product.swift in Sources */,
+				11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */,
 				113DBAE922341AD700383001 /* AppDelegate.swift in Sources */,
 				113DBB05223485B000383001 /* Vendor.swift in Sources */,
 			);

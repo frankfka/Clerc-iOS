@@ -14,6 +14,7 @@ class ViewService {
     // HUD Display time in seconds
     static let HUD_TIME = 2
     
+    // Show a popup HUD with a specified success/fail and message
     static func showHUD(success: Bool, message: String) {
         if (success) {
             SVProgressHUD.showSuccess(withStatus: message)
@@ -22,5 +23,61 @@ class ViewService {
         }
         SVProgressHUD.dismiss(withDelay: TimeInterval(HUD_TIME))
     }
+    
+    // Update size of a tableview such that there is no scrolling & all of its contents fit
+    static func updateTableViewSize(tableView: UITableView, tableViewHeightConstraint: NSLayoutConstraint) {
+        // We want to fit the entire tableview, so disable scroll
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
+        
+        // Make tableview very big so that all the cells show
+        tableViewHeightConstraint.constant = 1000
+        UIView.animate(withDuration: 0, animations: {
+            tableView.layoutIfNeeded()
+        }) { (complete) in
+            
+            var heightOfTableView: CGFloat = 0.0
+            // Get visible cells and sum up their heights
+            let cells = tableView.visibleCells
+            for cell in cells {
+                heightOfTableView += cell.frame.height
+            }
+            // Update tableview height with new constant from the sum
+            tableViewHeightConstraint.constant = heightOfTableView
+            
+        }
+    }
+    
+    // Updates the size of a scrollview to fit all of its contents
+    static func updateScrollViewSize(for scrollView: UIScrollView, with minHeight: CGFloat = CGFloat(integerLiteral: 0)) {
+        
+        // Sum up height of all the subviews
+        var contentRect = CGRect.zero
+        for view in scrollView.subviews {
+            contentRect = contentRect.union(view.frame)
+        }
+        // Set scrollview size
+        if minHeight > contentRect.size.height {
+            scrollView.contentSize.height = minHeight
+        } else {
+            scrollView.contentSize = contentRect.size
+        }
+        
+    }
+    
+//    static func showConfirmation() {
+//        var attributes = EKAttributes()
+//        attributes.roundCorners = .all(radius: 4)
+//        attributes.position = .center
+//        attributes.screenBackground = .visualEffect(style: .dark)
+//        attributes.entranceAnimation = .none
+//        attributes.displayDuration = .infinity
+//        attributes.entryInteraction = .absorbTouches
+//        attributes.screenInteraction = .dismiss
+//        let confirmationDialog = ConfirmationDialog()
+//        let textField = confirmationDialog.textField
+//        SwiftEntryKit.display(entry: confirmationDialog, using: attributes)
+//    }
     
 }

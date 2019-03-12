@@ -1,3 +1,12 @@
 ### Color Schemes
-Primary: #0D47A1
-Accent: #FFA000
+- Primary: #0D47A1
+- Accent: #FFA000
+- Dark Text: #212121
+- Light Text: #757575
+- White Text: #FFFFFF
+- Divider Color: #757575
+
+### Font
+- Font Type: System
+- Font Weight: Bold | Medium | Normal
+- Font Size: 34px | 20px | 17px | 14px

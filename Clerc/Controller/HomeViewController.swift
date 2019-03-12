@@ -12,10 +12,44 @@ import AVFoundation
 import FirebaseFirestore
 
 class HomeViewController: UIViewController {
+    
+    // Used in segue initialization to tell next controller what vendor was scanned
+    var scannedVendor: Vendor?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    // When shopping button is pressed, launch the barcode scanner view controller
+    @IBAction func beginShoppingPressed(_ sender: UIButton) {
+        // Create the VC then present it modally
+        let barcodeScannerVC = BarcodeScannerViewController()
+        barcodeScannerVC.codeDelegate = self
+        barcodeScannerVC.dismissalDelegate = self
+        // No Scanning animation
+        barcodeScannerVC.cameraViewController.barCodeFocusViewType = .twoDimensions
+        barcodeScannerVC.headerViewController.titleLabel.text = "Scan Store QR"
+        present(barcodeScannerVC, animated: true, completion: nil)
+    }
+    
+    // Called when a store was successfully identified and returned
+    private func retailerScanSuccess(with vendor: Vendor) {
+        // Segue into the shopping view
+        print("Vendor \(vendor.name) found successfully")
+        scannedVendor = vendor
+        performSegue(withIdentifier: "HomeToShoppingSegue", sender: self)
+    }
+    
+    // Segue initialization
+    // HOMETOSHOPPING - Send the vendor object
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "HomeToShoppingSegue") {
+            // Get destination VC and set its vendor object - need to bypass the initial nav controller
+            let navigationVC = segue.destination as! UINavigationController
+            let destinationVC = navigationVC.topViewController as! ShoppingViewController
+            destinationVC.vendor = scannedVendor! 
+        }
     }
     
     
@@ -55,24 +89,10 @@ extension HomeViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissa
         }
     }
     
+    // Called when user clicks "Cancel" on the barcode scanning view controller
     func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
+        // Dismiss the view controller
         controller.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func beginShoppingPressed(_ sender: UIButton) {
-        // Create the VC then present it modally
-        let barcodeScannerVC = BarcodeScannerViewController()
-        barcodeScannerVC.codeDelegate = self
-        barcodeScannerVC.dismissalDelegate = self
-        // No Scanning animation
-        barcodeScannerVC.cameraViewController.barCodeFocusViewType = .twoDimensions
-        barcodeScannerVC.headerViewController.titleLabel.text = "Scan Store QR"
-        present(barcodeScannerVC, animated: true, completion: nil)
-    }
-    
-    private func retailerScanSuccess(with vendor: Vendor) {
-        // Segue into the shopping view
-        print("returned")
     }
     
 }

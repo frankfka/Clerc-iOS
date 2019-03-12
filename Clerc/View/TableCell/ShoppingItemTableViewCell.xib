@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShoppingItemTableCell" rowHeight="96" id="KGk-i7-Jjw" customClass="ShoppingItemTableViewCell" customModule="Clerc" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAH-Rr-Zqp">
+                        <rect key="frame" x="16" y="11" width="134" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" name="Dark Text"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-Ac-3KG">
+                        <rect key="frame" x="249" y="23" width="55" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" name="Primary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.99 x 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbS-Bd-EI4">
+                        <rect key="frame" x="16" y="35" width="60" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="Light Text"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pAH-Rr-Zqp" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DFe-st-G1C"/>
+                    <constraint firstItem="pAH-Rr-Zqp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DSN-1z-aru"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wuh-Ac-3KG" secondAttribute="trailing" id="IKw-hm-DRW"/>
+                    <constraint firstItem="wuh-Ac-3KG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pAH-Rr-Zqp" secondAttribute="trailing" constant="16" id="YFX-E8-ers"/>
+                    <constraint firstItem="jbS-Bd-EI4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="c1f-41-HVI"/>
+                    <constraint firstItem="pAH-Rr-Zqp" firstAttribute="leading" secondItem="jbS-Bd-EI4" secondAttribute="leading" id="hh8-Yk-DNr"/>
+                    <constraint firstItem="wuh-Ac-3KG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="i0f-ma-ziH"/>
+                    <constraint firstItem="pAH-Rr-Zqp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="r8w-XG-4S3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jbS-Bd-EI4" secondAttribute="bottom" id="zkq-1D-aC2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="costQtyLabel" destination="jbS-Bd-EI4" id="O0C-Ap-4ub"/>
+                <outlet property="nameLabel" destination="pAH-Rr-Zqp" id="EL0-HF-4hr"/>
+                <outlet property="priceLabel" destination="wuh-Ac-3KG" id="Xph-vs-a2x"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="94.452773613193415"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Dark Text">
+            <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light Text">
+            <color red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.050980392156862744" green="0.27843137254901962" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -24,7 +24,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="eB7-Iw-Cyq"/>
                                 </constraints>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem title="Clerc" id="2zH-hC-y26">
                                         <barButtonItem key="rightBarButtonItem" title="Settings" id="6OL-x6-ZDW"/>
@@ -67,7 +66,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <segue destination="gpf-eH-Qdh" kind="show" id="7Ta-fO-sIU"/>
+                        <segue destination="gpf-eH-Qdh" kind="show" identifier="HomeToShoppingSegue" id="7Ta-fO-sIU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -83,21 +82,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33W-oF-cdi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="499"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svM-qQ-tHP">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVn-Jt-rZV">
-                                                <rect key="frame" x="0.0" y="53" width="375" height="36"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
+                                                <rect key="frame" x="0.0" y="53" width="375" height="41"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                                <color key="textColor" name="Dark Text"/>
+                                                <color key="highlightedColor" name="Dark Text"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQJ-wl-Wfr">
                                                 <rect key="frame" x="0.0" y="32" width="375" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -113,20 +112,24 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEc-0V-8Mq">
-                                        <rect key="frame" x="0.0" y="105" width="375" height="26"/>
+                                        <rect key="frame" x="0.0" y="110" width="375" height="29"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CART" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwH-vd-FtX">
-                                                <rect key="frame" x="16" y="0.0" width="53" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="16" y="0.0" width="45" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crN-mf-uvh">
-                                                <rect key="frame" x="16" y="24" width="343" height="2"/>
-                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="16" y="28" width="343" height="1"/>
+                                                <color key="backgroundColor" name="Divider"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="5lY-cf-txk"/>
+                                                </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHa-5t-su3">
-                                                <rect key="frame" x="323" y="-2" width="36" height="30"/>
+                                                <rect key="frame" x="318" y="-2" width="41" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Clear">
                                                     <color key="titleColor" name="Primary"/>
                                                 </state>
@@ -152,7 +155,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXs-Xo-Kk3">
-                                        <rect key="frame" x="0.0" y="131" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="139" width="375" height="74"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4wA-1X-tiv">
                                                 <rect key="frame" x="16" y="8" width="343" height="50"/>
@@ -187,10 +190,10 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nlW-rg-b3J">
-                                <rect key="frame" x="0.0" y="499" width="375" height="52"/>
+                                <rect key="frame" x="0.0" y="491" width="375" height="60"/>
                                 <color key="backgroundColor" name="Primary"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="3kj-ke-MNb"/>
+                                    <constraint firstAttribute="height" constant="60" id="3kj-ke-MNb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -198,8 +201,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="addItemButtonPressed:" destination="Rzu-la-Sjq" eventType="touchUpInside" id="tAl-0T-U9Z"/>
-                                    <action selector="beginShoppingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iZ2-f5-fpI"/>
+                                    <action selector="addItemButtonPressed:" destination="Rzu-la-Sjq" eventType="touchUpInside" id="Ki0-yp-Baq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,13 +232,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="itemsTableHeight" destination="NgA-GI-tFY" id="iXK-f4-ypv"/>
+                        <outlet property="itemsTableView" destination="4wA-1X-tiv" id="4Fk-5d-zlY"/>
                         <outlet property="navigationBar" destination="w5J-cf-bh2" id="041-TY-8es"/>
+                        <outlet property="parentScrollView" destination="33W-oF-cdi" id="bHy-3R-43k"/>
                         <outlet property="totalAmountLabel" destination="xVn-Jt-rZV" id="hQG-KY-V1R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FE-lf-y4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="-528"/>
+            <point key="canvasLocation" x="1884" y="-696.7016491754124"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cZX-8B-o82">
@@ -254,12 +259,18 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyD-Wl-S4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1026" y="-527"/>
+            <point key="canvasLocation" x="1106" y="-695"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="Dark Text">
+            <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Divider">
+            <color red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Primary">
-            <color red="0.050980392156862744" green="0.27843137254901962" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47450980392156861" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
