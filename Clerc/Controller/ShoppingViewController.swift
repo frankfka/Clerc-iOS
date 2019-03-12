@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BarcodeScanner
 import SwiftEntryKit
 
 class ShoppingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -27,9 +28,14 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // THIS IS IMPORTANT - we force unwrap vendor everywhere else here
         if vendor != nil {
             // Set title
             navigationBar.title = vendor?.name
+            // Set delegates for items table
+            itemsTableView.dataSource = self
+            itemsTableView.delegate = self
+            itemsTableView.register(UINib(nibName: "ShoppingItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ShoppingItemTableViewCell")
             updateUI()
         } else {
             // Vendor should always be initialized - show error if this is not the case
@@ -42,7 +48,10 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Initializes UI
     private func updateUI() {
-        // Call stuff like update tableview & scroll view constraints here 
+        // Update the tableview height and the scrollview
+        itemsTableView.reloadData()
+        ViewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
+        ViewService.updateScrollViewSize(for: parentScrollView)
     }
     
     // MARK: Cart methods
@@ -51,14 +60,22 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let shoppingItemCell = tableView.dequeueReusableCell(withIdentifier: "ShoppingItemTableCell") as! ShoppingItemTableViewCell
+        let shoppingItemCell = tableView.dequeueReusableCell(withIdentifier: "ShoppingItemTableViewCell") as! ShoppingItemTableViewCell
         // Pass in params
+        let product = scannedProducts[indexPath.row]
+        let quantity = quantities[indexPath.row]
+        shoppingItemCell.loadUI(for: product, with: quantity)
         return shoppingItemCell
     }
     
     // Bottom add item button pressed. Should show a new barcode scanner VC
     @IBAction func addItemButtonPressed(_ sender: UIButton) {
         // Launch barcode view controller
+        // Create the VC then present it modally
+        let barcodeScannerVC = ViewService.getBarcodeScannerVC(with: "Scan New Item")
+        barcodeScannerVC.codeDelegate = self
+        barcodeScannerVC.dismissalDelegate = self
+        present(barcodeScannerVC, animated: true, completion: nil)
     }
     
     // Clear cart button pressed. Clear all the arrays if confirmed
@@ -73,6 +90,49 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func checkoutButtonPressed(_ sender: UIBarButtonItem) {
         print("Go to checkout")
+    }
+    
+}
+
+// MARK: Barcode Scanner delegates
+extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissalDelegate {
+    
+    // Function called when code is captured
+    func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+        
+        // This barcode can realistically be of any time, so we don't check type here
+        print("Barcode Data: \(code) | Type: \(type)")
+        
+        // Call firebase to see if this is a valid store
+        FirebaseService.getProduct(from: vendor!.id, for: code) { (product) in
+            if let product = product {
+                controller.dismiss(animated: true) {
+                    print("Product found: id: \(product.id), name: \(product.name)")
+                    // Add the product to the shopping list, then update the UI
+                    if let itemIndex = self.scannedProducts.firstIndex(of: product) {
+                        // First determine if the item has already been added - if so, we just increase the quantity
+                        self.quantities[itemIndex] = self.quantities[itemIndex] + 1
+                    } else {
+                        // Else, just add to the scanned products & quantities array
+                        self.scannedProducts.append(product)
+                        self.quantities.append(1)
+                    }
+                    self.updateUI()
+                }
+            } else {
+                print("Could not find item barcode in Firebase")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    controller.resetWithError(message: "No item found. Please try again.")
+                }
+            }
+        }
+        
+    }
+    
+    // Called when user clicks "Cancel" on the barcode scanning view controller
+    func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
+        // Dismiss the view controller
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }

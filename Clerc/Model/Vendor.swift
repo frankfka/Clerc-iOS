@@ -21,3 +21,10 @@ class Vendor {
     }
     
 }
+
+// Deals with object equality
+extension Vendor: Equatable {
+    static func == (lhs: Vendor, rhs: Vendor) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

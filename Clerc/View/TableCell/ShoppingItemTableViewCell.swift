@@ -14,21 +14,15 @@ class ShoppingItemTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var costQtyLabel: UILabel!
-    
-    // State elements
-    var name: String = ""
-    var individualCost: Double = 0
-    var quantity: Int = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        loadUI() 
     }
     
-    private func loadUI() {
-        priceLabel.text = TextFormatterService.getCurrencyString(for: individualCost * Double(quantity))
-        nameLabel.text = name
-        costQtyLabel.text = "\(TextFormatterService.getCurrencyString(for: individualCost)) x \(quantity)"
+    func loadUI(for product: Product, with quantity: Int) {
+        priceLabel.text = TextFormatterService.getCurrencyString(for: product.cost * Double(quantity))
+        nameLabel.text = product.name
+        costQtyLabel.text = "\(TextFormatterService.getCurrencyString(for: product.cost)) x \(quantity)"
     }
     
 }

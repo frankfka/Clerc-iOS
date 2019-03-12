@@ -17,6 +17,7 @@
 		113DBB05223485B000383001 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB04223485B000383001 /* Vendor.swift */; };
 		113DBB072234866C00383001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB062234866C00383001 /* Product.swift */; };
 		113DBB092234CA3F00383001 /* ViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB082234CA3F00383001 /* ViewService.swift */; };
+		1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189A1D22237FAD900E92BED /* ViewConstants.swift */; };
 		11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */; };
 		11B6ECD72236031000C7716D /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECD52236031000C7716D /* ConfirmationDialog.swift */; };
 		11B6ECD82236031000C7716D /* ConfirmationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECD62236031000C7716D /* ConfirmationDialog.xib */; };
@@ -39,6 +40,7 @@
 		113DBB04223485B000383001 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		113DBB062234866C00383001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		113DBB082234CA3F00383001 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
+		1189A1D22237FAD900E92BED /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		11B6ECD52236031000C7716D /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
 		11B6ECD62236031000C7716D /* ConfirmationDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationDialog.xib; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		113DBAE722341AD700383001 /* Clerc */ = {
 			isa = PBXGroup;
 			children = (
+				1189A1D12237FAC400E92BED /* Constants */,
 				113DBB012234856D00383001 /* Service */,
 				113DBB002234855B00383001 /* Controller */,
 				113DBAFF2234854C00383001 /* View */,
@@ -132,6 +135,14 @@
 				11B6ECDF2236101E00C7716D /* TextFormatterService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		1189A1D12237FAC400E92BED /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				1189A1D22237FAD900E92BED /* ViewConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		11B6ECD922360B9C00C7716D /* Dialog */ = {
@@ -352,6 +363,7 @@
 				11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */,
 				113DBB092234CA3F00383001 /* ViewService.swift in Sources */,
 				11B6ECD72236031000C7716D /* ConfirmationDialog.swift in Sources */,
+				1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */,
 				11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */,
 				113DBB072234866C00383001 /* Product.swift in Sources */,
 				11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */,

@@ -24,12 +24,9 @@ class HomeViewController: UIViewController {
     // When shopping button is pressed, launch the barcode scanner view controller
     @IBAction func beginShoppingPressed(_ sender: UIButton) {
         // Create the VC then present it modally
-        let barcodeScannerVC = BarcodeScannerViewController()
+        let barcodeScannerVC = ViewService.getBarcodeScannerVC(with: "Scan Store QR")
         barcodeScannerVC.codeDelegate = self
         barcodeScannerVC.dismissalDelegate = self
-        // No Scanning animation
-        barcodeScannerVC.cameraViewController.barCodeFocusViewType = .twoDimensions
-        barcodeScannerVC.headerViewController.titleLabel.text = "Scan Store QR"
         present(barcodeScannerVC, animated: true, completion: nil)
     }
     
@@ -74,7 +71,7 @@ extension HomeViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissa
                     }
                 } else {
                     print("Could not find barcode in Firebase")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(ViewConstants.BARCODE_ERROR_TIME)) {
                         controller.resetWithError(message: "No store found. Please try again.")
                     }
                 }
@@ -83,7 +80,7 @@ extension HomeViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissa
             // Not the correct type of code, do nothing
             print("Invalid barcode format")
             // Display an error message
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(ViewConstants.BARCODE_ERROR_TIME)) {
                 controller.resetWithError(message: "No store found. Please try again.")
             }
         }

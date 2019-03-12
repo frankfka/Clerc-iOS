@@ -16,8 +16,7 @@ class FirebaseService {
     // Retrieve a vendor from firebase
     static func getVendor(with vendorId: String, completionHandler: @escaping (_ result: Vendor?) -> Void) {
         // Get a reference to the document, which may or may not exist
-        let vendorDocumentRef = database.collection("vendors").document(vendorId)
-        vendorDocumentRef.getDocument { (vendorDocument, error) in
+        getVendorDocRef(with: vendorId).getDocument { (vendorDocument, error) in
             // Check that the document actually exists
             if let vendorDocument = vendorDocument, vendorDocument.exists {
                 // Vendor found, create the object
@@ -26,12 +25,43 @@ class FirebaseService {
                 // TODO we may benefit from additional error checking
                 let vendorName = vendorData!["name"] as! String
                 let stripeId = vendorData!["stripeId"] as! String
+                // Pass the vendor object to the completion handler, then return
                 completionHandler(Vendor(id: vendorId, name: vendorName, stripeId: stripeId))
-                return
             } else {
                 completionHandler(nil)
             }
         }
+    }
+    
+    // Retrieve a product from firebase
+    static func getProduct(from vendorId: String, for productId: String, completionHandler: @escaping (_ result: Product?) -> Void) {
+        // Get reference to the document, which may or may not exist
+        getProductDocRef(from: vendorId, with: productId).getDocument { (productDocument, error) in
+            // Check that the product exists first
+            if let productDocument = productDocument, productDocument.exists {
+                // Product exists, we can now create the object
+                let productData = productDocument.data()
+                // TODO extra error checking here?
+                let productName = productData!["name"] as! String
+                let cost = productData!["cost"] as! Double
+                let currency = productData!["currency"] as! String
+                completionHandler(Product(id: productId, name: productName, cost: cost, currency: currency))
+            } else {
+                completionHandler(nil)
+            }
+        }
+        
+    }
+    
+    // MARK: Helper functions
+    // Gets a Firebase document reference for the vendor
+    private static func getVendorDocRef(with vendorId: String) -> DocumentReference {
+        return database.collection("vendors").document(vendorId)
+    }
+    
+    // Gets a Firebase document reference for the product
+    private static func getProductDocRef(from vendorId: String, with productId: String) -> DocumentReference {
+        return getVendorDocRef(with: vendorId).collection("products").document(productId)
     }
     
 }

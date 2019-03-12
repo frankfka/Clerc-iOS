@@ -8,11 +8,9 @@
 
 import Foundation
 import SVProgressHUD
+import BarcodeScanner
 
 class ViewService {
-    
-    // HUD Display time in seconds
-    static let HUD_TIME = 2
     
     // Show a popup HUD with a specified success/fail and message
     static func showHUD(success: Bool, message: String) {
@@ -21,7 +19,7 @@ class ViewService {
         } else {
             SVProgressHUD.showError(withStatus: message)
         }
-        SVProgressHUD.dismiss(withDelay: TimeInterval(HUD_TIME))
+        SVProgressHUD.dismiss(withDelay: TimeInterval(ViewConstants.HUD_TIME))
     }
     
     // Update size of a tableview such that there is no scrolling & all of its contents fit
@@ -64,6 +62,14 @@ class ViewService {
             scrollView.contentSize = contentRect.size
         }
         
+    }
+    
+    static func getBarcodeScannerVC(with title: String) -> BarcodeScannerViewController {
+        let barcodeScannerVC = BarcodeScannerViewController()
+        // No Scanning animation
+        barcodeScannerVC.cameraViewController.barCodeFocusViewType = .twoDimensions
+        barcodeScannerVC.headerViewController.titleLabel.text = title
+        return barcodeScannerVC
     }
     
 //    static func showConfirmation() {
