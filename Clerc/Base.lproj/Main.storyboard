@@ -269,22 +269,74 @@
                                     <action selector="payNowTapped:" destination="7TP-3O-NQ6" eventType="touchUpInside" id="let-8B-GOX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL6-dQ-SCg">
-                                <rect key="frame" x="0.0" y="32" width="375" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="paymentMethodTapped:" destination="7TP-3O-NQ6" eventType="touchUpInside" id="LRN-ku-vrE"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzx-n6-QoY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bhb-aA-1pX">
+                                        <rect key="frame" x="0.0" y="53" width="375" height="41"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                        <color key="textColor" name="Dark Text"/>
+                                        <color key="highlightedColor" name="Dark Text"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjz-Is-zg8">
+                                        <rect key="frame" x="0.0" y="32" width="375" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="Dark Text"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="jjz-Is-zg8" firstAttribute="centerX" secondItem="wzx-n6-QoY" secondAttribute="centerX" id="9yN-yE-Sho"/>
+                                    <constraint firstItem="jjz-Is-zg8" firstAttribute="top" secondItem="wzx-n6-QoY" secondAttribute="top" constant="32" id="Cx4-Fm-ELu"/>
+                                    <constraint firstItem="Bhb-aA-1pX" firstAttribute="top" secondItem="jjz-Is-zg8" secondAttribute="bottom" id="f3X-fa-FrY"/>
+                                    <constraint firstItem="Bhb-aA-1pX" firstAttribute="leading" secondItem="wzx-n6-QoY" secondAttribute="leading" id="kqb-Wq-ABH"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bhb-aA-1pX" secondAttribute="trailing" id="mbA-Ep-UXd"/>
+                                    <constraint firstAttribute="trailing" secondItem="jjz-Is-zg8" secondAttribute="trailing" id="ogj-BL-sqr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bhb-aA-1pX" secondAttribute="bottom" constant="16" id="w6m-wp-tuh"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h64-x1-tcD">
+                                <rect key="frame" x="0.0" y="110" width="375" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqq-xA-eNy">
+                                        <rect key="frame" x="16" y="12" width="83" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL6-dQ-SCg">
+                                        <rect key="frame" x="228" y="6" width="135" height="36"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
+                                        <state key="normal" title="Select Payment">
+                                            <color key="titleColor" name="Primary"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="paymentMethodTapped:" destination="7TP-3O-NQ6" eventType="touchUpInside" id="LRN-ku-vrE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PL6-dQ-SCg" secondAttribute="trailing" constant="12" id="9tY-uo-HaC"/>
+                                    <constraint firstItem="PL6-dQ-SCg" firstAttribute="centerY" secondItem="fqq-xA-eNy" secondAttribute="centerY" id="K9Q-mg-KKx"/>
+                                    <constraint firstAttribute="bottom" secondItem="fqq-xA-eNy" secondAttribute="bottom" constant="12" id="SoL-g9-Fz7"/>
+                                    <constraint firstItem="fqq-xA-eNy" firstAttribute="leading" secondItem="h64-x1-tcD" secondAttribute="leading" constant="16" id="hui-72-e99"/>
+                                    <constraint firstItem="PL6-dQ-SCg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fqq-xA-eNy" secondAttribute="trailing" constant="16" id="icV-aF-KUU"/>
+                                    <constraint firstItem="fqq-xA-eNy" firstAttribute="top" secondItem="h64-x1-tcD" secondAttribute="top" constant="12" id="pz0-dv-cPY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5H0-Pm-5VE" firstAttribute="trailing" secondItem="PL6-dQ-SCg" secondAttribute="trailing" id="Ibc-qN-bhO"/>
-                            <constraint firstItem="PL6-dQ-SCg" firstAttribute="top" secondItem="5H0-Pm-5VE" secondAttribute="top" constant="32" id="QP3-p3-zus"/>
-                            <constraint firstItem="PL6-dQ-SCg" firstAttribute="leading" secondItem="5H0-Pm-5VE" secondAttribute="leading" id="SIB-if-uUo"/>
+                            <constraint firstItem="wzx-n6-QoY" firstAttribute="leading" secondItem="5H0-Pm-5VE" secondAttribute="leading" id="GFc-rK-CwK"/>
+                            <constraint firstItem="h64-x1-tcD" firstAttribute="leading" secondItem="5H0-Pm-5VE" secondAttribute="leading" id="Hut-ol-7Wq"/>
+                            <constraint firstItem="5H0-Pm-5VE" firstAttribute="trailing" secondItem="h64-x1-tcD" secondAttribute="trailing" id="Roc-Yp-fTk"/>
                             <constraint firstItem="wxW-2k-WpV" firstAttribute="leading" secondItem="5H0-Pm-5VE" secondAttribute="leading" id="TCX-C5-r21"/>
+                            <constraint firstItem="h64-x1-tcD" firstAttribute="top" secondItem="wzx-n6-QoY" secondAttribute="bottom" id="bIE-68-PY0"/>
                             <constraint firstItem="wxW-2k-WpV" firstAttribute="bottom" secondItem="5H0-Pm-5VE" secondAttribute="bottom" id="bRN-Lj-FQy"/>
+                            <constraint firstItem="wzx-n6-QoY" firstAttribute="trailing" secondItem="5H0-Pm-5VE" secondAttribute="trailing" id="boN-xm-yll"/>
                             <constraint firstItem="wxW-2k-WpV" firstAttribute="trailing" secondItem="5H0-Pm-5VE" secondAttribute="trailing" id="mtB-wY-aAy"/>
+                            <constraint firstItem="wzx-n6-QoY" firstAttribute="top" secondItem="5H0-Pm-5VE" secondAttribute="top" id="ng1-SU-nOg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5H0-Pm-5VE"/>
                     </view>
@@ -292,11 +344,12 @@
                     <connections>
                         <outlet property="payNowButton" destination="wxW-2k-WpV" id="5pw-Js-XKW"/>
                         <outlet property="paymentOptionButton" destination="PL6-dQ-SCg" id="YVC-gx-zKE"/>
+                        <outlet property="totalCostLabel" destination="Bhb-aA-1pX" id="9OB-aF-dfg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vvz-9T-p3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="-697"/>
+            <point key="canvasLocation" x="2752.8000000000002" y="-697.60119940029995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cZX-8B-o82">
