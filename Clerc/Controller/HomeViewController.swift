@@ -48,9 +48,6 @@ class HomeViewController: UIViewController {
             destinationVC.vendor = scannedVendor! 
         }
     }
-    
-    
-    
 }
 
 // MARK: Extension for all barcode methods (to identify a retailer)

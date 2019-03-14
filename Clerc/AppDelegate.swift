@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Configure Firebase services
         FirebaseApp.configure()
+        // Configure Stripe
+        StripeService.sharedClient.baseURLString = StripeConstants.BACKEND_URL
+        let config = STPPaymentConfiguration.shared()
+        config.publishableKey = StripeConstants.PUBLISHABLE_KEY
+        config.createCardSources = true
+        // Stripe UI elements
+        STPTheme.default().accentColor = UIColor(named: "Primary")!
         return true
     }
 

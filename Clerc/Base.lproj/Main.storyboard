@@ -158,7 +158,7 @@
                                         <rect key="frame" x="0.0" y="139" width="375" height="74"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4wA-1X-tiv">
-                                                <rect key="frame" x="16" y="8" width="343" height="50"/>
+                                                <rect key="frame" x="0.0" y="8" width="375" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="NgA-GI-tFY"/>
@@ -167,9 +167,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="4wA-1X-tiv" secondAttribute="trailing" constant="16" id="MM3-rO-eM3"/>
+                                            <constraint firstAttribute="trailing" secondItem="4wA-1X-tiv" secondAttribute="trailing" id="MM3-rO-eM3"/>
                                             <constraint firstAttribute="bottom" secondItem="4wA-1X-tiv" secondAttribute="bottom" constant="16" id="ndP-Wg-aYD"/>
-                                            <constraint firstItem="4wA-1X-tiv" firstAttribute="leading" secondItem="YXs-Xo-Kk3" secondAttribute="leading" constant="16" id="xga-Nz-ySe"/>
+                                            <constraint firstItem="4wA-1X-tiv" firstAttribute="leading" secondItem="YXs-Xo-Kk3" secondAttribute="leading" id="xga-Nz-ySe"/>
                                             <constraint firstItem="4wA-1X-tiv" firstAttribute="top" secondItem="YXs-Xo-Kk3" secondAttribute="top" constant="8" id="yo7-F7-fQX"/>
                                         </constraints>
                                     </view>
@@ -218,6 +218,7 @@
                         <viewLayoutGuide key="safeArea" id="PpE-XY-iMm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Store" id="w5J-cf-bh2">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="sfY-6s-In7"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="UQW-lw-Cds">
                             <color key="tintColor" name="Primary"/>
                             <connections>
@@ -237,11 +238,65 @@
                         <outlet property="navigationBar" destination="w5J-cf-bh2" id="041-TY-8es"/>
                         <outlet property="parentScrollView" destination="33W-oF-cdi" id="bHy-3R-43k"/>
                         <outlet property="totalAmountLabel" destination="xVn-Jt-rZV" id="hQG-KY-V1R"/>
+                        <segue destination="7TP-3O-NQ6" kind="show" identifier="CartToCheckoutSegue" id="NUz-0W-ZYG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FE-lf-y4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1884" y="-696.7016491754124"/>
+        </scene>
+        <!--Checkout-->
+        <scene sceneID="aAY-Ew-IB0">
+            <objects>
+                <viewController id="7TP-3O-NQ6" customClass="CheckoutViewController" customModule="Clerc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LW3-A5-GZb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxW-2k-WpV">
+                                <rect key="frame" x="0.0" y="491" width="375" height="60"/>
+                                <color key="backgroundColor" name="Primary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="03J-VK-yIE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Pay Now">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addItemButtonPressed:" destination="Rzu-la-Sjq" eventType="touchUpInside" id="nfq-X8-38Q"/>
+                                    <action selector="payNowTapped:" destination="7TP-3O-NQ6" eventType="touchUpInside" id="let-8B-GOX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL6-dQ-SCg">
+                                <rect key="frame" x="0.0" y="32" width="375" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="paymentMethodTapped:" destination="7TP-3O-NQ6" eventType="touchUpInside" id="LRN-ku-vrE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5H0-Pm-5VE" firstAttribute="trailing" secondItem="PL6-dQ-SCg" secondAttribute="trailing" id="Ibc-qN-bhO"/>
+                            <constraint firstItem="PL6-dQ-SCg" firstAttribute="top" secondItem="5H0-Pm-5VE" secondAttribute="top" constant="32" id="QP3-p3-zus"/>
+                            <constraint firstItem="PL6-dQ-SCg" firstAttribute="leading" secondItem="5H0-Pm-5VE" secondAttribute="leading" id="SIB-if-uUo"/>
+                            <constraint firstItem="wxW-2k-WpV" firstAttribute="leading" secondItem="5H0-Pm-5VE" secondAttribute="leading" id="TCX-C5-r21"/>
+                            <constraint firstItem="wxW-2k-WpV" firstAttribute="bottom" secondItem="5H0-Pm-5VE" secondAttribute="bottom" id="bRN-Lj-FQy"/>
+                            <constraint firstItem="wxW-2k-WpV" firstAttribute="trailing" secondItem="5H0-Pm-5VE" secondAttribute="trailing" id="mtB-wY-aAy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5H0-Pm-5VE"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Checkout" id="m2y-Xn-OJb"/>
+                    <connections>
+                        <outlet property="payNowButton" destination="wxW-2k-WpV" id="5pw-Js-XKW"/>
+                        <outlet property="paymentOptionButton" destination="PL6-dQ-SCg" id="YVC-gx-zKE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vvz-9T-p3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2753" y="-697"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cZX-8B-o82">
@@ -251,6 +306,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="ar9-PM-yEw">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="Primary"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

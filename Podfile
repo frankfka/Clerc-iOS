@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'Clerc' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -7,6 +7,7 @@ target 'Clerc' do
 
   # Pods for MobileCheckout
     pod 'Stripe'
+    pod 'Alamofire', '~> 5.0.0-beta.3'
     pod 'SwiftEntryKit', '0.8.8'
     pod 'SVProgressHUD'
     pod 'EmptyDataSet-Swift', '~> 4.2.0'

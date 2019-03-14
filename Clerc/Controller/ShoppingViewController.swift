@@ -46,15 +46,22 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    // Initializes UI
+    //
+    // Updates UI to reflect current state
+    //
     private func updateUI() {
-        // Update the tableview height and the scrollview
+        // Update the tableview
         itemsTableView.reloadData()
         ViewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
         ViewService.updateScrollViewSize(for: parentScrollView)
+        
+        // Update the total price
+        totalAmountLabel.text = TextFormatterService.getCurrencyString(for: getTotalCost())
     }
     
+    //
     // MARK: Cart methods
+    //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scannedProducts.count
     }
@@ -66,6 +73,11 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         let quantity = quantities[indexPath.row]
         shoppingItemCell.loadUI(for: product, with: quantity)
         return shoppingItemCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO - show the edit prompt
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Bottom add item button pressed. Should show a new barcode scanner VC
@@ -80,21 +92,48 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Clear cart button pressed. Clear all the arrays if confirmed
     @IBAction func clearCartButtonPressed(_ sender: UIButton) {
-        print("Clear cart")
+        // TODO confirmation dialog
+        scannedProducts = []
+        quantities = []
+        updateUI()
     }
     
+    // Calculates total in cart
+    private func getTotalCost() -> Double {
+        var totalPrice = 0.0
+        for index in 0..<scannedProducts.count {
+            totalPrice = totalPrice + scannedProducts[index].cost * Double(quantities[index])
+        }
+        return totalPrice
+    }
+    
+    //
     // MARK: Navigation button pressed methods
+    //
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        // TODO confirmation dialog
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func checkoutButtonPressed(_ sender: UIBarButtonItem) {
-        print("Go to checkout")
+        // TODO confirmation dialog
+        performSegue(withIdentifier: "CartToCheckoutSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CartToCheckoutSegue" {
+            // Initialize VC with the required fields (cost & vendor) 
+            let destinationVC = segue.destination as! CheckoutViewController
+            destinationVC.cost = getTotalCost()
+            destinationVC.vendor = vendor
+        }
     }
     
 }
 
+//
 // MARK: Barcode Scanner delegates
+//
 extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissalDelegate {
     
     // Function called when code is captured

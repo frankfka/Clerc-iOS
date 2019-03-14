@@ -11,7 +11,7 @@ import Foundation
 class ViewConstants {
     
     // Delay time to show error message in barcode scanner (in seconds)
-    static let BARCODE_ERROR_TIME = 2
+    static let BARCODE_ERROR_TIME = 1
     // HUD Display time in seconds
     static let HUD_TIME = 2
     

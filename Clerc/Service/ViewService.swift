@@ -22,6 +22,15 @@ class ViewService {
         SVProgressHUD.dismiss(withDelay: TimeInterval(ViewConstants.HUD_TIME))
     }
     
+    // Show loading animation
+    static func loadingAnimation(show: Bool, with message: String? = nil) {
+        if show {
+            SVProgressHUD.show(withStatus: message)
+        } else {
+            SVProgressHUD.dismiss()
+        }
+    }
+    
     // Update size of a tableview such that there is no scrolling & all of its contents fit
     static func updateTableViewSize(tableView: UITableView, tableViewHeightConstraint: NSLayoutConstraint) {
         // We want to fit the entire tableview, so disable scroll
@@ -64,11 +73,15 @@ class ViewService {
         
     }
     
+    // Creates a barcode scanner with default styling
     static func getBarcodeScannerVC(with title: String) -> BarcodeScannerViewController {
         let barcodeScannerVC = BarcodeScannerViewController()
         // No Scanning animation
         barcodeScannerVC.cameraViewController.barCodeFocusViewType = .twoDimensions
         barcodeScannerVC.headerViewController.titleLabel.text = title
+        // Initialize colors
+        barcodeScannerVC.headerViewController.closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0)
+        barcodeScannerVC.headerViewController.closeButton.tintColor = UIColor(named: "Primary")!
         return barcodeScannerVC
     }
     

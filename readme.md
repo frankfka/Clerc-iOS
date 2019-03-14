@@ -1,6 +1,7 @@
 ### Color Schemes
-- Primary: #0D47A1
-- Accent: #FFA000
+- Primary Light: #E0F2F1
+- Primary: #00796B
+- Primary Dark: #004C40
 - Dark Text: #212121
 - Light Text: #757575
 - White Text: #FFFFFF

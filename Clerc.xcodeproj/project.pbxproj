@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */; };
+		113662122238B083006DCAA4 /* StripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113662112238B083006DCAA4 /* StripeService.swift */; };
 		113DBAE922341AD700383001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAE822341AD700383001 /* AppDelegate.swift */; };
 		113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAEA22341AD700383001 /* HomeViewController.swift */; };
 		113DBAEE22341AD700383001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEC22341AD700383001 /* Main.storyboard */; };
@@ -17,6 +19,7 @@
 		113DBB05223485B000383001 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB04223485B000383001 /* Vendor.swift */; };
 		113DBB072234866C00383001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB062234866C00383001 /* Product.swift */; };
 		113DBB092234CA3F00383001 /* ViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB082234CA3F00383001 /* ViewService.swift */; };
+		116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C702239EB7B00D0F32A /* StripeConstants.swift */; };
 		1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189A1D22237FAD900E92BED /* ViewConstants.swift */; };
 		11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */; };
 		11B6ECD72236031000C7716D /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECD52236031000C7716D /* ConfirmationDialog.swift */; };
@@ -28,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		113662112238B083006DCAA4 /* StripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeService.swift; sourceTree = "<group>"; };
 		113DBAE522341AD700383001 /* Clerc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clerc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		113DBAE822341AD700383001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		113DBAEA22341AD700383001 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +45,7 @@
 		113DBB04223485B000383001 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		113DBB062234866C00383001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		113DBB082234CA3F00383001 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
+		116D2C702239EB7B00D0F32A /* StripeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConstants.swift; sourceTree = "<group>"; };
 		1189A1D22237FAD900E92BED /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		11B6ECD52236031000C7716D /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 			children = (
 				113DBAEA22341AD700383001 /* HomeViewController.swift */,
 				11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */,
+				1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 				113DBB022234857C00383001 /* FirebaseService.swift */,
 				113DBB082234CA3F00383001 /* ViewService.swift */,
 				11B6ECDF2236101E00C7716D /* TextFormatterService.swift */,
+				113662112238B083006DCAA4 /* StripeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -141,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				1189A1D22237FAD900E92BED /* ViewConstants.swift */,
+				116D2C702239EB7B00D0F32A /* StripeConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -262,6 +271,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Clerc/Pods-Clerc-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/EmptyDataSet-Swift/EmptyDataSet_Swift.framework",
@@ -282,6 +292,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EmptyDataSet_Swift.framework",
@@ -362,8 +373,11 @@
 				113DBB032234857C00383001 /* FirebaseService.swift in Sources */,
 				11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */,
 				113DBB092234CA3F00383001 /* ViewService.swift in Sources */,
+				113662122238B083006DCAA4 /* StripeService.swift in Sources */,
+				113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */,
 				11B6ECD72236031000C7716D /* ConfirmationDialog.swift in Sources */,
 				1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */,
+				116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */,
 				11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */,
 				113DBB072234866C00383001 /* Product.swift in Sources */,
 				11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */,
