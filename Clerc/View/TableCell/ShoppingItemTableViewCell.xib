@@ -21,19 +21,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAH-Rr-Zqp">
-                        <rect key="frame" x="16" y="11" width="134" height="24"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <rect key="frame" x="0.0" y="11" width="112.5" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <color key="textColor" name="Dark Text"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-Ac-3KG">
-                        <rect key="frame" x="249" y="23" width="55" height="24"/>
+                        <rect key="frame" x="265" y="23" width="55" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" name="Primary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.99 x 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbS-Bd-EI4">
-                        <rect key="frame" x="16" y="35" width="60" height="24"/>
+                        <rect key="frame" x="0.0" y="35" width="60" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" name="Light Text"/>
                         <nil key="highlightedColor"/>
@@ -42,12 +42,12 @@
                 <constraints>
                     <constraint firstItem="pAH-Rr-Zqp" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="DFe-st-G1C"/>
                     <constraint firstItem="pAH-Rr-Zqp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DSN-1z-aru"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="wuh-Ac-3KG" secondAttribute="trailing" id="IKw-hm-DRW"/>
+                    <constraint firstAttribute="trailing" secondItem="wuh-Ac-3KG" secondAttribute="trailing" id="IKw-hm-DRW"/>
                     <constraint firstItem="wuh-Ac-3KG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pAH-Rr-Zqp" secondAttribute="trailing" constant="16" id="YFX-E8-ers"/>
                     <constraint firstItem="jbS-Bd-EI4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="c1f-41-HVI"/>
                     <constraint firstItem="pAH-Rr-Zqp" firstAttribute="leading" secondItem="jbS-Bd-EI4" secondAttribute="leading" id="hh8-Yk-DNr"/>
                     <constraint firstItem="wuh-Ac-3KG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="i0f-ma-ziH"/>
-                    <constraint firstItem="pAH-Rr-Zqp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="r8w-XG-4S3"/>
+                    <constraint firstItem="pAH-Rr-Zqp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="r8w-XG-4S3"/>
                     <constraint firstAttribute="bottomMargin" secondItem="jbS-Bd-EI4" secondAttribute="bottom" id="zkq-1D-aC2"/>
                 </constraints>
             </tableViewCellContentView>
@@ -62,13 +62,13 @@
     </objects>
     <resources>
         <namedColor name="Dark Text">
-            <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Light Text">
-            <color red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.0" green="0.47450980392156861" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47499999403953552" blue="0.41999998688697815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Stripe
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.createCardSources = true
         // Stripe UI elements
         STPTheme.default().accentColor = UIColor(named: "Primary")!
+        // Configure HUD
+        SVProgressHUD.setBackgroundColor(UIColor(named: "Primary")!.withAlphaComponent(0.8))
+        SVProgressHUD.setForegroundColor(.white)
         return true
     }
 

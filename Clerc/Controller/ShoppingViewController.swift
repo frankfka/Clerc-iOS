@@ -117,6 +117,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func checkoutButtonPressed(_ sender: UIBarButtonItem) {
         // TODO confirmation dialog
+        // TODO make this disabled if the total value is 0
         performSegue(withIdentifier: "CartToCheckoutSegue", sender: self)
     }
     
@@ -156,6 +157,8 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
                         self.scannedProducts.append(product)
                         self.quantities.append(1)
                     }
+                    // Show success dialog
+                    ViewService.showHUD(success: true, message: "Added to cart.")
                     self.updateUI()
                 }
             } else {

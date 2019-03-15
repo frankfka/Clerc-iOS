@@ -28,25 +28,25 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                     // Show loading
                     ViewService.loadingAnimation(show: true, with: "Processing Payment")
                     // Disable Pay Now Button
-                    self.payNowButton.isUserInteractionEnabled = false
-                    self.payNowButton.alpha = 0.2
+                    self.paymentButtonEnabled(false)
                 }
                 else {
                     print("Payment not in progress")
                     // Dismiss loading
                     ViewService.loadingAnimation(show: false, with: nil)
                     // Enable Pay Now button
-                    self.payNowButton.isUserInteractionEnabled = true
-                    self.payNowButton.alpha = 1
+                    self.paymentButtonEnabled(true)
                 }
             }, completion: nil)
         }
     }
+    var paymentDone: Bool = false // Used to decide whether we dismiss the entire checkout navigation controller
     
     // UI Elements
     @IBOutlet weak var paymentOptionButton: UIButton!
     @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var totalCostLabel: UILabel!
+    @IBOutlet weak var storeNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +58,9 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             navigationController?.popViewController(animated: true)
         }
         
-        // Update total cost label
+        // Initialize labels
         totalCostLabel.text = TextFormatterService.getCurrencyString(for: cost!)
+        storeNameLabel.text = vendor!.name
         
         // Else continue with setup - this should be in an init() function once we present this modally
         let config = STPPaymentConfiguration.shared()
@@ -75,10 +76,32 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.paymentContext = paymentContext
     }
     
+    // Helper function to enable/disable payment button
+    private func paymentButtonEnabled(_ enabled: Bool) {
+        if enabled {
+            payNowButton.isUserInteractionEnabled = true
+            payNowButton.alpha = 1
+        } else {
+            payNowButton.isUserInteractionEnabled = false
+            payNowButton.alpha = 0.2
+        }
+    }
+    
+    // Called when we come back from success screen
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if paymentDone {
+            // We are returning from the payment success view controller
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // Present Stripe's payment method VC
     @IBAction func paymentMethodTapped(_ sender: UIButton) {
         self.paymentContext!.presentPaymentMethodsViewController()
     }
     
+    // Called when user confirms payment
     @IBAction func payNowTapped(_ sender: Any) {
         // TODO confirmation dialog
         self.paymentInProgress = true
@@ -132,8 +155,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             case .success:
                 // Show confirmation screen
                 print("User payment succeeded")
-                ViewService.showHUD(success: true, message: "Payment Successful")
-                dismiss(animated: true, completion: nil) // TODO present success screen here
+                // Set state and disable payment button
+                paymentDone = true
+                paymentButtonEnabled(false)
+                // Show success screen
+                performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
                 return
             case .userCancellation:
                 return // Do nothing
