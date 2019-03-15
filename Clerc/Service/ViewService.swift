@@ -9,8 +9,21 @@
 import Foundation
 import SVProgressHUD
 import BarcodeScanner
+import SwiftEntryKit
 
 class ViewService {
+    
+    static var popupAttributes: EKAttributes {
+        var attributes = EKAttributes()
+        attributes.position = .center
+        attributes.screenBackground = .color(color: (UIColor(named: "Divider")!.withAlphaComponent(0.6)))
+        attributes.entranceAnimation = .none
+        attributes.exitAnimation = .none
+        attributes.displayDuration = .infinity
+        attributes.entryInteraction = .absorbTouches
+        attributes.screenInteraction = .dismiss
+        return attributes
+    }
     
     // Show a popup HUD with a specified success/fail and message
     static func showHUD(success: Bool, message: String) {
@@ -85,18 +98,10 @@ class ViewService {
         return barcodeScannerVC
     }
     
-//    static func showConfirmation() {
-//        var attributes = EKAttributes()
-//        attributes.roundCorners = .all(radius: 4)
-//        attributes.position = .center
-//        attributes.screenBackground = .visualEffect(style: .dark)
-//        attributes.entranceAnimation = .none
-//        attributes.displayDuration = .infinity
-//        attributes.entryInteraction = .absorbTouches
-//        attributes.screenInteraction = .dismiss
-//        let confirmationDialog = ConfirmationDialog()
-//        let textField = confirmationDialog.textField
-//        SwiftEntryKit.display(entry: confirmationDialog, using: attributes)
-//    }
+    static func showConfirmationDialog(title: String, description: String, completion: @escaping (_ didConfirm: Bool) -> Void) {
+        let confirmationDialog = ConfirmDialogView()
+        confirmationDialog.initialize(title: title, desc: description, completionHandler: completion)
+        SwiftEntryKit.display(entry: confirmationDialog, using: popupAttributes)
+    }
     
 }

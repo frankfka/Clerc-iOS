@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmDialogView" customModule="Clerc" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="04W-tw-3qK" id="U4W-AM-9fi"/>
+                <outlet property="confirmButton" destination="pWT-Pp-AHI" id="Hyr-Lp-f2o"/>
+                <outlet property="dialogDescription" destination="faj-wK-wKY" id="9XU-U9-krq"/>
+                <outlet property="titleLabel" destination="vzN-nH-0mL" id="Z0a-4g-JTx"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzN-nH-0mL">
+                    <rect key="frame" x="129.5" y="24" width="41.5" height="24"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" name="Dark Text"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faj-wK-wKY">
+                    <rect key="frame" x="129" y="52" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="Light Text"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ohy-6P-22r">
+                    <rect key="frame" x="0.0" y="100" width="300" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04W-tw-3qK">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" name="Accent"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="cUF-vo-WIe"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWT-Pp-AHI">
+                            <rect key="frame" x="150" y="0.0" width="150" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="ATm-mB-oVF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <state key="normal" title="Confirm">
+                                <color key="titleColor" name="Primary"/>
+                            </state>
+                            <connections>
+                                <action selector="confirmButtonPressed:" destination="-1" eventType="touchUpInside" id="cSx-eS-19D"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bvn-cS-dPF">
+                            <rect key="frame" x="150" y="0.0" width="0.5" height="50"/>
+                            <color key="backgroundColor" name="Divider"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="0.5" id="Oux-Wi-vS1"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIu-9j-Y6f">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="0.5"/>
+                            <color key="backgroundColor" name="Divider"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="rc2-gv-e0S"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="RIu-9j-Y6f" secondAttribute="trailing" id="4Zq-kZ-omZ"/>
+                        <constraint firstAttribute="height" constant="50" id="8cf-fo-8HQ"/>
+                        <constraint firstAttribute="trailing" secondItem="pWT-Pp-AHI" secondAttribute="trailing" id="DZL-M8-42R"/>
+                        <constraint firstAttribute="bottom" secondItem="04W-tw-3qK" secondAttribute="bottom" id="EhL-Sf-0jc"/>
+                        <constraint firstItem="RIu-9j-Y6f" firstAttribute="top" secondItem="ohy-6P-22r" secondAttribute="top" id="Geu-ow-BhA"/>
+                        <constraint firstAttribute="bottom" secondItem="pWT-Pp-AHI" secondAttribute="bottom" id="HYT-16-ctX"/>
+                        <constraint firstItem="RIu-9j-Y6f" firstAttribute="leading" secondItem="ohy-6P-22r" secondAttribute="leading" id="ImJ-2B-ET2"/>
+                        <constraint firstItem="pWT-Pp-AHI" firstAttribute="width" secondItem="04W-tw-3qK" secondAttribute="width" id="YFd-l5-aiK"/>
+                        <constraint firstAttribute="bottom" secondItem="bvn-cS-dPF" secondAttribute="bottom" id="dNy-yl-GNK"/>
+                        <constraint firstItem="04W-tw-3qK" firstAttribute="leading" secondItem="ohy-6P-22r" secondAttribute="leading" id="dv7-Gj-fMT"/>
+                        <constraint firstItem="04W-tw-3qK" firstAttribute="top" secondItem="ohy-6P-22r" secondAttribute="top" id="kvU-O4-Klv"/>
+                        <constraint firstItem="bvn-cS-dPF" firstAttribute="top" secondItem="ohy-6P-22r" secondAttribute="top" id="nyB-45-XKa"/>
+                        <constraint firstItem="pWT-Pp-AHI" firstAttribute="leading" secondItem="04W-tw-3qK" secondAttribute="trailing" id="sif-pb-nX2"/>
+                        <constraint firstItem="pWT-Pp-AHI" firstAttribute="top" secondItem="ohy-6P-22r" secondAttribute="top" id="x8w-c4-f5d"/>
+                        <constraint firstItem="bvn-cS-dPF" firstAttribute="centerX" secondItem="ohy-6P-22r" secondAttribute="centerX" id="y0K-SU-iIq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vzN-nH-0mL" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="3R3-Rx-eSl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ohy-6P-22r" secondAttribute="trailing" id="4tF-UX-WXf"/>
+                <constraint firstItem="vzN-nH-0mL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="HqA-Wi-kCk"/>
+                <constraint firstItem="ohy-6P-22r" firstAttribute="top" relation="greaterThanOrEqual" secondItem="faj-wK-wKY" secondAttribute="bottom" constant="16" id="WCo-OE-h4L"/>
+                <constraint firstItem="ohy-6P-22r" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="X2e-g8-fq7"/>
+                <constraint firstItem="faj-wK-wKY" firstAttribute="top" secondItem="vzN-nH-0mL" secondAttribute="bottom" constant="4" id="aYv-eH-he2"/>
+                <constraint firstItem="faj-wK-wKY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="bDq-Ta-gKl"/>
+                <constraint firstItem="faj-wK-wKY" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="wJU-RS-BsC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="faj-wK-wKY" secondAttribute="trailing" constant="16" id="whQ-gH-a0J"/>
+                <constraint firstItem="ohy-6P-22r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yaV-Hu-u7C"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="196.80000000000001" y="337.33133433283359"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="Accent">
+            <color red="1" green="0.70196078431372544" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Dark Text">
+            <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Divider">
+            <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Light Text">
+            <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.47450980392156861" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

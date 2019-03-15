@@ -92,10 +92,13 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Clear cart button pressed. Clear all the arrays if confirmed
     @IBAction func clearCartButtonPressed(_ sender: UIButton) {
-        // TODO confirmation dialog
-        scannedProducts = []
-        quantities = []
-        updateUI()
+        ViewService.showConfirmationDialog(title: "Clear Cart", description: "Are you sure you want to clear your shopping cart?") { (didConfirm) in
+            if didConfirm {
+                self.scannedProducts = []
+                self.quantities = []
+                self.updateUI()
+            }
+        }
     }
     
     // Calculates total in cart

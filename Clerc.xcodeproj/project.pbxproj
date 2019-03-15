@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */; };
+		111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */; };
 		113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */; };
 		113662122238B083006DCAA4 /* StripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113662112238B083006DCAA4 /* StripeService.swift */; };
 		113DBAE922341AD700383001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAE822341AD700383001 /* AppDelegate.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDialogView.swift; sourceTree = "<group>"; };
+		111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmDialogView.xib; sourceTree = "<group>"; };
 		1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		113662112238B083006DCAA4 /* StripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeService.swift; sourceTree = "<group>"; };
 		113DBAE522341AD700383001 /* Clerc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clerc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +166,8 @@
 			children = (
 				11B6ECD52236031000C7716D /* ConfirmationDialog.swift */,
 				11B6ECD62236031000C7716D /* ConfirmationDialog.xib */,
+				111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */,
+				111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */,
 			);
 			path = Dialog;
 			sourceTree = "<group>";
@@ -254,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B6ECD82236031000C7716D /* ConfirmationDialog.xib in Resources */,
+				111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
 				113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
@@ -383,6 +390,7 @@
 				116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */,
 				11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */,
 				113DBB072234866C00383001 /* Product.swift in Sources */,
+				111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */,
 				116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */,
 				11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */,
 				113DBAE922341AD700383001 /* AppDelegate.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ViewConstants {
     
@@ -14,5 +15,7 @@ class ViewConstants {
     static let BARCODE_ERROR_TIME = 1
     // HUD Display time in seconds
     static let HUD_TIME = 2
+    // Corner rounding constant for popups
+    static let POPUP_CORNER_RADIUS: CGFloat = 8.0
     
 }
