@@ -45,7 +45,19 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fA4-sZ-NII">
                                 <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VMd-wG-oei">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="VMd-wG-oei" secondAttribute="bottom" id="GU6-8n-oUD"/>
+                                    <constraint firstItem="VMd-wG-oei" firstAttribute="leading" secondItem="fA4-sZ-NII" secondAttribute="leading" id="IrC-Q0-6dV"/>
+                                    <constraint firstItem="VMd-wG-oei" firstAttribute="top" secondItem="fA4-sZ-NII" secondAttribute="top" id="aqL-kH-TPJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="VMd-wG-oei" secondAttribute="trailing" id="slg-6l-JNi"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,6 +76,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="pastTransactionsTable" destination="VMd-wG-oei" id="crl-Ik-Zec"/>
                         <segue destination="gpf-eH-Qdh" kind="show" identifier="HomeToShoppingSegue" id="7Ta-fO-sIU"/>
                     </connections>
                 </viewController>
@@ -457,7 +470,7 @@
             <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
-            <color red="0.0" green="0.47499999403953552" blue="0.41999998688697815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47450980392156861" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
