@@ -245,6 +245,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="checkoutButton" destination="Kcb-gQ-jPD" id="udC-3L-eJj"/>
+                        <outlet property="clearButton" destination="iHa-5t-su3" id="UDa-vF-CQ1"/>
                         <outlet property="itemsTableHeight" destination="NgA-GI-tFY" id="iXK-f4-ypv"/>
                         <outlet property="itemsTableView" destination="4wA-1X-tiv" id="4Fk-5d-zlY"/>
                         <outlet property="navigationBar" destination="w5J-cf-bh2" id="041-TY-8es"/>

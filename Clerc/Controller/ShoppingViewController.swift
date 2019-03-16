@@ -8,6 +8,7 @@
 
 import UIKit
 import BarcodeScanner
+import EmptyDataSet_Swift
 import SwiftEntryKit
 
 class ShoppingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -24,7 +25,9 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var parentScrollView: UIScrollView!
-
+    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    @IBOutlet weak var clearButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +35,9 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         if vendor != nil {
             // Set title
             navigationBar.title = vendor?.name
+            // Set delegates for empty dataset
+//            itemsTableView.emptyDataSetSource = self
+//            itemsTableView.emptyDataSetDelegate = self
             // Set delegates for items table
             itemsTableView.dataSource = self
             itemsTableView.delegate = self
@@ -57,6 +63,15 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Update the total price
         totalAmountLabel.text = TextFormatterService.getCurrencyString(for: getTotalCost())
+        
+        // Disable/enable the checkout and clear button
+        if (scannedProducts.isEmpty) {
+            checkoutButton.isEnabled = false
+            clearButton.isEnabled = false
+        } else {
+            checkoutButton.isEnabled = true
+            clearButton.isEnabled = true
+        }
     }
     
     //
@@ -130,13 +145,15 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: Navigation button pressed methods
     //
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        // TODO confirmation dialog
-        dismiss(animated: true, completion: nil)
+        // Show confirmation, and dismiss if confirmed
+        ViewService.showConfirmationDialog(title: "Exit Store", description: "Are you sure you want to quit shopping?") { (didConfirm) in
+            if (didConfirm) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func checkoutButtonPressed(_ sender: UIBarButtonItem) {
-        // TODO confirmation dialog
-        // TODO make this disabled if the total value is 0
         performSegue(withIdentifier: "CartToCheckoutSegue", sender: self)
     }
     
@@ -197,3 +214,42 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
     }
     
 }
+//
+//// MARK: Extension for empty data UI
+//extension ShoppingViewController: EmptyDataSetSource, EmptyDataSetDelegate {
+//
+//    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+//        return NSAttributedString(string: "No Past Transactions")
+//    }
+//
+//    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+//        return NSAttributedString(string: "Clerc makes shopping fast & easy. Your past transactions will appear here.")
+//    }
+//
+//    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+//        return UIImage(named: "Receipt Illustration")
+//    }
+//
+//    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
+//        return UIColor.white
+//    }
+//
+//    func emptyDataSetWillAppear(_ scrollView: UIScrollView) {
+//        itemsTableView.separatorStyle = .none
+//        print("Here")
+//        ViewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
+//        ViewService.updateScrollViewSize(for: parentScrollView)
+//    }
+//
+//    func emptyDataSetWillDisappear(_ scrollView: UIScrollView) {
+//        itemsTableView.separatorStyle = .singleLine
+//        updateUI()
+//    }
+//
+//    // Move the view up a bit to make it look better
+//    func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
+//        return -50.0
+//    }
+//
+//}
+

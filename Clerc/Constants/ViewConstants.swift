@@ -25,8 +25,9 @@ class ViewConstants {
         var attributes = EKAttributes()
         attributes.position = .center
         attributes.screenBackground = .color(color: (UIColor(named: "Divider")!.withAlphaComponent(0.6)))
-        // Todo make this fade in
-        attributes.entranceAnimation = .none
+        attributes.entranceAnimation = .init(
+            scale: .init(from: 0.6, to: 1, duration: 0.1),
+            fade: .init(from: 0.8, to: 1, duration: 0.1))
         attributes.exitAnimation = .none
         attributes.displayDuration = .infinity
         attributes.entryInteraction = .absorbTouches

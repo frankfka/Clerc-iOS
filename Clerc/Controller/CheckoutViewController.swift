@@ -103,9 +103,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // Called when user confirms payment
     @IBAction func payNowTapped(_ sender: Any) {
-        // TODO confirmation dialog
-        self.paymentInProgress = true
-        self.paymentContext!.requestPayment()
+        // Ask for confirmation
+        ViewService.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.getCurrencyString(for: cost!)) to \(vendor!.name)") { (didConfirm) in
+            // Submit payment only if they confirmed
+            if (didConfirm) {
+                self.paymentInProgress = true
+                self.paymentContext!.requestPayment()
+            }
+        }
     }
     
     //
