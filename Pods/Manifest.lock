@@ -126,6 +126,7 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftEntryKit (0.8.8):
     - QuickLayout (= 2.1.1)
+  - ValueStepper (1.6)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-beta.3)
@@ -138,6 +139,7 @@ DEPENDENCIES:
   - Stripe
   - SVProgressHUD
   - SwiftEntryKit (= 0.8.8)
+  - ValueStepper
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -166,6 +168,7 @@ SPEC REPOS:
     - Stripe
     - SVProgressHUD
     - SwiftEntryKit
+    - ValueStepper
 
 EXTERNAL SOURCES:
   BarcodeScanner:
@@ -203,7 +206,8 @@ SPEC CHECKSUMS:
   Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftEntryKit: c50f25a14772713ded1591c852d1c1dc74c95b9e
+  ValueStepper: 8b120c72c8d1391cd874a427485e2e57fda1a0b9
 
-PODFILE CHECKSUM: 1bbb6ee18987f53ba7cd099fa71ae99b09c74c3d
+PODFILE CHECKSUM: cf3afc09490df0a365a60ffe858cddbf1136ef9a
 
 COCOAPODS: 1.6.0

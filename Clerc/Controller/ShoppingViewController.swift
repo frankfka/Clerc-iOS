@@ -76,8 +76,24 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO - show the edit prompt
+        // Don't keep the row selected
         tableView.deselectRow(at: indexPath, animated: true)
+        // Show edit dialog
+        ViewService.showEditItemDialog(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
+            
+            if (newQuantity > 0) {
+                // Item not deleted, update the quantity
+                self.quantities[indexPath.row] = newQuantity
+            } else {
+                // Item is deleted, remove the scanned product
+                self.quantities.remove(at: indexPath.row)
+                self.scannedProducts.remove(at: indexPath.row)
+            }
+            
+            // Update views
+            self.updateUI()
+            
+        }
     }
     
     // Bottom add item button pressed. Should show a new barcode scanner VC

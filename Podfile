@@ -11,6 +11,7 @@ target 'Clerc' do
     pod 'SwiftEntryKit', '0.8.8'
     pod 'SVProgressHUD'
     pod 'EmptyDataSet-Swift', '~> 4.2.0'
+    pod 'ValueStepper'
     pod 'BarcodeScanner', :git => 'https://github.com/frankfka/BarcodeScanner.git'
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'

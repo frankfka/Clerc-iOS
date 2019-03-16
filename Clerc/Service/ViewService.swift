@@ -13,18 +13,6 @@ import SwiftEntryKit
 
 class ViewService {
     
-    static var popupAttributes: EKAttributes {
-        var attributes = EKAttributes()
-        attributes.position = .center
-        attributes.screenBackground = .color(color: (UIColor(named: "Divider")!.withAlphaComponent(0.6)))
-        attributes.entranceAnimation = .none
-        attributes.exitAnimation = .none
-        attributes.displayDuration = .infinity
-        attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .dismiss
-        return attributes
-    }
-    
     // Show a popup HUD with a specified success/fail and message
     static func showHUD(success: Bool, message: String) {
         if (success) {
@@ -98,10 +86,22 @@ class ViewService {
         return barcodeScannerVC
     }
     
+    // Creates and shows a confirmation dialog
     static func showConfirmationDialog(title: String, description: String, completion: @escaping (_ didConfirm: Bool) -> Void) {
+        // Create the dialog VC and initialize it
         let confirmationDialog = ConfirmDialogView()
         confirmationDialog.initialize(title: title, desc: description, completionHandler: completion)
-        SwiftEntryKit.display(entry: confirmationDialog, using: popupAttributes)
+        // Tell SwiftEntryKit to display with our standard attributes
+        SwiftEntryKit.display(entry: confirmationDialog, using: ViewConstants.CONFIRM_POPUP_ATTRIBUTES)
+    }
+    
+    // Creates and shows an edit item dialog
+    static func showEditItemDialog(for product: Product, with quantity: Int, completion: @escaping (_ newQuantity: Int) -> Void) {
+        // Create the dialog VC and initialize it
+        let editItemPopUp = EditItemView()
+        editItemPopUp.initialize(name: product.name, unitCost: product.cost, currentQuantity: quantity, completion: completion)
+        // Tell SwiftEntryKit to display with our standard attributes
+        SwiftEntryKit.display(entry: editItemPopUp, using: ViewConstants.EDIT_ITEM_POPUP_ATTRIBUTES)
     }
     
 }

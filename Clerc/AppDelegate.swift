@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Stripe UI elements
         STPTheme.default().accentColor = UIColor(named: "Primary")!
         // Configure HUD
-        SVProgressHUD.setBackgroundColor(UIColor(named: "Primary")!.withAlphaComponent(0.8))
+        SVProgressHUD.setBackgroundColor(UIColor(named: "Primary")!.withAlphaComponent(1))
         SVProgressHUD.setForegroundColor(.white)
         return true
     }
