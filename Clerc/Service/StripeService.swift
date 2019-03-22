@@ -65,6 +65,13 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
         }
     }
     
+    // Creates a new customer and passes ID to callback
+    func createCustomer(completion: @escaping (_ success: Bool, _ id: String?) -> Void) {
+        // Do create stripe customer
+        // Call completion
+        completion(true, "test_stripe_id_123")
+    }
+    
     // This is used to compute Stripe cost in cents
     static func getStripeCost(for cost: Double) -> Int {
         return Int(cost*100)

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseUI
 import Stripe
 import SVProgressHUD
 
@@ -15,7 +16,6 @@ import SVProgressHUD
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Configure Firebase services
@@ -30,7 +30,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure HUD
         SVProgressHUD.setBackgroundColor(UIColor(named: "Primary")!.withAlphaComponent(1))
         SVProgressHUD.setForegroundColor(.white)
+        // Configure first view controller
+//        self.storyboard =  UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+//        let currentUser = FIRAuth.auth()?.currentUser!
+//        if currentUser != nil
+//        {
+//            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("tabVC")
+//        }
+//        else
+//        {
+//            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginScreen")
+//        }
         return true
+    }
+    
+    // URL Handling for Firebase Auth
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

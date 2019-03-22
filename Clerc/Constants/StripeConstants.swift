@@ -12,7 +12,6 @@ class StripeConstants {
     
     static let PUBLISHABLE_KEY = "pk_test_8EygqgFC5nW8fi9p8NzluETt"
     static let BACKEND_URL = "https://stripe-example-frankjia.herokuapp.com/"
-    
     static let DEFAULT_CURRENCY = "cad"
     
 }

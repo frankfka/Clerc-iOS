@@ -66,7 +66,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         let config = STPPaymentConfiguration.shared()
         config.companyName = vendor!.name
         // Get the current customer and payment context
-        let customerContext = STPCustomerContext(keyProvider: StripeService.sharedClient)
+        let customerContext = STPCustomerContext(keyProvider: StripeService.sharedClient) // TODO may need to initialize earlier so that payment context is preloaded
         let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
         paymentContext.paymentAmount = StripeService.getStripeCost(for: cost!)
         paymentContext.paymentCurrency = StripeConstants.DEFAULT_CURRENCY // Implement custom currencies when we need to
