@@ -13,14 +13,14 @@ class Customer {
     // A current customer object - only one customer should exist
     static var current: Customer?
     
-    let firebaseId: String
-    let stripeId: String
+    let firebaseID: String
+    let stripeID: String
     var name: String?
     var email: String?
     
-    init(firebaseId: String, stripeId: String, name: String?, email: String?) {
-        self.firebaseId = firebaseId
-        self.stripeId = stripeId
+    init(firebaseID: String, stripeID: String, name: String?, email: String?) {
+        self.firebaseID = firebaseID
+        self.stripeID = stripeID
         self.name = name
         self.email = email
     }

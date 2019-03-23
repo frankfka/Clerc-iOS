@@ -27,7 +27,7 @@ class FirebaseService {
                 let userData = userDocument.data()!
                 let stripeId = userData["stripeId"] as! String
                 // Creating a new customer object with their info
-                completion(true, Customer(firebaseId: user.uid, stripeId: stripeId, name: user.displayName, email: user.email))
+                completion(true, Customer(firebaseID: user.uid, stripeID: stripeId, name: user.displayName, email: user.email))
             } else {
                 // User does not exist
                 
@@ -41,7 +41,7 @@ class FirebaseService {
                         userDocRef.setData(userData) { error in
                             if error == nil {
                                 // Successful - return customer object
-                                completion(true, Customer(firebaseId: user.uid, stripeId: stripeId!, name: user.displayName, email: user.email))
+                                completion(true, Customer(firebaseID: user.uid, stripeID: stripeId!, name: user.displayName, email: user.email))
                             } else {
                                 // Unsuccessful
                                 completion(false, nil)

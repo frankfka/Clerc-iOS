@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
                     print("User logged in and user was saved successfully")
                     // Set the customer singleton
                     Customer.current = customer!
-                    print("Current customer initialized: \(Customer.current!.firebaseId)")
+                    print("Current customer initialized: \(Customer.current!.firebaseID)")
                     // Segue to home
                     self.performSegue(withIdentifier: "LoginToHomeSegue", sender: self)
                 } else {

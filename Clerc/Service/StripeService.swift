@@ -27,17 +27,20 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
                         shippingAddress: STPAddress?,
                         shippingMethod: PKShippingMethod?,
                         completion: @escaping STPErrorBlock) {
-        let url = self.baseURL.appendingPathComponent("charge")
-        var params: [String: Any] = [
-            "source": result.source.stripeID,
+        // Check that current customer exists
+        guard let currentCustomer = Customer.current else {
+            // TODO this does nothing, but we would want to throw some sort of error
+            print("No current customer!")
+            return
+        }
+        let url = "http://34.217.14.89:4567/charge" //self.baseURL.appendingPathComponent("charge")
+        let chargeParams: [String: Any] = [
+            "customer_id": currentCustomer.stripeID,
             "amount": amount,
-            "metadata": [
-                // example-ios-backend allows passing metadata through to Stripe
-                "charge_request_id": "B3E611D1-5FA1-4410-9CEC-00958A5126CB",
-            ],
+            "source": result.source.stripeID,
+            "CONNECTED_STRIPE_ACCOUNT_ID": "acct_1EALLCF8Tv70HUia"// For testing ONLY
             ]
-        params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
-        AF.request(url, method: .post, parameters: params)
+        AF.request(url, method: .post, parameters: chargeParams, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .responseString { response in
                 switch response.result {
@@ -57,10 +60,12 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
             completion(nil, nil)
             return
         }
-        AF.request(url, method: .post, parameters: [
+        // Params for backend call
+        let createKeyParams = [
             "stripe_version": apiVersion,
-            "customer": currentCustomer.stripeId
-            ])
+            "customer_id": currentCustomer.stripeID
+        ]
+        AF.request(url, method: .post, parameters: createKeyParams, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .responseJSON { responseJSON in
                 switch responseJSON.result {
