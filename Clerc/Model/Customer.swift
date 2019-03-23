@@ -11,7 +11,7 @@ import Foundation
 class Customer {
     
     // A current customer object - only one customer should exist
-    static var currentCustomer: Customer?
+    static var current: Customer?
     
     let firebaseId: String
     let stripeId: String
@@ -25,8 +25,9 @@ class Customer {
         self.email = email
     }
     
-    static func clearCurrentCustomer() {
-        currentCustomer = nil
+    // Clears the current customer object
+    static func clearCurrent() {
+        current = nil
     }
     
 }

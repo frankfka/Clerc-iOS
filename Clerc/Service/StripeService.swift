@@ -67,9 +67,24 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     
     // Creates a new customer and passes ID to callback
     func createCustomer(completion: @escaping (_ success: Bool, _ id: String?) -> Void) {
-        // Do create stripe customer
-        // Call completion
-        completion(true, "test_stripe_id_123")
+        // Call create stripe customer
+        AF.request("http://34.217.14.89:4567/customers/create")
+            .validate(statusCode: 200..<300)
+            .responseString { response in
+                //TODO make endpoint return json!
+                switch response.result {
+                case .success(_):
+                    if let custId = response.result.value {
+                        // Call completion and return
+                        completion(true, custId)
+                        return
+                    }
+                case .failure(_):
+                    print("Make customer endpoint errored")
+                }
+                // Did not succeed, call completion
+                completion(false, nil)
+        }
     }
     
     // This is used to compute Stripe cost in cents

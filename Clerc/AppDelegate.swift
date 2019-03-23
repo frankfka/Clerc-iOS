@@ -31,16 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setBackgroundColor(UIColor(named: "Primary")!.withAlphaComponent(1))
         SVProgressHUD.setForegroundColor(.white)
         // Configure first view controller
-//        self.storyboard =  UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
-//        let currentUser = FIRAuth.auth()?.currentUser!
-//        if currentUser != nil
-//        {
-//            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("tabVC")
-//        }
-//        else
-//        {
-//            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginScreen")
-//        }
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let currentUser = Auth.auth().currentUser
+        if currentUser != nil {
+            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "home")
+        } else {
+            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login")
+        }
         return true
     }
     

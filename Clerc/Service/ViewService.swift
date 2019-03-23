@@ -24,7 +24,7 @@ class ViewService {
     }
     
     // Show loading animation
-    static func loadingAnimation(show: Bool, with message: String? = nil) {
+    static func loadingAnimation(show: Bool, with message: String? = "Please wait") {
         if show {
             SVProgressHUD.show(withStatus: message)
         } else {
