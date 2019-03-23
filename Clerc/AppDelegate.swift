@@ -34,7 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let currentUser = Auth.auth().currentUser
         if currentUser != nil {
-            self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "home")
+            // Go to home and load current customer
+            FirebaseService.loadCustomer(currentUser!) { (success, customer) in
+                if success && customer != nil {
+                    // Load singleton
+                    Customer.current = customer
+                    self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "home")
+                } else {
+                    self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login")
+                }
+            }
         } else {
             self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "login")
         }

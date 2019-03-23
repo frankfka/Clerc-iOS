@@ -50,16 +50,25 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     }
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
-        let url = self.baseURL.appendingPathComponent("ephemeral_keys")
+        let url = "http://34.217.14.89:4567/customers/create-ephemeral-key"//self.baseURL.appendingPathComponent("ephemeral_keys")
+        print("Getting ephemeral key with API Version: \(apiVersion)")
+        guard let currentCustomer = Customer.current else {
+            print("No current customer!")
+            completion(nil, nil)
+            return
+        }
         AF.request(url, method: .post, parameters: [
-            "api_version": apiVersion,
+            "stripe_version": apiVersion,
+            "customer": currentCustomer.stripeId
             ])
             .validate(statusCode: 200..<300)
             .responseJSON { responseJSON in
                 switch responseJSON.result {
                 case .success(let json):
+                    print("Success getting ephemeral key")
                     completion(json as? [String: AnyObject], nil)
                 case .failure(let error):
+                    print("Get ephemeral key failed")
                     completion(nil, error)
                 }
         }

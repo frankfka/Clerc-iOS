@@ -24,10 +24,8 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
             auth.providers = [FUIGoogleAuth()]
             
             // Change styling of view controller & present it
-            
-            // TODO : CHANGE STYLING
-            
             let authViewController = FUIAuth.defaultAuthUI()!.authViewController()
+            authViewController.navigationBar.tintColor = UIColor(named: "Primary")!
             present(authViewController, animated: true, completion: nil)
         } else {
             print("Error creating auth UI object")
