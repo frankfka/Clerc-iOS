@@ -8,10 +8,54 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 class FirebaseService {
     
     static let database = Firestore.firestore()
+    
+    // Saves a user to firestore and creates a new Stripe customer if one does not exist
+    static func loadCustomer(_ user: User, completion: @escaping (_ success: Bool, _ customer: Customer?) -> Void) {
+        // Get reference to document (most likely won't exist if the user is logging in for the first time)
+        let userDocRef = getUserDocRef(with: user.uid)
+        // Try to get the document
+        userDocRef.getDocument { (userDocument, error) in
+            if let userDocument = userDocument, userDocument.exists {
+                // User has signed in before - retrieve their info and call completion
+                
+                // Get their data
+                let userData = userDocument.data()!
+                let stripeId = userData["stripeId"] as! String
+                // Creating a new customer object with their info
+                completion(true, Customer(firebaseID: user.uid, stripeID: stripeId, name: user.displayName, email: user.email))
+            } else {
+                // User does not exist
+                
+                // Create the Stripe customer first - don't proceed unless this succeeds
+                StripeService.sharedClient.createCustomer() { (success, stripeId) in
+                    if success && stripeId != nil {
+                        // Stripe customer created, save to Firebase
+                        
+                        // TODO - we just save Stripe ID for now (safer) - do we want to save name/email?
+                        let userData: [String: Any] = ["stripeId": stripeId!]
+                        userDocRef.setData(userData) { error in
+                            if error == nil {
+                                // Successful - return customer object
+                                completion(true, Customer(firebaseID: user.uid, stripeID: stripeId!, name: user.displayName, email: user.email))
+                            } else {
+                                // Unsuccessful
+                                completion(false, nil)
+                            }
+                        }
+                    } else {
+                        // Something failed when creating a customer
+                        print("Creating Stripe customer failed")
+                        completion(false, nil)
+                    }
+                }
+            }
+        }
+    }
     
     // Retrieve a vendor from firebase
     static func getVendor(with vendorId: String, completionHandler: @escaping (_ result: Vendor?) -> Void) {
@@ -54,14 +98,19 @@ class FirebaseService {
     }
     
     // MARK: Helper functions
+    // Gets a Firebase document reference for the user
+    private static func getUserDocRef(with userId: String) -> DocumentReference {
+        return database.collection(FirebaseConstants.USERS_COL).document(userId)
+    }
+    
     // Gets a Firebase document reference for the vendor
     private static func getVendorDocRef(with vendorId: String) -> DocumentReference {
-        return database.collection("vendors").document(vendorId)
+        return database.collection(FirebaseConstants.VENDORS_COL).document(vendorId)
     }
     
     // Gets a Firebase document reference for the product
     private static func getProductDocRef(from vendorId: String, with productId: String) -> DocumentReference {
-        return getVendorDocRef(with: vendorId).collection("products").document(productId)
+        return getVendorDocRef(with: vendorId).collection(FirebaseConstants.PRODUCTS_COL).document(productId)
     }
     
 }
