@@ -30,25 +30,23 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // THIS IS IMPORTANT - we force unwrap vendor everywhere else here
-        if vendor != nil {
-            // Set title
-            navigationBar.title = vendor?.name
-            // Set delegates for empty dataset
-//            itemsTableView.emptyDataSetSource = self
-//            itemsTableView.emptyDataSetDelegate = self
-            // Set delegates for items table
-            itemsTableView.dataSource = self
-            itemsTableView.delegate = self
-            itemsTableView.register(UINib(nibName: "ShoppingItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ShoppingItemTableViewCell")
-            updateUI()
-        } else {
+        guard let vendor = vendor else {
             // Vendor should always be initialized - show error if this is not the case
             print("No vendor was passed to this view controller")
-            ViewService.showHUD(success: false, message: "Something went wrong. Please try again.")
+            ViewService.shared.showStandardErrorHUD()
             dismiss(animated: true, completion: nil)
+            return
         }
+
+        // Set title
+        navigationBar.title = vendor.name
+        // Set delegates for items table
+        itemsTableView.dataSource = self
+        itemsTableView.delegate = self
+        itemsTableView.register(UINib(nibName: "ShoppingItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ShoppingItemTableViewCell")
+        updateUI()
         
     }
     
@@ -58,11 +56,11 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     private func updateUI() {
         // Update the tableview
         itemsTableView.reloadData()
-        ViewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
-        ViewService.updateScrollViewSize(for: parentScrollView)
+        ViewService.shared.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
+        ViewService.shared.updateScrollViewSize(for: parentScrollView)
         
         // Update the total price
-        totalAmountLabel.text = TextFormatterService.getCurrencyString(for: getTotalCost())
+        totalAmountLabel.text = TextFormatterService.shared.getCurrencyString(for: getTotalCost())
         
         // Disable/enable the checkout and clear button
         if (scannedProducts.isEmpty) {
@@ -94,7 +92,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         // Don't keep the row selected
         tableView.deselectRow(at: indexPath, animated: true)
         // Show edit dialog
-        ViewService.showEditItemDialog(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
+        ViewService.shared.showEditItemDialog(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
             
             if (newQuantity > 0) {
                 // Item not deleted, update the quantity
@@ -115,7 +113,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addItemButtonPressed(_ sender: UIButton) {
         // Launch barcode view controller
         // Create the VC then present it modally
-        let barcodeScannerVC = ViewService.getBarcodeScannerVC(with: "Scan New Item")
+        let barcodeScannerVC = ViewService.shared.getBarcodeScannerVC(with: "Scan New Item")
         barcodeScannerVC.codeDelegate = self
         barcodeScannerVC.dismissalDelegate = self
         present(barcodeScannerVC, animated: true, completion: nil)
@@ -123,7 +121,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Clear cart button pressed. Clear all the arrays if confirmed
     @IBAction func clearCartButtonPressed(_ sender: UIButton) {
-        ViewService.showConfirmationDialog(title: "Clear Cart", description: "Are you sure you want to clear your shopping cart?") { (didConfirm) in
+        ViewService.shared.showConfirmationDialog(title: "Clear Cart", description: "Are you sure you want to clear your shopping cart?") { (didConfirm) in
             if didConfirm {
                 self.scannedProducts = []
                 self.quantities = []
@@ -146,7 +144,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     //
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         // Show confirmation, and dismiss if confirmed
-        ViewService.showConfirmationDialog(title: "Exit Store", description: "Are you sure you want to quit shopping?") { (didConfirm) in
+        ViewService.shared.showConfirmationDialog(title: "Exit Store", description: "Are you sure you want to quit shopping?") { (didConfirm) in
             if (didConfirm) {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -180,7 +178,7 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
         print("Barcode Data: \(code) | Type: \(type)")
         
         // Call firebase to see if this is a valid store
-        FirebaseService.getProduct(from: vendor!.id, for: code) { (product) in
+        FirebaseService.shared.getProduct(from: vendor!.id, for: code) { (product) in
             if let product = product {
                 controller.dismiss(animated: true) {
                     print("Product found: id: \(product.id), name: \(product.name)")
@@ -194,7 +192,7 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
                         self.quantities.append(1)
                     }
                     // Show success dialog
-                    ViewService.showHUD(success: true, message: "Added to cart.")
+                    ViewService.shared.showHUD(success: true, message: "Added to cart.")
                     self.updateUI()
                 }
             } else {
@@ -214,42 +212,4 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
     }
     
 }
-//
-//// MARK: Extension for empty data UI
-//extension ShoppingViewController: EmptyDataSetSource, EmptyDataSetDelegate {
-//
-//    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-//        return NSAttributedString(string: "No Past Transactions")
-//    }
-//
-//    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-//        return NSAttributedString(string: "Clerc makes shopping fast & easy. Your past transactions will appear here.")
-//    }
-//
-//    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-//        return UIImage(named: "Receipt Illustration")
-//    }
-//
-//    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
-//        return UIColor.white
-//    }
-//
-//    func emptyDataSetWillAppear(_ scrollView: UIScrollView) {
-//        itemsTableView.separatorStyle = .none
-//        print("Here")
-//        ViewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
-//        ViewService.updateScrollViewSize(for: parentScrollView)
-//    }
-//
-//    func emptyDataSetWillDisappear(_ scrollView: UIScrollView) {
-//        itemsTableView.separatorStyle = .singleLine
-//        updateUI()
-//    }
-//
-//    // Move the view up a bit to make it look better
-//    func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-//        return -50.0
-//    }
-//
-//}
 

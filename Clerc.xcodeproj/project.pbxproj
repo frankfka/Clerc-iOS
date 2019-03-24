@@ -53,6 +53,7 @@
 		113DBB04223485B000383001 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		113DBB062234866C00383001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		113DBB082234CA3F00383001 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
+		11523ED322472587002D8CBE /* Clerc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clerc.entitlements; sourceTree = "<group>"; };
 		115E4A29223C054B00E2EA79 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 		115E4A2A223C054B00E2EA79 /* EditItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemView.xib; sourceTree = "<group>"; };
 		116D2C702239EB7B00D0F32A /* StripeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConstants.swift; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		113DBAE722341AD700383001 /* Clerc */ = {
 			isa = PBXGroup;
 			children = (
+				11523ED322472587002D8CBE /* Clerc.entitlements */,
 				1189A1D12237FAC400E92BED /* Constants */,
 				113DBB012234856D00383001 /* Service */,
 				113DBB002234855B00383001 /* Controller */,
@@ -242,6 +244,11 @@
 				TargetAttributes = {
 					113DBAE422341AD700383001 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -555,6 +562,7 @@
 			baseConfigurationReference = 14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Clerc/Clerc.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2M6BCPR7S;
 				INFOPLIST_FILE = "$(SRCROOT)/Clerc/Info.plist";
@@ -562,7 +570,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.paywithclerc.clerc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paywithclerc.paywithclerc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -574,6 +582,7 @@
 			baseConfigurationReference = 2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Clerc/Clerc.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2M6BCPR7S;
 				INFOPLIST_FILE = "$(SRCROOT)/Clerc/Info.plist";
@@ -581,7 +590,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.paywithclerc.clerc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paywithclerc.paywithclerc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

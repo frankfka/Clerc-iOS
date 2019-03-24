@@ -20,9 +20,9 @@ class ShoppingItemTableViewCell: UITableViewCell {
     }
     
     func loadUI(for product: Product, with quantity: Int) {
-        priceLabel.text = TextFormatterService.getCurrencyString(for: product.cost * Double(quantity))
+        priceLabel.text = TextFormatterService.shared.getCurrencyString(for: product.cost * Double(quantity))
         nameLabel.text = product.name
-        costQtyLabel.text = "\(TextFormatterService.getCurrencyString(for: product.cost)) x \(quantity)"
+        costQtyLabel.text = "\(TextFormatterService.shared.getCurrencyString(for: product.cost)) x \(quantity)"
     }
     
 }

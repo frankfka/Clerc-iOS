@@ -34,7 +34,7 @@ class EditItemView: UIViewController {
         
         // Assume everything is initialized
         qtyStepper.value = Double(quantity!)
-        unitCostLabel.text = TextFormatterService.getCurrencyString(for: unitCost!) + " ea."
+        unitCostLabel.text = TextFormatterService.shared.getCurrencyString(for: unitCost!) + " ea."
         productNameLabel.text = productName!
         updateTotalCostLable()
         
@@ -70,7 +70,7 @@ class EditItemView: UIViewController {
     
     // Updates total cost label
     private func updateTotalCostLable() {
-        totalCostLabel.text = TextFormatterService.getCurrencyString(for: Double(quantity!) * unitCost!)
+        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: Double(quantity!) * unitCost!)
     }
     
 }

@@ -21,9 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Firebase services
         FirebaseApp.configure()
         // Configure Stripe
-        StripeService.sharedClient.baseURLString = StripeConstants.BACKEND_URL
         let config = STPPaymentConfiguration.shared()
         config.publishableKey = StripeConstants.PUBLISHABLE_KEY
+        config.appleMerchantIdentifier = StripeConstants.APPLE_MERCHANT_ID
         config.createCardSources = true
         // Stripe UI elements
         STPTheme.default().accentColor = UIColor(named: "Primary")!
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentUser = Auth.auth().currentUser
         if currentUser != nil {
             // Go to home and load current customer
-            FirebaseService.loadCustomer(currentUser!) { (success, customer) in
+            FirebaseService.shared.loadCustomer(currentUser!) { (success, customer) in
                 if success && customer != nil {
                     // Load singleton
                     Customer.current = customer

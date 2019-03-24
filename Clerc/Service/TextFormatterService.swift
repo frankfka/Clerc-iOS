@@ -10,8 +10,10 @@ import Foundation
 
 class TextFormatterService {
     
+    static let shared = TextFormatterService()
+    
     // Returns a string formatted with $ sign and 2 decimal places
-    static func getCurrencyString(for amount: Double) -> String {
+    func getCurrencyString(for amount: Double) -> String {
         return "$" + String(format: "%.2f", amount)
     }
     

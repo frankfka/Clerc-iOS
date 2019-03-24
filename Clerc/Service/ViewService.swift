@@ -13,8 +13,10 @@ import SwiftEntryKit
 
 class ViewService {
     
+    static let shared = ViewService()
+    
     // Show a popup HUD with a specified success/fail and message
-    static func showHUD(success: Bool, message: String) {
+    func showHUD(success: Bool, message: String) {
         if (success) {
             SVProgressHUD.showSuccess(withStatus: message)
         } else {
@@ -23,8 +25,13 @@ class ViewService {
         SVProgressHUD.dismiss(withDelay: TimeInterval(ViewConstants.HUD_TIME))
     }
     
+    // Show a standard error HUD
+    func showStandardErrorHUD() {
+        showHUD(success: false, message: "Something went wrong. Please try again.")
+    }
+    
     // Show loading animation
-    static func loadingAnimation(show: Bool, with message: String? = "Please wait") {
+    func loadingAnimation(show: Bool, with message: String? = "Please wait") {
         if show {
             SVProgressHUD.show(withStatus: message)
         } else {
@@ -33,7 +40,7 @@ class ViewService {
     }
     
     // Update size of a tableview such that there is no scrolling & all of its contents fit
-    static func updateTableViewSize(tableView: UITableView, tableViewHeightConstraint: NSLayoutConstraint) {
+    func updateTableViewSize(tableView: UITableView, tableViewHeightConstraint: NSLayoutConstraint) {
         // We want to fit the entire tableview, so disable scroll
         tableView.isScrollEnabled = false
         tableView.rowHeight = UITableView.automaticDimension
@@ -58,7 +65,7 @@ class ViewService {
     }
     
     // Updates the size of a scrollview to fit all of its contents
-    static func updateScrollViewSize(for scrollView: UIScrollView, with minHeight: CGFloat = CGFloat(integerLiteral: 0)) {
+    func updateScrollViewSize(for scrollView: UIScrollView, with minHeight: CGFloat = CGFloat(integerLiteral: 0)) {
         
         // Sum up height of all the subviews
         var contentRect = CGRect.zero
@@ -75,7 +82,7 @@ class ViewService {
     }
     
     // Creates a barcode scanner with default styling
-    static func getBarcodeScannerVC(with title: String) -> BarcodeScannerViewController {
+    func getBarcodeScannerVC(with title: String) -> BarcodeScannerViewController {
         let barcodeScannerVC = BarcodeScannerViewController()
         // No Scanning animation
         barcodeScannerVC.cameraViewController.barCodeFocusViewType = .twoDimensions
@@ -87,7 +94,7 @@ class ViewService {
     }
     
     // Creates and shows a confirmation dialog
-    static func showConfirmationDialog(title: String, description: String, completion: @escaping (_ didConfirm: Bool) -> Void) {
+    func showConfirmationDialog(title: String, description: String, completion: @escaping (_ didConfirm: Bool) -> Void) {
         // Create the dialog VC and initialize it
         let confirmationDialog = ConfirmDialogView()
         confirmationDialog.initialize(title: title, desc: description, completionHandler: completion)
@@ -96,7 +103,7 @@ class ViewService {
     }
     
     // Creates and shows an edit item dialog
-    static func showEditItemDialog(for product: Product, with quantity: Int, completion: @escaping (_ newQuantity: Int) -> Void) {
+    func showEditItemDialog(for product: Product, with quantity: Int, completion: @escaping (_ newQuantity: Int) -> Void) {
         // Create the dialog VC and initialize it
         let editItemPopUp = EditItemView()
         editItemPopUp.initialize(name: product.name, unitCost: product.cost, currentQuantity: quantity, completion: completion)

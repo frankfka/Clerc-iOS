@@ -11,7 +11,8 @@ import Foundation
 class StripeConstants {
     
     static let PUBLISHABLE_KEY = "pk_test_KGZ0YCcX5SwcaeWl8OwKoJEA"
-    static let BACKEND_URL = "https://stripe-example-frankjia.herokuapp.com/"
+    static let BACKEND_URL = "http://34.217.14.89:4567"
+    static let APPLE_MERCHANT_ID = "merchant.com.clerc"
     static let DEFAULT_CURRENCY = "cad"
     
 }

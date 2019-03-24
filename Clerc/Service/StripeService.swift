@@ -12,28 +12,19 @@ import Alamofire
 
 class StripeService: NSObject, STPEphemeralKeyProvider {
     
-    static let sharedClient = StripeService()
-    var baseURLString: String? = nil
-    var baseURL: URL {
-        if let urlString = self.baseURLString, let url = URL(string: urlString) {
-            return url
-        } else {
-            fatalError()
-        }
-    }
+    static let shared = StripeService()
+    let baseURL = URL(string: StripeConstants.BACKEND_URL)!
     
-    func completeCharge(_ result: STPPaymentResult,
-                        amount: Int,
-                        shippingAddress: STPAddress?,
-                        shippingMethod: PKShippingMethod?,
-                        completion: @escaping STPErrorBlock) {
+    // Calls backend to charge the customer
+    func completeCharge(_ result: STPPaymentResult, amount: Int, completion: @escaping STPErrorBlock) {
         // Check that current customer exists
         guard let currentCustomer = Customer.current else {
             // TODO this does nothing, but we would want to throw some sort of error
             print("No current customer!")
             return
         }
-        let url = "http://34.217.14.89:4567/charge" //self.baseURL.appendingPathComponent("charge")
+        let url = self.baseURL.appendingPathComponent("charge")
+        // TODO:  finalize these parameters
         let chargeParams: [String: Any] = [
             "customer_id": currentCustomer.stripeID,
             "amount": amount,
@@ -52,9 +43,9 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
         }
     }
     
+    // Calls backend to create an ephemeral key
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
-        let url = "http://34.217.14.89:4567/customers/create-ephemeral-key"//self.baseURL.appendingPathComponent("ephemeral_keys")
-        print("Getting ephemeral key with API Version: \(apiVersion)")
+        let url = self.baseURL.appendingPathComponent("customers").appendingPathComponent("create-ephemeral-key")
         guard let currentCustomer = Customer.current else {
             print("No current customer!")
             completion(nil, nil)
@@ -81,8 +72,9 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     
     // Creates a new customer and passes ID to callback
     func createCustomer(completion: @escaping (_ success: Bool, _ id: String?) -> Void) {
+        let url = self.baseURL.appendingPathComponent("customers").appendingPathComponent("create")
         // Call create stripe customer
-        AF.request("http://34.217.14.89:4567/customers/create")
+        AF.request(url)
             .validate(statusCode: 200..<300)
             .responseString { response in
                 //TODO make endpoint return json!

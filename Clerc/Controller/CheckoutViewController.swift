@@ -26,14 +26,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 if self.paymentInProgress {
                     print("Payment in progress")
                     // Show loading
-                    ViewService.loadingAnimation(show: true, with: "Processing Payment")
+                    ViewService.shared.loadingAnimation(show: true, with: "Processing Payment")
                     // Disable Pay Now Button
                     self.paymentButtonEnabled(false)
                 }
                 else {
                     print("Payment not in progress")
                     // Dismiss loading
-                    ViewService.loadingAnimation(show: false, with: nil)
+                    ViewService.shared.loadingAnimation(show: false, with: nil)
                     // Enable Pay Now button
                     self.paymentButtonEnabled(true)
                 }
@@ -53,20 +53,20 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         
         // Check that required properties are satisfied
         if (cost == nil || vendor == nil) {
-            ViewService.showHUD(success: false, message: "Something went wrong. Please try again.")
+            ViewService.shared.showStandardErrorHUD()
             // Return if something is wrong
             navigationController?.popViewController(animated: true)
         }
         
         // Initialize labels
-        totalCostLabel.text = TextFormatterService.getCurrencyString(for: cost!)
+        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: cost!)
         storeNameLabel.text = vendor!.name
         
         // Else continue with setup - this should be in an init() function once we present this modally
         let config = STPPaymentConfiguration.shared()
         config.companyName = vendor!.name
         // Get the current customer and payment context
-        let customerContext = STPCustomerContext(keyProvider: StripeService.sharedClient) // TODO may need to initialize earlier so that payment context is preloaded
+        let customerContext = STPCustomerContext(keyProvider: StripeService.shared) // TODO may need to initialize earlier so that payment context is preloaded
         let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
         paymentContext.paymentAmount = StripeService.getStripeCost(for: cost!)
         paymentContext.paymentCurrency = StripeConstants.DEFAULT_CURRENCY // Implement custom currencies when we need to
@@ -104,7 +104,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // Called when user confirms payment
     @IBAction func payNowTapped(_ sender: Any) {
         // Ask for confirmation
-        ViewService.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.getCurrencyString(for: cost!)) to \(vendor!.name)") { (didConfirm) in
+        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: cost!)) to \(vendor!.name)") { (didConfirm) in
             // Submit payment only if they confirmed
             if (didConfirm) {
                 self.paymentInProgress = true
@@ -120,7 +120,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // Indicates that the Stripe class has failed to load - show error and go back to cart
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         print("Error loading payment context \(error)")
-        ViewService.showHUD(success: true, message: "Something went wrong. Please try again")
+        ViewService.shared.showStandardErrorHUD()
         navigationController?.popViewController(animated: true)
     }
     
@@ -142,11 +142,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // User confirms payment - call backend to complete the charge
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
-            StripeService.sharedClient.completeCharge(paymentResult,
-                                                    amount: self.paymentContext!.paymentAmount,
-                                                    shippingAddress: self.paymentContext!.shippingAddress,
-                                                    shippingMethod: self.paymentContext!.selectedShippingMethod,
-                                                    completion: completion)
+        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, completion: completion)
     }
     
     // Backend finished charge with either a success, fail, or user cancellation
@@ -155,7 +151,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         switch status {
             case .error:
                 print("User payment errored: \(error!)")
-                ViewService.showHUD(success: false, message: "Something went wrong. Your payment was not processed.")
+                ViewService.shared.showStandardErrorHUD()
                 return
             case .success:
                 // Show confirmation screen

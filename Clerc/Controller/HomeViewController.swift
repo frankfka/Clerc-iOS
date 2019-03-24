@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     // When shopping button is pressed, launch the barcode scanner view controller
     @IBAction func beginShoppingPressed(_ sender: UIButton) {
         // Create the VC then present it modally
-        let barcodeScannerVC = ViewService.getBarcodeScannerVC(with: "Scan Store QR")
+        let barcodeScannerVC = ViewService.shared.getBarcodeScannerVC(with: "Scan Store QR")
         barcodeScannerVC.codeDelegate = self
         barcodeScannerVC.dismissalDelegate = self
         present(barcodeScannerVC, animated: true, completion: nil)
@@ -70,7 +70,7 @@ extension HomeViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissa
         // Check that the barcode is a QR code
         if (type == "org.iso.QRCode") {
             // Call firebase to see if this is a valid store
-            FirebaseService.getVendor(with: code) { (vendor) in
+            FirebaseService.shared.getVendor(with: code) { (vendor) in
                 if let vendor = vendor {
                     controller.dismiss(animated: true) {
                         self.retailerScanSuccess(with: vendor)
