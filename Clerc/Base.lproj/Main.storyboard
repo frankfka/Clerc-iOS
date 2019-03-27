@@ -1,16 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iPh-GB-E7U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iPh-GB-E7U">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Zo8-bE-f8U">
+            <objects>
+                <viewController storyboardIdentifier="loading" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sqa-4o-TPP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Ok-rb-gnG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Z2f-ek-zAc">
+                                <rect key="frame" x="123.5" y="279.5" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="aVg-yn-85g"/>
+                                    <constraint firstAttribute="height" constant="128" id="nTm-Go-Sub"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miV-zI-ofJ">
+                                <rect key="frame" x="144.5" y="419.5" width="86" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" name="Primary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Z2f-ek-zAc" firstAttribute="centerY" secondItem="yL7-tZ-7mf" secondAttribute="centerY" id="4X7-YV-C8M"/>
+                            <constraint firstItem="Z2f-ek-zAc" firstAttribute="centerX" secondItem="yL7-tZ-7mf" secondAttribute="centerX" id="Nv2-Of-7Bi"/>
+                            <constraint firstItem="miV-zI-ofJ" firstAttribute="top" secondItem="Z2f-ek-zAc" secondAttribute="bottom" constant="12" id="R4x-4P-ZWS"/>
+                            <constraint firstItem="miV-zI-ofJ" firstAttribute="centerX" secondItem="Z2f-ek-zAc" secondAttribute="centerX" id="kar-sI-Kwz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yL7-tZ-7mf"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpV-sX-v5G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-846" y="-751"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="rSO-3b-OFQ">
             <objects>
@@ -516,6 +552,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="333" height="333"/>
         <image name="Success" width="170.5" height="170.5"/>
         <namedColor name="Dark Text">
             <color red="0.1289999932050705" green="0.1289999932050705" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setForegroundColor(.white)
         // Configure first view controller
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        // Show loading screen for now
+        self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "loading")
         let currentUser = Auth.auth().currentUser
         if currentUser != nil {
             // Go to home and load current customer
