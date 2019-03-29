@@ -324,7 +324,7 @@
                                 <action selector="cancelButtonPressed:" destination="Rzu-la-Sjq" id="S76-oN-bGs"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Checkout" id="Kcb-gQ-jPD">
+                        <barButtonItem key="rightBarButtonItem" title="Checkout" style="done" id="Kcb-gQ-jPD">
                             <color key="tintColor" name="Primary"/>
                             <connections>
                                 <action selector="checkoutButtonPressed:" destination="Rzu-la-Sjq" id="7ni-l2-zbL"/>
