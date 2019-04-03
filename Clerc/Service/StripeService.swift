@@ -16,7 +16,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     let baseURL = URL(string: StripeConstants.BACKEND_URL)!
     
     // Calls backend to charge the customer
-    func completeCharge(_ result: STPPaymentResult, amount: Int, completion: @escaping STPErrorBlock) {
+    func completeCharge(_ result: STPPaymentResult, amount: Int, vendor: Vendor, completion: @escaping STPErrorBlock) {
         // Check that current customer exists
         guard let currentCustomer = Customer.current else {
             // TODO this does nothing, but we would want to throw some sort of error
@@ -24,12 +24,12 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
             return
         }
         let url = self.baseURL.appendingPathComponent("charge")
-        // TODO:  finalize these parameters
+        // TODO: Charge description & descriptor
         let chargeParams: [String: Any] = [
             "customer_id": currentCustomer.stripeID,
             "amount": amount,
             "source": result.source.stripeID,
-            "CONNECTED_STRIPE_ACCOUNT_ID": "acct_1EALLCF8Tv70HUia"// For testing ONLY
+            "firebase_vendor_id": vendor.id
             ]
         AF.request(url, method: .post, parameters: chargeParams, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
@@ -76,17 +76,26 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
         // Call create stripe customer
         AF.request(url)
             .validate(statusCode: 200..<300)
-            .responseString { response in
-                //TODO make endpoint return json!
-                switch response.result {
-                case .success(_):
-                    if let custId = response.result.value {
-                        // Call completion and return
-                        completion(true, custId)
+            .responseJSON { responseJSON in
+                switch responseJSON.result {
+                case .success(let json):
+                    // In case backend screws up and doesn't return proper json
+                    guard let returnedData = json as? [String: AnyObject] else {
+                        print("Backend not returning JSON!")
+                        completion(false,nil)
                         return
                     }
-                case .failure(_):
-                    print("Make customer endpoint errored")
+                    // In case backend screws up and doesn't return a customer ID
+                    guard let newCustId = returnedData["customer_id"] as? String else {
+                        print("Backend did not return a customer ID!")
+                        completion(false,nil)
+                        return
+                    }
+                    // Call completion and return
+                    completion(true, newCustId)
+                    return
+                case .failure(let error):
+                    print("Make customer endpoint errored: \(error)")
                 }
                 // Did not succeed, call completion
                 completion(false, nil)

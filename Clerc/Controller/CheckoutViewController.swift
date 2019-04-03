@@ -142,7 +142,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // User confirms payment - call backend to complete the charge
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
-        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, completion: completion)
+        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, vendor: vendor!, completion: completion)
     }
     
     // Backend finished charge with either a success, fail, or user cancellation

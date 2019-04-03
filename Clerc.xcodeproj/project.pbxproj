@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1102473C22542E3200CB117A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1102473B22542E3100CB117A /* GoogleService-Info.plist */; };
 		111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */; };
 		111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */; };
 		113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */; };
@@ -16,7 +17,6 @@
 		113DBAEE22341AD700383001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEC22341AD700383001 /* Main.storyboard */; };
 		113DBAF022341ADB00383001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEF22341ADB00383001 /* Assets.xcassets */; };
 		113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAF122341ADB00383001 /* LaunchScreen.storyboard */; };
-		113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAFC2234512000383001 /* GoogleService-Info.plist */; };
 		113DBB032234857C00383001 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB022234857C00383001 /* FirebaseService.swift */; };
 		113DBB05223485B000383001 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB04223485B000383001 /* Vendor.swift */; };
 		113DBB072234866C00383001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB062234866C00383001 /* Product.swift */; };
@@ -37,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1102473B22542E3100CB117A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDialogView.swift; sourceTree = "<group>"; };
 		111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmDialogView.xib; sourceTree = "<group>"; };
 		1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		113DBAEF22341ADB00383001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		113DBAF222341ADB00383001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		113DBAF422341ADB00383001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		113DBAFC2234512000383001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		113DBB022234857C00383001 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		113DBB04223485B000383001 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		113DBB062234866C00383001 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 				113DBAE822341AD700383001 /* AppDelegate.swift */,
 				113DBAEC22341AD700383001 /* Main.storyboard */,
 				113DBAEF22341ADB00383001 /* Assets.xcassets */,
+				1102473B22542E3100CB117A /* GoogleService-Info.plist */,
 				113DBAF122341ADB00383001 /* LaunchScreen.storyboard */,
-				113DBAFC2234512000383001 /* GoogleService-Info.plist */,
 				113DBAF422341ADB00383001 /* Info.plist */,
 			);
 			path = Clerc;
@@ -279,10 +279,10 @@
 				115E4A2C223C054B00E2EA79 /* EditItemView.xib in Resources */,
 				111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
-				113DBAFD2234512000383001 /* GoogleService-Info.plist in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
 				11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
+				1102473C22542E3200CB117A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

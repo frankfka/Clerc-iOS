@@ -37,7 +37,7 @@ class FirebaseService {
                     if success && stripeId != nil {
                         // Stripe customer created, save to Firebase
                         
-                        // TODO - we just save Stripe ID for now (safer) - do we want to save name/email?
+                        // We just save Stripe ID for now (safer) - do we want to save name/email?
                         let userData: [String: Any] = ["stripeId": stripeId!]
                         userDocRef.setData(userData) { error in
                             if error == nil {
