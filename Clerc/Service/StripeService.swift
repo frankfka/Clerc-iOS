@@ -16,7 +16,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     let baseURL = URL(string: StripeConstants.BACKEND_URL)!
     
     // Calls backend to charge the customer
-    func completeCharge(_ result: STPPaymentResult, amount: Int, vendor: Vendor, completion: @escaping STPErrorBlock) {
+    func completeCharge(_ result: STPPaymentResult, amount: Int, store: Store, completion: @escaping STPErrorBlock) {
         // Check that current customer exists
         guard let currentCustomer = Customer.current else {
             // TODO this does nothing, but we would want to throw some sort of error
@@ -29,7 +29,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
             "customer_id": currentCustomer.stripeID,
             "amount": amount,
             "source": result.source.stripeID,
-            "firebase_vendor_id": vendor.id
+            "firebase_store_id": store.id
             ]
         AF.request(url, method: .post, parameters: chargeParams, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)

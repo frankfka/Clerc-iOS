@@ -14,7 +14,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // The following should be initialized at view presentation
     var cost: Double?
-    var vendor: Vendor?
+    var store: Store?
     
     // Stripe's class for standard payment flow
     var paymentContext: STPPaymentContext?
@@ -52,7 +52,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         super.viewDidLoad()
         
         // Check that required properties are satisfied
-        if (cost == nil || vendor == nil) {
+        if (cost == nil || store == nil) {
             ViewService.shared.showStandardErrorHUD()
             // Return if something is wrong
             navigationController?.popViewController(animated: true)
@@ -60,11 +60,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         
         // Initialize labels
         totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: cost!)
-        storeNameLabel.text = vendor!.name
+        storeNameLabel.text = store!.name
         
         // Else continue with setup - this should be in an init() function once we present this modally
         let config = STPPaymentConfiguration.shared()
-        config.companyName = vendor!.name
+        config.companyName = store!.name
         // Get the current customer and payment context
         let customerContext = STPCustomerContext(keyProvider: StripeService.shared) // TODO may need to initialize earlier so that payment context is preloaded
         let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
@@ -104,7 +104,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // Called when user confirms payment
     @IBAction func payNowTapped(_ sender: Any) {
         // Ask for confirmation
-        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: cost!)) to \(vendor!.name)") { (didConfirm) in
+        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: cost!)) to \(store!.name)") { (didConfirm) in
             // Submit payment only if they confirmed
             if (didConfirm) {
                 self.paymentInProgress = true
@@ -142,7 +142,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // User confirms payment - call backend to complete the charge
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
-        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, vendor: vendor!, completion: completion)
+        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!, completion: completion)
     }
     
     // Backend finished charge with either a success, fail, or user cancellation

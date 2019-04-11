@@ -11,9 +11,9 @@ import Foundation
 class FirebaseConstants {
     
     // Collection names
-    static let VENDORS_COL = "vendors"
+    static let STORES_COL = "stores"
     static let PRODUCTS_COL = "products"
-    static let USERS_COL = "users"
+    static let CUSTOMERS_COL = "customers"
     
     // Field names
     

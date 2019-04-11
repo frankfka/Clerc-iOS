@@ -16,8 +16,8 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     var scannedProducts: [Product] = []
     var quantities: [Int] = []
 
-    // Vendor object (set by HomeViewController)
-    var vendor: Vendor?
+    // store object (set by HomeViewController)
+    var store: Store?
     
     // UI Variables
     @IBOutlet weak var itemsTableView: UITableView!
@@ -31,17 +31,17 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // THIS IS IMPORTANT - we force unwrap vendor everywhere else here
-        guard let vendor = vendor else {
-            // Vendor should always be initialized - show error if this is not the case
-            print("No vendor was passed to this view controller")
+        // THIS IS IMPORTANT - we force unwrap store everywhere else here
+        guard let store = store else {
+            // store should always be initialized - show error if this is not the case
+            print("No store was passed to this view controller")
             ViewService.shared.showStandardErrorHUD()
             dismiss(animated: true, completion: nil)
             return
         }
 
         // Set title
-        navigationBar.title = vendor.name
+        navigationBar.title = store.name
         // Set delegates for items table
         itemsTableView.dataSource = self
         itemsTableView.delegate = self
@@ -157,10 +157,10 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CartToCheckoutSegue" {
-            // Initialize VC with the required fields (cost & vendor) 
+            // Initialize VC with the required fields (cost & store)
             let destinationVC = segue.destination as! CheckoutViewController
             destinationVC.cost = getTotalCost()
-            destinationVC.vendor = vendor
+            destinationVC.store = store
         }
     }
     
@@ -178,7 +178,7 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
         print("Barcode Data: \(code) | Type: \(type)")
         
         // Call firebase to see if this is a valid store
-        FirebaseService.shared.getProduct(from: vendor!.id, for: code) { (product) in
+        FirebaseService.shared.getProduct(from: store!.id, for: code) { (product) in
             if let product = product {
                 controller.dismiss(animated: true) {
                     print("Product found: id: \(product.id), name: \(product.name)")

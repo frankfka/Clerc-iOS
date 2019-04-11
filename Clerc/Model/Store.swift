@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Vendor {
+class Store {
     
     let id: String
     let name: String
@@ -23,8 +23,8 @@ class Vendor {
 }
 
 // Deals with object equality
-extension Vendor: Equatable {
-    static func == (lhs: Vendor, rhs: Vendor) -> Bool {
+extension Store: Equatable {
+    static func == (lhs: Store, rhs: Store) -> Bool {
         return lhs.id == rhs.id
     }
 }

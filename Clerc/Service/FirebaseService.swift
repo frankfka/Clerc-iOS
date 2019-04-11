@@ -58,20 +58,20 @@ class FirebaseService {
         }
     }
     
-    // Retrieve a vendor from firebase
-    func getVendor(with vendorId: String, completionHandler: @escaping (_ result: Vendor?) -> Void) {
+    // Retrieve a store from firebase
+    func getStore(with storeId: String, completionHandler: @escaping (_ result: Store?) -> Void) {
         // Get a reference to the document, which may or may not exist
-        getVendorDocRef(with: vendorId).getDocument { (vendorDocument, error) in
+        getStoreDocRef(with: storeId).getDocument { (storeDocument, error) in
             // Check that the document actually exists
-            if let vendorDocument = vendorDocument, vendorDocument.exists {
-                // Vendor found, create the object
-                let vendorData = vendorDocument.data()
+            if let storeDocument = storeDocument, storeDocument.exists {
+                // store found, create the object
+                let storeData = storeDocument.data()
                 // These should always exist
                 // TODO we may benefit from additional error checking
-                let vendorName = vendorData!["name"] as! String
-                let stripeId = vendorData!["stripeId"] as! String
-                // Pass the vendor object to the completion handler, then return
-                completionHandler(Vendor(id: vendorId, name: vendorName, stripeId: stripeId))
+                let storeName = storeData!["name"] as! String
+                let stripeId = storeData!["stripeId"] as! String
+                // Pass the store object to the completion handler, then return
+                completionHandler(Store(id: storeId, name: storeName, stripeId: stripeId))
             } else {
                 completionHandler(nil)
             }
@@ -79,9 +79,9 @@ class FirebaseService {
     }
     
     // Retrieve a product from firebase
-    func getProduct(from vendorId: String, for productId: String, completionHandler: @escaping (_ result: Product?) -> Void) {
+    func getProduct(from storeId: String, for productId: String, completionHandler: @escaping (_ result: Product?) -> Void) {
         // Get reference to the document, which may or may not exist
-        getProductDocRef(from: vendorId, with: productId).getDocument { (productDocument, error) in
+        getProductDocRef(from: storeId, with: productId).getDocument { (productDocument, error) in
             // Check that the product exists first
             if let productDocument = productDocument, productDocument.exists {
                 // Product exists, we can now create the object
@@ -101,17 +101,17 @@ class FirebaseService {
     // MARK: Helper functions
     // Gets a Firebase document reference for the user
     private func getUserDocRef(with userId: String) -> DocumentReference {
-        return database.collection(FirebaseConstants.USERS_COL).document(userId)
+        return database.collection(FirebaseConstants.CUSTOMERS_COL).document(userId)
     }
     
-    // Gets a Firebase document reference for the vendor
-    private func getVendorDocRef(with vendorId: String) -> DocumentReference {
-        return database.collection(FirebaseConstants.VENDORS_COL).document(vendorId)
+    // Gets a Firebase document reference for the store
+    private func getStoreDocRef(with storeId: String) -> DocumentReference {
+        return database.collection(FirebaseConstants.STORES_COL).document(storeId)
     }
     
     // Gets a Firebase document reference for the product
-    private func getProductDocRef(from vendorId: String, with productId: String) -> DocumentReference {
-        return getVendorDocRef(with: vendorId).collection(FirebaseConstants.PRODUCTS_COL).document(productId)
+    private func getProductDocRef(from storeId: String, with productId: String) -> DocumentReference {
+        return getStoreDocRef(with: storeId).collection(FirebaseConstants.PRODUCTS_COL).document(productId)
     }
     
 }

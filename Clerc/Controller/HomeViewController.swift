@@ -14,8 +14,8 @@ import EmptyDataSet_Swift
 
 class HomeViewController: UIViewController {
     
-    // Used in segue initialization to tell next controller what vendor was scanned
-    var scannedVendor: Vendor?
+    // Used in segue initialization to tell next controller what store was scanned
+    var scannedStore: Store?
     
     // UI Elements
     @IBOutlet weak var pastTransactionsTable: UITableView!
@@ -38,21 +38,21 @@ class HomeViewController: UIViewController {
     }
     
     // Called when a store was successfully identified and returned
-    private func retailerScanSuccess(with vendor: Vendor) {
+    private func retailerScanSuccess(with store: Store) {
         // Segue into the shopping view
-        print("Vendor \(vendor.name) found successfully")
-        scannedVendor = vendor
+        print("Store \(store.name) found successfully")
+        scannedStore = store
         performSegue(withIdentifier: "HomeToShoppingSegue", sender: self)
     }
     
     // Segue initialization
-    // HOMETOSHOPPING - Send the vendor object
+    // HOMETOSHOPPING - Send the store object
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "HomeToShoppingSegue") {
-            // Get destination VC and set its vendor object - need to bypass the initial nav controller
+            // Get destination VC and set its store object - need to bypass the initial nav controller
             let navigationVC = segue.destination as! UINavigationController
             let destinationVC = navigationVC.topViewController as! ShoppingViewController
-            destinationVC.vendor = scannedVendor! 
+            destinationVC.store = scannedStore!
         }
     }
 }
@@ -70,10 +70,10 @@ extension HomeViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissa
         // Check that the barcode is a QR code
         if (type == "org.iso.QRCode") {
             // Call firebase to see if this is a valid store
-            FirebaseService.shared.getVendor(with: code) { (vendor) in
-                if let vendor = vendor {
+            FirebaseService.shared.getStore(with: code) { (store) in
+                if let store = store {
                     controller.dismiss(animated: true) {
-                        self.retailerScanSuccess(with: vendor)
+                        self.retailerScanSuccess(with: store)
                     }
                 } else {
                     print("Could not find barcode in Firebase")
