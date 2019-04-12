@@ -14,6 +14,7 @@ class FirebaseConstants {
     static let STORES_COL = "stores"
     static let PRODUCTS_COL = "products"
     static let CUSTOMERS_COL = "customers"
+    static let TXN_COL = "transactions"
     
     // Field names
     

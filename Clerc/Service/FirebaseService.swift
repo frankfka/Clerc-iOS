@@ -15,6 +15,7 @@ class FirebaseService {
     static let shared = FirebaseService()
     
     let database = Firestore.firestore()
+    let utilityService = UtilityService.shared
     
     // Saves a user to firestore and creates a new Stripe customer if one does not exist
     func loadCustomer(_ user: User, completion: @escaping (_ success: Bool, _ customer: Customer?) -> Void) {
@@ -95,7 +96,43 @@ class FirebaseService {
                 completionHandler(nil)
             }
         }
+    }
+    
+    // Write a transaction to firebase
+    // Does nothing in case of failure - TODO resolve this somehow?
+    func writeTransaction(from userId: String, to storeId: String, items: [Product], quantities: [Int], txnId: String) {
         
+        //
+        // Create document data
+        //
+        var itemsData: [[String:Any]] = []
+        for index in 0..<items.count {
+            let item = items[index]
+            let itemData = [
+                "id": item.id,
+                "name": item.name,
+                "cost": item.cost,
+                "quantity": quantities[index]
+                ] as [String : Any]
+            itemsData.append(itemData)
+        }
+        let txnData = [
+            "transaction_id": txnId,
+            "customer_id": userId,
+            "store_id": storeId,
+            "currency": "cad",
+            "amount": utilityService.getTotalCost(for: items, with: quantities),
+            "date": Timestamp(date: Date()),
+            "items": itemsData
+            ] as [String : Any]
+        
+        // Get a reference to the transaction document (which should not yet exist)
+        getTxnDocRef(with: txnId).setData(txnData) { (error) in
+            // Just print error for now
+            if error != nil {
+                print(error)
+            }
+        }
     }
     
     // MARK: Helper functions
@@ -112,6 +149,11 @@ class FirebaseService {
     // Gets a Firebase document reference for the product
     private func getProductDocRef(from storeId: String, with productId: String) -> DocumentReference {
         return getStoreDocRef(with: storeId).collection(FirebaseConstants.PRODUCTS_COL).document(productId)
+    }
+    
+    // Gets a Firebase document reference for the transaction
+    private func getTxnDocRef(with txnId: String) -> DocumentReference {
+        return database.collection(FirebaseConstants.TXN_COL).document(txnId)
     }
     
 }

@@ -36,6 +36,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
             .responseString { response in
                 switch response.result {
                 case .success:
+                    // TODO add transaction to firebase here!
                     completion(nil)
                 case .failure(let error):
                     completion(error)

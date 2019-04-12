@@ -25,6 +25,7 @@
 		115E4A2C223C054B00E2EA79 /* EditItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115E4A2A223C054B00E2EA79 /* EditItemView.xib */; };
 		116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C702239EB7B00D0F32A /* StripeConstants.swift */; };
 		116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */; };
+		1170067E22604A91001094A1 /* UtilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1170067D22604A91001094A1 /* UtilityService.swift */; };
 		1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189A1D22237FAD900E92BED /* ViewConstants.swift */; };
 		11AEB072224524710008E96E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB071224524710008E96E /* LoginViewController.swift */; };
 		11AEB07422453E8F0008E96E /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB07322453E8F0008E96E /* FirebaseConstants.swift */; };
@@ -58,6 +59,7 @@
 		115E4A2A223C054B00E2EA79 /* EditItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemView.xib; sourceTree = "<group>"; };
 		116D2C702239EB7B00D0F32A /* StripeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConstants.swift; sourceTree = "<group>"; };
 		116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
+		1170067D22604A91001094A1 /* UtilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityService.swift; sourceTree = "<group>"; };
 		1189A1D22237FAD900E92BED /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		11AEB071224524710008E96E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		11AEB07322453E8F0008E96E /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				113DBB082234CA3F00383001 /* ViewService.swift */,
 				11B6ECDF2236101E00C7716D /* TextFormatterService.swift */,
 				113662112238B083006DCAA4 /* StripeService.swift */,
+				1170067D22604A91001094A1 /* UtilityService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */,
 				11AEB072224524710008E96E /* LoginViewController.swift in Sources */,
 				11AEB07422453E8F0008E96E /* FirebaseConstants.swift in Sources */,
+				1170067E22604A91001094A1 /* UtilityService.swift in Sources */,
 				11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */,
 				113DBAE922341AD700383001 /* AppDelegate.swift in Sources */,
 				113DBB05223485B000383001 /* Store.swift in Sources */,

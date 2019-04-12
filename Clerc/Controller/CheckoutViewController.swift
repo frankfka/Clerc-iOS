@@ -12,9 +12,13 @@ import Stripe
 
 class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
+    var cost: Double = 0.0
+    let utilityService = UtilityService.shared
+    
     // The following should be initialized at view presentation
-    var cost: Double?
     var store: Store?
+    var items: [Product]?
+    var quantities: [Int]?
     
     // Stripe's class for standard payment flow
     var paymentContext: STPPaymentContext?
@@ -52,14 +56,18 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         super.viewDidLoad()
         
         // Check that required properties are satisfied
-        if (cost == nil || store == nil) {
+        if (store == nil || items == nil || quantities == nil
+            || items!.isEmpty || quantities!.isEmpty || items!.count != quantities!.count) {
             ViewService.shared.showStandardErrorHUD()
             // Return if something is wrong
             navigationController?.popViewController(animated: true)
         }
         
+        // Calculate total cost
+        cost = utilityService.getTotalCost(for: items!, with: quantities!)
+        
         // Initialize labels
-        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: cost!)
+        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: cost)
         storeNameLabel.text = store!.name
         
         // Else continue with setup - this should be in an init() function once we present this modally
@@ -68,7 +76,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         // Get the current customer and payment context
         let customerContext = STPCustomerContext(keyProvider: StripeService.shared) // TODO may need to initialize earlier so that payment context is preloaded
         let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
-        paymentContext.paymentAmount = StripeService.getStripeCost(for: cost!)
+        paymentContext.paymentAmount = StripeService.getStripeCost(for: cost)
         paymentContext.paymentCurrency = StripeConstants.DEFAULT_CURRENCY // Implement custom currencies when we need to
         // Set the required delegates
         paymentContext.delegate = self
@@ -104,7 +112,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // Called when user confirms payment
     @IBAction func payNowTapped(_ sender: Any) {
         // Ask for confirmation
-        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: cost!)) to \(store!.name)") { (didConfirm) in
+        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: cost)) to \(store!.name)") { (didConfirm) in
             // Submit payment only if they confirmed
             if (didConfirm) {
                 self.paymentInProgress = true

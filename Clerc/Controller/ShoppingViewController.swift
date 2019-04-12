@@ -15,6 +15,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     var scannedProducts: [Product] = []
     var quantities: [Int] = []
+    let utilityService = UtilityService.shared
 
     // store object (set by HomeViewController)
     var store: Store?
@@ -60,7 +61,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         ViewService.shared.updateScrollViewSize(for: parentScrollView)
         
         // Update the total price
-        totalAmountLabel.text = TextFormatterService.shared.getCurrencyString(for: getTotalCost())
+        totalAmountLabel.text = TextFormatterService.shared.getCurrencyString(for: utilityService.getTotalCost(for: scannedProducts, with: quantities))
         
         // Disable/enable the checkout and clear button
         if (scannedProducts.isEmpty) {
@@ -130,15 +131,6 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // Calculates total in cart
-    private func getTotalCost() -> Double {
-        var totalPrice = 0.0
-        for index in 0..<scannedProducts.count {
-            totalPrice = totalPrice + scannedProducts[index].cost * Double(quantities[index])
-        }
-        return totalPrice
-    }
-    
     //
     // MARK: Navigation button pressed methods
     //
@@ -159,8 +151,9 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "CartToCheckoutSegue" {
             // Initialize VC with the required fields (cost & store)
             let destinationVC = segue.destination as! CheckoutViewController
-            destinationVC.cost = getTotalCost()
             destinationVC.store = store
+            destinationVC.items = scannedProducts
+            destinationVC.quantities = quantities
         }
     }
     
