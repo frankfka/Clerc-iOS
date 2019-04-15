@@ -14,6 +14,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     var cost: Double = 0.0
     let utilityService = UtilityService.shared
+    let firebaseService = FirebaseService.shared
     
     // The following should be initialized at view presentation
     var store: Store?
@@ -150,7 +151,20 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // User confirms payment - call backend to complete the charge
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
-        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!, completion: completion)
+        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!) { (success, txnId, error) in
+            if success {
+                completion(nil) // Give the STP completion a nil value to indicate payment success
+                // Write the transaction to firebase
+                let currentCustomer = Customer.current // TODO: Check that this exists?
+                self.firebaseService.writeTransaction(from: currentCustomer?.firebaseID ?? "",
+                                                      to: self.store!.id,
+                                                      items: self.items!,
+                                                      quantities: self.quantities!,
+                                                      txnId: txnId ?? "")
+            } else {
+                completion(error)
+            }
+        }
     }
     
     // Backend finished charge with either a success, fail, or user cancellation

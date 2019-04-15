@@ -12,12 +12,10 @@ class Store {
     
     let id: String
     let name: String
-    let stripeId: String
     
-    init(id: String, name: String, stripeId: String) {
+    init(id: String, name: String) {
         self.id = id
         self.name = name
-        self.stripeId = stripeId
     }
     
 }

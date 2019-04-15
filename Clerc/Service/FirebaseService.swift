@@ -70,9 +70,8 @@ class FirebaseService {
                 // These should always exist
                 // TODO we may benefit from additional error checking
                 let storeName = storeData!["name"] as! String
-                let stripeId = storeData!["stripeId"] as! String
                 // Pass the store object to the completion handler, then return
-                completionHandler(Store(id: storeId, name: storeName, stripeId: stripeId))
+                completionHandler(Store(id: storeId, name: storeName))
             } else {
                 completionHandler(nil)
             }
@@ -130,7 +129,9 @@ class FirebaseService {
         getTxnDocRef(with: txnId).setData(txnData) { (error) in
             // Just print error for now
             if error != nil {
-                print(error)
+                print("Error writing transaction to firebase: \(error!)")
+            } else {
+                print("Transaction \(txnId) successfully written to firebase")
             }
         }
     }

@@ -16,7 +16,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     let baseURL = URL(string: StripeConstants.BACKEND_URL)!
     
     // Calls backend to charge the customer
-    func completeCharge(_ result: STPPaymentResult, amount: Int, store: Store, completion: @escaping STPErrorBlock) {
+    func completeCharge(_ result: STPPaymentResult, amount: Int, store: Store, completion: @escaping (_ success: Bool, _ txnId: String?, _ error: Error?) -> Void) {
         // Check that current customer exists
         guard let currentCustomer = Customer.current else {
             // TODO this does nothing, but we would want to throw some sort of error
@@ -33,13 +33,20 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
             ]
         AF.request(url, method: .post, parameters: chargeParams, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
-            .responseString { response in
-                switch response.result {
-                case .success:
-                    // TODO add transaction to firebase here!
-                    completion(nil)
+            .responseJSON { responseJSON in
+                // TODO - get txn id, get proper params, finish writeTransaction, test!
+                switch responseJSON.result {
+                case .success(let json):
+                    // In case backend screws up and doesn't return proper json
+                    guard let txnData = json as? [String: AnyObject] else {
+                        print("Backend not returning JSON!")
+                        completion(true, nil, nil) // WARNING: Txn ID can still be nil if we "succeed" in the payment
+                        return
+                    }
+                    // Call completion handler with the transaction ID
+                    completion(true, txnData["charge_id"] as? String, nil)
                 case .failure(let error):
-                    completion(error)
+                    completion(false, nil, error)
                 }
         }
     }
