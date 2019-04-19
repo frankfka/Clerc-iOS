@@ -8,7 +8,6 @@
 
 import UIKit
 import BarcodeScanner
-import EmptyDataSet_Swift
 import SwiftEntryKit
 
 class ShoppingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {

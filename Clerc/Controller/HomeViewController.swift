@@ -10,12 +10,12 @@ import UIKit
 import BarcodeScanner
 import AVFoundation
 import FirebaseFirestore
-import EmptyDataSet_Swift
 import RealmSwift
 
 class HomeViewController: UIViewController {
     
     let realm = try! Realm()
+    let viewService = ViewService.shared
     
     // Used in segue initialization to tell next controller what store was scanned
     var scannedStore: Store?
@@ -23,6 +23,10 @@ class HomeViewController: UIViewController {
     
     // UI Elements
     @IBOutlet weak var pastTransactionsTable: UITableView!
+    @IBOutlet weak var pastTransactionsTableHeight: NSLayoutConstraint!
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var noPastTransactionsView: UIView!
+    @IBOutlet weak var pastTransactionsParentView: UIView!
     
     // Initial setup on view load
     override func viewDidLoad() {
@@ -31,18 +35,32 @@ class HomeViewController: UIViewController {
         // Get the past transactions
         pastTransactions = realm.objects(Transaction.self).sorted(byKeyPath: "txnDate", ascending: false)
         
-        pastTransactionsTable.emptyDataSetSource = self
-        pastTransactionsTable.emptyDataSetDelegate = self
         pastTransactionsTable.register(UINib(nibName: "TransactionTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionTableViewCell")
         pastTransactionsTable.dataSource = self
         pastTransactionsTable.delegate = self
+        
+        loadUI()
         
     }
     
     // Reload the tableview every time we return to this VC
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadUI()
+    }
+    
+    // Private function to reload views
+    private func loadUI() {
         pastTransactionsTable.reloadData()
+        viewService.updateTableViewSize(tableView: pastTransactionsTable, tableViewHeightConstraint: pastTransactionsTableHeight)
+        viewService.updateScrollViewSize(for: mainScrollView)
+        if pastTransactions?.isEmpty ?? true {
+            noPastTransactionsView.isHidden = false
+            pastTransactionsParentView.isHidden = true
+        } else {
+            pastTransactionsParentView.isHidden = false
+            noPastTransactionsView.isHidden = true
+        }
     }
     
     // When shopping button is pressed, launch the barcode scanner view controller
@@ -133,39 +151,6 @@ extension HomeViewController: BarcodeScannerCodeDelegate, BarcodeScannerDismissa
     func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
         // Dismiss the view controller
         controller.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-extension HomeViewController: EmptyDataSetSource, EmptyDataSetDelegate {
-    
-    func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSAttributedString(string: "No Past Transactions")
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSAttributedString(string: "Clerc makes shopping fast & easy. Your past transactions will appear here.")
-    }
-    
-    func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-        return UIImage(named: "Receipt Illustration")
-    }
-    
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView) -> UIColor? {
-        return UIColor.white
-    }
-    
-    func emptyDataSetWillAppear(_ scrollView: UIScrollView) {
-        pastTransactionsTable.separatorStyle = .none
-    }
-    
-    func emptyDataSetWillDisappear(_ scrollView: UIScrollView) {
-        pastTransactionsTable.separatorStyle = .singleLine
-    }
-    
-    // Move the view up a bit to make it look better
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView) -> CGFloat {
-        return -50.0
     }
     
 }
