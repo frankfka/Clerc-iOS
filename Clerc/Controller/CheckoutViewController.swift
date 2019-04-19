@@ -8,13 +8,14 @@
 
 import UIKit
 import Stripe
-
+import RealmSwift
 
 class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     var cost: Double = 0.0
     let utilityService = UtilityService.shared
     let firebaseService = FirebaseService.shared
+    let realm = try! Realm()
     
     // The following should be initialized at view presentation
     var store: Store?
@@ -161,6 +162,16 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                                                       items: self.items!,
                                                       quantities: self.quantities!,
                                                       txnId: txnId ?? "")
+                // Write to local realm database
+                let newTxn = Transaction()
+                newTxn.txnId = txnId
+                newTxn.storeName = self.store!.name
+                newTxn.txnDate = Date()
+                newTxn.amount = self.utilityService.getTotalCost(for: self.items!, with: self.quantities!)
+                newTxn.currency = "cad"
+                try! self.realm.write {
+                    self.realm.add(newTxn)
+                }
             } else {
                 completion(error)
             }

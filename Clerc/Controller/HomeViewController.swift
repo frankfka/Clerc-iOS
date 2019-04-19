@@ -11,21 +11,38 @@ import BarcodeScanner
 import AVFoundation
 import FirebaseFirestore
 import EmptyDataSet_Swift
+import RealmSwift
 
 class HomeViewController: UIViewController {
     
+    let realm = try! Realm()
+    
     // Used in segue initialization to tell next controller what store was scanned
     var scannedStore: Store?
+    var pastTransactions: Results<Transaction>?
     
     // UI Elements
     @IBOutlet weak var pastTransactionsTable: UITableView!
     
+    // Initial setup on view load
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get the past transactions
+        pastTransactions = realm.objects(Transaction.self).sorted(byKeyPath: "txnDate", ascending: false)
+        
         pastTransactionsTable.emptyDataSetSource = self
         pastTransactionsTable.emptyDataSetDelegate = self
+        pastTransactionsTable.register(UINib(nibName: "TransactionTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionTableViewCell")
+        pastTransactionsTable.dataSource = self
+        pastTransactionsTable.delegate = self
         
+    }
+    
+    // Reload the tableview every time we return to this VC
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pastTransactionsTable.reloadData()
     }
     
     // When shopping button is pressed, launch the barcode scanner view controller
@@ -55,6 +72,26 @@ class HomeViewController: UIViewController {
             destinationVC.store = scannedStore!
         }
     }
+}
+
+//
+// MARK: Tableview delegates
+//
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = pastTransactionsTable.dequeueReusableCell(withIdentifier: "TransactionTableViewCell") as! TransactionTableViewCell
+        // Don't do anything if the transaction is somehow nil
+        if let transaction = pastTransactions?[indexPath.row] {
+            cell.loadUI(for: transaction)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pastTransactions?.count ?? 0
+    }
+    
 }
 
 //

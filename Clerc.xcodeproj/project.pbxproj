@@ -28,6 +28,9 @@
 		116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */; };
 		1170067E22604A91001094A1 /* UtilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1170067D22604A91001094A1 /* UtilityService.swift */; };
 		1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189A1D22237FAD900E92BED /* ViewConstants.swift */; };
+		1192A06A2268D1B4009445D4 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192A0692268D1B4009445D4 /* Transaction.swift */; };
+		1192A06D2268F760009445D4 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192A06B2268F760009445D4 /* TransactionTableViewCell.swift */; };
+		1192A06E2268F760009445D4 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1192A06C2268F760009445D4 /* TransactionTableViewCell.xib */; };
 		11AEB072224524710008E96E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB071224524710008E96E /* LoginViewController.swift */; };
 		11AEB07422453E8F0008E96E /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB07322453E8F0008E96E /* FirebaseConstants.swift */; };
 		11AEB076224540510008E96E /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB075224540510008E96E /* Customer.swift */; };
@@ -63,6 +66,9 @@
 		116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
 		1170067D22604A91001094A1 /* UtilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityService.swift; sourceTree = "<group>"; };
 		1189A1D22237FAD900E92BED /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
+		1192A0692268D1B4009445D4 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		1192A06B2268F760009445D4 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		1192A06C2268F760009445D4 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
 		11AEB071224524710008E96E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		11AEB07322453E8F0008E96E /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		11AEB075224540510008E96E /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				113DBB062234866C00383001 /* Product.swift */,
 				11AEB075224540510008E96E /* Customer.swift */,
 				1143DCDB2268016F0070AA1A /* JWT.swift */,
+				1192A0692268D1B4009445D4 /* Transaction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,6 +201,8 @@
 			children = (
 				11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */,
 				11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */,
+				1192A06B2268F760009445D4 /* TransactionTableViewCell.swift */,
+				1192A06C2268F760009445D4 /* TransactionTableViewCell.xib */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
 				11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
+				1192A06E2268F760009445D4 /* TransactionTableViewCell.xib in Resources */,
 				1102473C22542E3200CB117A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +323,8 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
@@ -335,6 +347,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
@@ -404,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1192A06A2268D1B4009445D4 /* Transaction.swift in Sources */,
 				113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */,
 				113DBB032234857C00383001 /* FirebaseService.swift in Sources */,
 				1143DCDC2268016F0070AA1A /* JWT.swift in Sources */,
@@ -418,6 +433,7 @@
 				113DBB072234866C00383001 /* Product.swift in Sources */,
 				111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */,
 				11AEB076224540510008E96E /* Customer.swift in Sources */,
+				1192A06D2268F760009445D4 /* TransactionTableViewCell.swift in Sources */,
 				116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */,
 				11AEB072224524710008E96E /* LoginViewController.swift in Sources */,
 				11AEB07422453E8F0008E96E /* FirebaseConstants.swift in Sources */,

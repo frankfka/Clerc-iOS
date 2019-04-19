@@ -17,4 +17,15 @@ class TextFormatterService {
         return "$" + String(format: "%.2f", amount)
     }
     
+    // Returns a formatted date string
+    func getDateString(for date: Date, fullMonth: Bool) -> String {
+        let dateFormatter = DateFormatter()
+        if (fullMonth) {
+            dateFormatter.dateFormat = "MMMM dd, yyyy"
+        } else {
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+        }
+        return dateFormatter.string(from: date)
+    }
+    
 }

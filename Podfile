@@ -17,4 +17,5 @@ target 'Clerc' do
     pod 'Firebase/Firestore'
     pod 'FirebaseUI/Auth'
     pod 'FirebaseUI/Google'
+    pod 'RealmSwift'
 end
