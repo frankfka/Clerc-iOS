@@ -218,6 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="mainScrollView" destination="Op4-p1-5Ql" id="dYO-Im-yDX"/>
+                        <outlet property="noPastTransactionsHeight" destination="X3j-xg-aXB" id="eNM-qJ-xmt"/>
                         <outlet property="noPastTransactionsView" destination="0cM-ma-Og6" id="u7t-hR-15C"/>
                         <outlet property="pastTransactionsParentView" destination="cyA-xP-KcE" id="XUP-Zs-urT"/>
                         <outlet property="pastTransactionsTable" destination="VMd-wG-oei" id="crl-Ik-Zec"/>

@@ -14,6 +14,8 @@ import RealmSwift
 
 class HomeViewController: UIViewController {
     
+    private let DEFAULT_NO_PAST_TXN_VIEW_HEIGHT = CGFloat(400)
+    
     let realm = try! Realm()
     let viewService = ViewService.shared
     
@@ -26,6 +28,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var pastTransactionsTableHeight: NSLayoutConstraint!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var noPastTransactionsView: UIView!
+    @IBOutlet weak var noPastTransactionsHeight: NSLayoutConstraint!
     @IBOutlet weak var pastTransactionsParentView: UIView!
     
     // Initial setup on view load
@@ -56,10 +59,12 @@ class HomeViewController: UIViewController {
         viewService.updateScrollViewSize(for: mainScrollView)
         if pastTransactions?.isEmpty ?? true {
             noPastTransactionsView.isHidden = false
+            noPastTransactionsHeight.constant = DEFAULT_NO_PAST_TXN_VIEW_HEIGHT
             pastTransactionsParentView.isHidden = true
         } else {
             pastTransactionsParentView.isHidden = false
             noPastTransactionsView.isHidden = true
+            noPastTransactionsHeight.constant = CGFloat(0)
         }
     }
     

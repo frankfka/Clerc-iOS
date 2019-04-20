@@ -12,13 +12,13 @@ import Alamofire
 class JWT {
     
     // Build the backend URL
-    static let newJwtUrl = URL(string: StripeConstants.BACKEND_URL)!
+    private static let newJwtUrl = URL(string: StripeConstants.BACKEND_URL)!
         .appendingPathComponent("jwt")
         .appendingPathComponent("refresh")
     
-    static var currentToken: String?
-    static var lastUpdated: Date?
-    static let expiryTime: TimeInterval = TimeInterval(exactly: 30)! // Expire earlier than backend to account for time mismatch
+    private static var currentToken: String?
+    private static var lastUpdated: Date?
+    private static let expiryTime: TimeInterval = TimeInterval(exactly: 30)! // Expire earlier than backend to account for time mismatch
     
     // Retrieves token and passes it to the completion handler
     // If an unexpired token exists,
@@ -26,18 +26,23 @@ class JWT {
         let currentTime = Date()
         // The following makes sure things aren't nil
         // And compares using a simple < operator - this is possible because Date conforms to equatable
-        if currentToken != nil && lastUpdated != nil && lastUpdated!.addingTimeInterval(expiryTime) < currentTime {
+        if currentToken != nil && lastUpdated != nil && lastUpdated!.addingTimeInterval(expiryTime) > currentTime {
+            print("Using current token. Expiry: \(lastUpdated!.addingTimeInterval(expiryTime))")
             // We can just use current token
             completion(currentToken)
         } else {
+            print("Attempting to get new JWT token")
             // Need to retrieve another token
             getNewToken() { (success, token, error) in
                 if success && token != nil {
                     // Yay! Token retrieved successfully
+                    print("New JWT token retrieved successfully")
+                    updateJWTState(newToken: token!)
                     completion(token)
                 } else {
                     // Something went wrong - call completion with nil
                     print("Failed to retrieve new JWT token")
+                    updateJWTState(newToken: nil)
                     completion(nil)
                 }
             }
@@ -50,7 +55,6 @@ class JWT {
         guard let currentCustomer = Customer.current else {
             print("No current customer - cannot request JWT")
             // Update state & call completion
-            updateJWTState(newToken: nil)
             completion(false, nil, nil)
             return
         }
@@ -67,18 +71,15 @@ class JWT {
                     guard let jwtData = json as? [String: String] else {
                         print("Backend not returning JSON!")
                         // Update state & call completion
-                        updateJWTState(newToken: nil)
                         completion(false, nil, nil)
                         return
                     }
                     // Success - pass to completion & update state
                     let newToken = jwtData["token"]
-                    updateJWTState(newToken: newToken)
                     completion(true, newToken, nil)
                 case .failure(let error):
                     print("Call to get new JWT failed:\(error)")
                     // Update state & call completion
-                    updateJWTState(newToken: nil)
                     completion(false, nil, error)
                     return
                 }
