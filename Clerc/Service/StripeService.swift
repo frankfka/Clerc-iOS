@@ -112,7 +112,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
         
         let url = self.baseURL.appendingPathComponent("customers").appendingPathComponent("create")
         // Call create stripe customer
-        AF.request(url)
+        AF.request(url, method: .post)
             .validate(statusCode: 200..<300)
             .responseJSON { responseJSON in
                 switch responseJSON.result {
