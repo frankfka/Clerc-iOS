@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1102473C22542E3200CB117A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1102473B22542E3100CB117A /* GoogleService-Info.plist */; };
 		111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */; };
 		111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */; };
 		113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */; };
@@ -38,11 +37,11 @@
 		11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */; };
 		11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */; };
 		11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDF2236101E00C7716D /* TextFormatterService.swift */; };
+		11FE4C94226E9E7D00750A87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */; };
 		AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1102473B22542E3100CB117A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDialogView.swift; sourceTree = "<group>"; };
 		111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmDialogView.xib; sourceTree = "<group>"; };
 		1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemTableViewCell.swift; sourceTree = "<group>"; };
 		11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingItemTableViewCell.xib; sourceTree = "<group>"; };
 		11B6ECDF2236101E00C7716D /* TextFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatterService.swift; sourceTree = "<group>"; };
+		11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.debug.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.debug.xcconfig"; sourceTree = "<group>"; };
 		2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.release.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.release.xcconfig"; sourceTree = "<group>"; };
 		6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clerc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +114,7 @@
 		113DBAE722341AD700383001 /* Clerc */ = {
 			isa = PBXGroup;
 			children = (
+				11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */,
 				11523ED322472587002D8CBE /* Clerc.entitlements */,
 				1189A1D12237FAC400E92BED /* Constants */,
 				113DBB012234856D00383001 /* Service */,
@@ -123,7 +124,6 @@
 				113DBAE822341AD700383001 /* AppDelegate.swift */,
 				113DBAEC22341AD700383001 /* Main.storyboard */,
 				113DBAEF22341ADB00383001 /* Assets.xcassets */,
-				1102473B22542E3100CB117A /* GoogleService-Info.plist */,
 				113DBAF122341ADB00383001 /* LaunchScreen.storyboard */,
 				113DBAF422341ADB00383001 /* Info.plist */,
 			);
@@ -292,13 +292,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				115E4A2C223C054B00E2EA79 /* EditItemView.xib in Resources */,
+				11FE4C94226E9E7D00750A87 /* GoogleService-Info.plist in Resources */,
 				111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
 				11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
 				1192A06E2268F760009445D4 /* TransactionTableViewCell.xib in Resources */,
-				1102473C22542E3200CB117A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
