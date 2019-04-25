@@ -57,6 +57,9 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Disable payment button until payment context loads!
+        paymentButtonEnabled(false)
+        
         // Check that required properties are satisfied
         if (store == nil || items == nil || quantities == nil
             || items!.isEmpty || quantities!.isEmpty || items!.count != quantities!.count) {
@@ -143,6 +146,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         if let paymentOption = paymentContext.selectedPaymentMethod {
             print("Payment context loaded with saved payment method")
             paymentOptionButton.setTitle(paymentOption.label, for: .normal)
+            // Payment is loaded, enable pay button
+            paymentButtonEnabled(true)
         } else {
             // No saved payment information, prompt user to select a payment
             print("Payment context loaded without saved payment method")
