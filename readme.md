@@ -12,3 +12,7 @@
 - Font Type: System
 - Font Weight: Bold | Medium | Normal
 - Font Size: 34px | 20px | 17px | 14px
+
+
+## License 
+Copyright © 2019 Clerc Technology Inc, All rights reserved
