@@ -34,8 +34,8 @@
 		11AEB07422453E8F0008E96E /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB07322453E8F0008E96E /* FirebaseConstants.swift */; };
 		11AEB076224540510008E96E /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEB075224540510008E96E /* Customer.swift */; };
 		11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */; };
-		11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */; };
-		11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */; };
+		11B6ECDD22360BCD00C7716D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDB22360BCD00C7716D /* ProductTableViewCell.swift */; };
+		11B6ECDE22360BCD00C7716D /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECDC22360BCD00C7716D /* ProductTableViewCell.xib */; };
 		11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDF2236101E00C7716D /* TextFormatterService.swift */; };
 		11FE4C94226E9E7D00750A87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */; };
 		AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */; };
@@ -72,8 +72,8 @@
 		11AEB07322453E8F0008E96E /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		11AEB075224540510008E96E /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		11B6ECCE22359C9A00C7716D /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
-		11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemTableViewCell.swift; sourceTree = "<group>"; };
-		11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingItemTableViewCell.xib; sourceTree = "<group>"; };
+		11B6ECDB22360BCD00C7716D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		11B6ECDC22360BCD00C7716D /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		11B6ECDF2236101E00C7716D /* TextFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatterService.swift; sourceTree = "<group>"; };
 		11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.debug.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 		11B6ECDA22360BA800C7716D /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
-				11B6ECDB22360BCD00C7716D /* ShoppingItemTableViewCell.swift */,
-				11B6ECDC22360BCD00C7716D /* ShoppingItemTableViewCell.xib */,
+				11B6ECDB22360BCD00C7716D /* ProductTableViewCell.swift */,
+				11B6ECDC22360BCD00C7716D /* ProductTableViewCell.xib */,
 				1192A06B2268F760009445D4 /* TransactionTableViewCell.swift */,
 				1192A06C2268F760009445D4 /* TransactionTableViewCell.xib */,
 			);
@@ -296,7 +296,7 @@
 				111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
-				11B6ECDE22360BCD00C7716D /* ShoppingItemTableViewCell.xib in Resources */,
+				11B6ECDE22360BCD00C7716D /* ProductTableViewCell.xib in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
 				1192A06E2268F760009445D4 /* TransactionTableViewCell.xib in Resources */,
 			);
@@ -429,7 +429,7 @@
 				115E4A2B223C054B00E2EA79 /* EditItemView.swift in Sources */,
 				1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */,
 				116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */,
-				11B6ECDD22360BCD00C7716D /* ShoppingItemTableViewCell.swift in Sources */,
+				11B6ECDD22360BCD00C7716D /* ProductTableViewCell.swift in Sources */,
 				113DBB072234866C00383001 /* Product.swift in Sources */,
 				111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */,
 				11AEB076224540510008E96E /* Customer.swift in Sources */,

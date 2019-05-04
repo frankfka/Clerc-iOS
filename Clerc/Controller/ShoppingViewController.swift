@@ -16,6 +16,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     var quantities: [Int] = []
     let utilityService = UtilityService.shared
     let textFormatterService = TextFormatterService.shared
+    let viewService = ViewService.shared
 
     // store object (set by HomeViewController)
     var store: Store?
@@ -38,7 +39,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         guard let store = store else {
             // store should always be initialized - show error if this is not the case
             print("No store was passed to this view controller")
-            ViewService.shared.showStandardErrorHUD()
+            viewService.showStandardErrorHUD()
             dismiss(animated: true, completion: nil)
             return
         }
@@ -48,7 +49,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         // Set delegates for items table
         itemsTableView.dataSource = self
         itemsTableView.delegate = self
-        itemsTableView.register(UINib(nibName: "ShoppingItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ShoppingItemTableViewCell")
+        itemsTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
         updateUI()
         
     }
@@ -59,8 +60,8 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     private func updateUI() {
         // Update the tableview
         itemsTableView.reloadData()
-        ViewService.shared.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
-        ViewService.shared.updateScrollViewSize(for: parentScrollView)
+        viewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableHeight)
+        viewService.updateScrollViewSize(for: parentScrollView)
         
         // Update the total price
         let subtotal = utilityService.getTotalCost(for: scannedProducts, with: quantities)
@@ -87,19 +88,19 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let shoppingItemCell = tableView.dequeueReusableCell(withIdentifier: "ShoppingItemTableViewCell") as! ShoppingItemTableViewCell
+        let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
         // Pass in params
         let product = scannedProducts[indexPath.row]
         let quantity = quantities[indexPath.row]
-        shoppingItemCell.loadUI(for: product, with: quantity)
-        return shoppingItemCell
+        productCell.loadUI(for: product, with: quantity)
+        return productCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Don't keep the row selected
         tableView.deselectRow(at: indexPath, animated: true)
         // Show edit dialog
-        ViewService.shared.showEditItemDialog(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
+        viewService.showEditItemDialog(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
             
             if (newQuantity > 0) {
                 // Item not deleted, update the quantity
@@ -120,7 +121,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func addItemButtonPressed(_ sender: UIButton) {
         // Launch barcode view controller
         // Create the VC then present it modally
-        let barcodeScannerVC = ViewService.shared.getBarcodeScannerVC(with: "Scan New Item")
+        let barcodeScannerVC = viewService.getBarcodeScannerVC(with: "Scan New Item")
         barcodeScannerVC.codeDelegate = self
         barcodeScannerVC.dismissalDelegate = self
         present(barcodeScannerVC, animated: true, completion: nil)
@@ -128,7 +129,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Clear cart button pressed. Clear all the arrays if confirmed
     @IBAction func clearCartButtonPressed(_ sender: UIButton) {
-        ViewService.shared.showConfirmationDialog(title: "Clear Cart", description: "Are you sure you want to clear your shopping cart?") { (didConfirm) in
+        viewService.showConfirmationDialog(title: "Clear Cart", description: "Are you sure you want to clear your shopping cart?") { (didConfirm) in
             if didConfirm {
                 self.scannedProducts = []
                 self.quantities = []
@@ -142,7 +143,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     //
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         // Show confirmation, and dismiss if confirmed
-        ViewService.shared.showConfirmationDialog(title: "Exit Store", description: "Are you sure you want to quit shopping?") { (didConfirm) in
+        viewService.showConfirmationDialog(title: "Exit Store", description: "Are you sure you want to quit shopping?") { (didConfirm) in
             if (didConfirm) {
                 self.dismiss(animated: true, completion: nil)
             }
@@ -191,7 +192,7 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
                         self.quantities.append(1)
                     }
                     // Show success dialog
-                    ViewService.shared.showHUD(success: true, message: "Added to cart.")
+                    self.viewService.showHUD(success: true, message: "Added to cart.")
                     self.updateUI()
                 }
             } else {

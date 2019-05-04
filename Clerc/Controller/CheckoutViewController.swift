@@ -12,9 +12,11 @@ import RealmSwift
 
 class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
-    var cost: Double = 0.0
+    // Services
+    let textFormatterService = TextFormatterService.shared
     let utilityService = UtilityService.shared
     let firebaseService = FirebaseService.shared
+    let viewService = ViewService.shared
     let realm = try! Realm()
     
     // The following should be initialized at view presentation
@@ -22,26 +24,29 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     var items: [Product]?
     var quantities: [Int]?
     
+    // Computed state
+    var costBeforeTaxes: Double = 0.0
+    var costAfterTaxes: Double = 0.0
+    var taxes: Double = 0.0
+    
     // Stripe's class for standard payment flow
     var paymentContext: STPPaymentContext?
     
-    // State
-    var paymentInProgress: Bool = false {
+    // Loading State
+    var isLoading: Bool = false {
         didSet {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                if self.paymentInProgress {
-                    print("Payment in progress")
+                if self.isLoading {
                     // Show loading
-                    ViewService.shared.loadingAnimation(show: true, with: "Processing Payment")
+                    ViewService.shared.loadingAnimation(show: true, with: "Please Wait")
                     // Disable Pay Now Button
                     self.paymentButtonEnabled(false)
                 }
                 else {
-                    print("Payment not in progress")
                     // Dismiss loading
                     ViewService.shared.loadingAnimation(show: false, with: nil)
                     // Enable Pay Now button
-                    self.paymentButtonEnabled(true)
+//                    self.paymentButtonEnabled(true)
                 }
             }, completion: nil)
         }
@@ -49,42 +54,94 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     var paymentDone: Bool = false // Used to decide whether we dismiss the entire checkout navigation controller
     
     // UI Elements
-    @IBOutlet weak var paymentOptionButton: UIButton!
+    @IBOutlet weak var editPaymentButton: UIButton!
     @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var totalCostLabel: UILabel!
+    @IBOutlet weak var subtotalCostLabel: UILabel!
+    @IBOutlet weak var taxesCostLabel: UILabel!
     @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var paymentMethodLabel: UILabel!
+    @IBOutlet weak var parentScrollView: UIScrollView!
+    @IBOutlet weak var itemsTableView: UITableView!
+    @IBOutlet weak var itemsTableViewHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Disable payment button until payment context loads!
-        paymentButtonEnabled(false)
+        
         // Check that required properties are satisfied
-        if (store == nil || items == nil || quantities == nil
+        // Store, current customer must not be nil
+        // items, quantities must not be nil & must not be empty & must have equal lengths
+        if (store == nil || items == nil || quantities == nil || Customer.current == nil
             || items!.isEmpty || quantities!.isEmpty || items!.count != quantities!.count) {
             ViewService.shared.showStandardErrorHUD()
             // Return if something is wrong
             navigationController?.popViewController(animated: true)
         }
         
+        // Initialize
+        initializeState()
+        initializeUI()
+    }
+    
+    // Called when we come back from success screen
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if paymentDone {
+            // We are returning from the payment success view controller
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // Initialization of State
+    // Sets amounts, loads Stripe
+    private func initializeState() {
+        
         // Calculate total cost
-        cost = utilityService.getTotalCost(for: items!, with: quantities!)
+        costBeforeTaxes = utilityService.getTotalCost(for: items!, with: quantities!)
+        taxes = utilityService.getTaxes(for: costBeforeTaxes, with: store!)
+        costAfterTaxes = costBeforeTaxes + taxes
         
-        // Initialize labels
-        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: cost)
-        storeNameLabel.text = store!.name
-        
-        // Else continue with setup - this should be in an init() function once we present this modally
+        // Configure Stripe
         let config = STPPaymentConfiguration.shared()
         config.companyName = store!.name
         // Get the current customer and payment context
-        let customerContext = STPCustomerContext(keyProvider: StripeService.shared) // TODO may need to initialize earlier so that payment context is preloaded
+        let customerContext = STPCustomerContext(keyProvider: StripeService.shared) // TODO may need to initialize earlier so that payment context is preloaded - can do so in a "SessionService" like on Android
         let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
-        paymentContext.paymentAmount = StripeService.getStripeCost(for: cost)
+        // IMPORTANT: Total paid is cost after taxes!
+        paymentContext.paymentAmount = StripeService.getStripeCost(for: costAfterTaxes)
         paymentContext.paymentCurrency = StripeConstants.DEFAULT_CURRENCY // Implement custom currencies when we need to
         // Set the required delegates
         paymentContext.delegate = self
         paymentContext.hostViewController = self
         self.paymentContext = paymentContext
+        
+        // We start in a loading state
+        isLoading = true
+        
+    }
+    // Initialize UI
+    private func initializeUI() {
+        
+        // Disable payment button until payment context loads!
+        paymentButtonEnabled(false)
+        
+        // Initialize labels
+        subtotalCostLabel.text = textFormatterService.getCurrencyString(for: costBeforeTaxes)
+        taxesCostLabel.text = textFormatterService.getCurrencyString(for: taxes)
+        totalCostLabel.text = textFormatterService.getCurrencyString(for: costAfterTaxes)
+        storeNameLabel.text = store!.name
+        
+        // Initialize tableview
+        itemsTableView.delegate = self
+        itemsTableView.dataSource = self
+        itemsTableView.allowsSelection = false // Can't select rows
+        itemsTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
+        itemsTableView.reloadData()
+        
+        // Tableview should not scroll
+        viewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableViewHeight)
+        viewService.updateScrollViewSize(for: parentScrollView)
+        
     }
     
     // Helper function to enable/disable payment button
@@ -98,27 +155,18 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         }
     }
     
-    // Called when we come back from success screen
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        if paymentDone {
-            // We are returning from the payment success view controller
-            dismiss(animated: true, completion: nil)
-        }
-    }
-    
     // Present Stripe's payment method VC
-    @IBAction func paymentMethodTapped(_ sender: UIButton) {
+    @IBAction func editPaymentTapped(_ sender: UIButton) {
         self.paymentContext!.presentPaymentMethodsViewController()
     }
     
     // Called when user confirms payment
     @IBAction func payNowTapped(_ sender: Any) {
         // Ask for confirmation
-        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: cost)) to \(store!.name)") { (didConfirm) in
+        ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: costBeforeTaxes)) to \(store!.name)") { (didConfirm) in
             // Submit payment only if they confirmed
             if (didConfirm) {
-                self.paymentInProgress = true
+                self.isLoading = true
                 self.paymentContext!.requestPayment()
             }
         }
@@ -131,26 +179,27 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // Indicates that the Stripe class has failed to load - show error and go back to cart
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         print("Error loading payment context \(error)")
+        // Exit loading state
+        isLoading = false
         ViewService.shared.showStandardErrorHUD()
         navigationController?.popViewController(animated: true)
     }
     
     // Called when a user's payment information changes
     func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
-        // Show "Loading"
-        print("Loading Payment Context")
-        paymentOptionButton.setTitle("Loading", for: .normal)
         // If paymentContext has a saved payment information
         if let paymentOption = paymentContext.selectedPaymentMethod {
             print("Payment context loaded with saved payment method")
-            paymentOptionButton.setTitle(paymentOption.label, for: .normal)
+            paymentMethodLabel.text = paymentOption.label
             // Payment is loaded, enable pay button
             paymentButtonEnabled(true)
         } else {
             // No saved payment information, prompt user to select a payment
             print("Payment context loaded without saved payment method")
-            paymentOptionButton.setTitle("Select Payment", for: .normal)
+            paymentMethodLabel.text = "None"
         }
+        // Exit loading state
+        isLoading = false
     }
     
     // User confirms payment - call backend to complete the charge
@@ -159,9 +208,12 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             if success {
                 completion(nil) // Give the STP completion a nil value to indicate payment success
                 // Write the transaction to firebase
-                let currentCustomer = Customer.current // TODO: Check that this exists?
-                self.firebaseService.writeTransaction(from: currentCustomer?.firebaseID ?? "",
+                let currentCustomer = Customer.current! // Must exist - checked in initialization
+                self.firebaseService.writeTransaction(from: currentCustomer.firebaseID,
                                                       to: self.store!.id,
+                                                      costBeforeTaxes: self.costBeforeTaxes,
+                                                      taxes: self.taxes,
+                                                      costAfterTaxes: self.costAfterTaxes,
                                                       items: self.items!,
                                                       quantities: self.quantities!,
                                                       txnId: txnId ?? "")
@@ -170,8 +222,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 newTxn.txnId = txnId
                 newTxn.storeName = self.store!.name
                 newTxn.txnDate = Date()
-                newTxn.amount = self.utilityService.getTotalCost(for: self.items!, with: self.quantities!)
-                newTxn.currency = "cad"
+                newTxn.amount = self.costAfterTaxes // No migrations yet, so just log the amount after taxes
+                newTxn.currency = StripeConstants.DEFAULT_CURRENCY
                 try! self.realm.write {
                     self.realm.add(newTxn)
                 }
@@ -183,10 +235,12 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // Backend finished charge with either a success, fail, or user cancellation
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        paymentInProgress = false
+        isLoading = false
         switch status {
             case .error:
                 print("User payment errored: \(error!)")
+                // Re-enable payment button for user to try again
+                paymentButtonEnabled(true)
                 ViewService.shared.showStandardErrorHUD()
                 return
             case .success:
@@ -202,6 +256,23 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 return // Do nothing
         }
     }
-    
 
+}
+
+// MARK: Tableview Methods
+extension CheckoutViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
+        // Pass in params
+        let product = items?[indexPath.row] ?? Product(id: "", name: "", cost: 0, currency: "") // Should always exist but we'll have a backup
+        let quantity = quantities?[indexPath.row] ?? 0
+        productCell.loadUI(for: product, with: quantity)
+        return productCell
+    }
+    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingItemTableViewCell: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
 
     // UI elements
     @IBOutlet weak var priceLabel: UILabel!
