@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
 extension LoginViewController: EmptyDataSetSource, EmptyDataSetDelegate {
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-        return NSAttributedString(string: "Scan. Pay. Go.")
+        return NSAttributedString(string: "Welcome to Clerc.")
     }
     
     func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {

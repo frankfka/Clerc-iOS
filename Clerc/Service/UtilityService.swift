@@ -22,4 +22,9 @@ class UtilityService {
         return totalPrice
     }
     
+    // Calculates taxes
+    public func getTaxes(for subtotal: Double, with store: Store) -> Double {
+        return subtotal * store.taxRate
+    }
+    
 }

@@ -15,6 +15,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     var scannedProducts: [Product] = []
     var quantities: [Int] = []
     let utilityService = UtilityService.shared
+    let textFormatterService = TextFormatterService.shared
 
     // store object (set by HomeViewController)
     var store: Store?
@@ -23,9 +24,11 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var itemsTableHeight: NSLayoutConstraint!
     @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var subtotalAmountLabel: UILabel!
+    @IBOutlet weak var taxesAmountLabel: UILabel!
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var parentScrollView: UIScrollView!
-    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    @IBOutlet weak var checkoutButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     
     override func viewDidLoad() {
@@ -60,7 +63,11 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         ViewService.shared.updateScrollViewSize(for: parentScrollView)
         
         // Update the total price
-        totalAmountLabel.text = TextFormatterService.shared.getCurrencyString(for: utilityService.getTotalCost(for: scannedProducts, with: quantities))
+        let subtotal = utilityService.getTotalCost(for: scannedProducts, with: quantities)
+        let taxes = utilityService.getTaxes(for: subtotal, with: store!)
+        totalAmountLabel.text = textFormatterService.getCurrencyString(for: subtotal + taxes)
+        subtotalAmountLabel.text = textFormatterService.getCurrencyString(for: subtotal)
+        taxesAmountLabel.text = textFormatterService.getCurrencyString(for: taxes)
         
         // Disable/enable the checkout and clear button
         if (scannedProducts.isEmpty) {
@@ -142,7 +149,7 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    @IBAction func checkoutButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func checkoutButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "CartToCheckoutSegue", sender: self)
     }
     

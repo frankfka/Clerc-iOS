@@ -65,13 +65,13 @@ class FirebaseService {
         getStoreDocRef(with: storeId).getDocument { (storeDocument, error) in
             // Check that the document actually exists
             if let storeDocument = storeDocument, storeDocument.exists {
-                // store found, create the object
+                // Store found, create the object
                 let storeData = storeDocument.data()
-                // These should always exist
-                // TODO we may benefit from additional error checking
                 let storeName = storeData!["name"] as! String
+                let taxRate = storeData!["tax_rate"] as? Double // May not exist, default to 0 (in constructor)
+                let customSuccessMessage = storeData!["success_msg"] as? String
                 // Pass the store object to the completion handler, then return
-                completionHandler(Store(id: storeId, name: storeName))
+                completionHandler(Store(id: storeId, name: storeName, taxRate: taxRate ?? 0, successMessage: customSuccessMessage))
             } else {
                 completionHandler(nil)
             }

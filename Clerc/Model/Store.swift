@@ -12,10 +12,14 @@ class Store {
     
     let id: String
     let name: String
+    let taxRate: Double
+    let successMessage: String?
     
-    init(id: String, name: String) {
+    init(id: String, name: String, taxRate: Double = 0, successMessage: String? = nil) {
         self.id = id
         self.name = name
+        self.taxRate = taxRate
+        self.successMessage = successMessage
     }
     
 }
