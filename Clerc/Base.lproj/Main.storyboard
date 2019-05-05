@@ -194,7 +194,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Start Shopping">
+                                <state key="normal" title="Scan Store Barcode">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -610,16 +610,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APr-iA-gHn" userLabel="Cart Heading">
-                                        <rect key="frame" x="0.0" y="287" width="375" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="287" width="375" height="22"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CART" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-16-1TC">
-                                                <rect key="frame" x="16" y="0.0" width="343" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ITEMS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-16-1TC">
+                                                <rect key="frame" x="16" y="0.0" width="343" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGu-MP-Se6">
-                                                <rect key="frame" x="16" y="20.5" width="343" height="1"/>
+                                                <rect key="frame" x="16" y="21" width="343" height="1"/>
                                                 <color key="backgroundColor" name="Divider"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="kHb-Tf-BhD"/>
@@ -640,7 +640,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqS-4e-Ewe" userLabel="Cart List">
-                                        <rect key="frame" x="0.0" y="308.5" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="309" width="375" height="74"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nJG-qU-FUq">
                                                 <rect key="frame" x="16" y="8" width="343" height="50"/>
@@ -764,7 +764,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="587"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nji-Mp-hjI" userLabel="Success Header">
-                                        <rect key="frame" x="0.0" y="32" width="375" height="141"/>
+                                        <rect key="frame" x="0.0" y="64" width="375" height="141"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Success" translatesAutoresizingMaskIntoConstraints="NO" id="uyq-bz-ifC">
                                                 <rect key="frame" x="155.5" y="0.0" width="64" height="64"/>
@@ -802,7 +802,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PK-Zc-OC4" userLabel="Summary Heading">
-                                        <rect key="frame" x="0.0" y="189" width="375" height="22"/>
+                                        <rect key="frame" x="0.0" y="237" width="375" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUMMARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nej-XV-9HC">
                                                 <rect key="frame" x="16" y="0.0" width="343" height="21"/>
@@ -832,22 +832,22 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-aa-og1" userLabel="Summary">
-                                        <rect key="frame" x="0.0" y="211" width="375" height="172"/>
+                                        <rect key="frame" x="0.0" y="259" width="375" height="164"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wao-NZ-Bp4">
-                                                <rect key="frame" x="0.0" y="61" width="375" height="41"/>
+                                                <rect key="frame" x="0.0" y="69" width="375" height="41"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <color key="highlightedColor" name="Dark Text"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKn-Hh-v7L">
-                                                <rect key="frame" x="0.0" y="40" width="375" height="21"/>
+                                                <rect key="frame" x="0.0" y="48" width="375" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POu-OT-IXG" userLabel="Cost Details View">
-                                                <rect key="frame" x="0.0" y="110" width="375" height="46"/>
+                                                <rect key="frame" x="0.0" y="118" width="375" height="46"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taxes:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyd-WR-Wwk">
                                                         <rect key="frame" x="0.0" y="25" width="183.5" height="21"/>
@@ -893,7 +893,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VZ-3U-tQW">
-                                                <rect key="frame" x="0.0" y="8" width="375" height="24"/>
+                                                <rect key="frame" x="0.0" y="16" width="375" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
@@ -901,7 +901,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="POu-OT-IXG" secondAttribute="bottom" constant="16" id="0YY-0X-S0r"/>
+                                            <constraint firstAttribute="bottom" secondItem="POu-OT-IXG" secondAttribute="bottom" id="0YY-0X-S0r"/>
                                             <constraint firstItem="oKn-Hh-v7L" firstAttribute="centerX" secondItem="a6a-aa-og1" secondAttribute="centerX" id="6JW-vQ-qzc"/>
                                             <constraint firstItem="oKn-Hh-v7L" firstAttribute="top" secondItem="5VZ-3U-tQW" secondAttribute="bottom" constant="8" id="6UX-v6-eqb"/>
                                             <constraint firstAttribute="trailing" secondItem="POu-OT-IXG" secondAttribute="trailing" id="7Zt-e2-PYU"/>
@@ -910,14 +910,14 @@
                                             <constraint firstItem="wao-NZ-Bp4" firstAttribute="leading" secondItem="a6a-aa-og1" secondAttribute="leading" id="Nq1-Pv-lf3"/>
                                             <constraint firstAttribute="trailing" secondItem="5VZ-3U-tQW" secondAttribute="trailing" id="Z7x-4j-tkm"/>
                                             <constraint firstAttribute="trailing" secondItem="oKn-Hh-v7L" secondAttribute="trailing" id="eTz-Yy-9jJ"/>
-                                            <constraint firstItem="5VZ-3U-tQW" firstAttribute="top" secondItem="a6a-aa-og1" secondAttribute="top" constant="8" id="fpc-Ga-ElA"/>
+                                            <constraint firstItem="5VZ-3U-tQW" firstAttribute="top" secondItem="a6a-aa-og1" secondAttribute="top" constant="16" id="fpc-Ga-ElA"/>
                                             <constraint firstItem="wao-NZ-Bp4" firstAttribute="top" secondItem="oKn-Hh-v7L" secondAttribute="bottom" id="jnv-Lc-G08"/>
                                             <constraint firstItem="POu-OT-IXG" firstAttribute="top" secondItem="wao-NZ-Bp4" secondAttribute="bottom" constant="8" id="lLP-Yf-bak"/>
                                             <constraint firstAttribute="trailing" secondItem="wao-NZ-Bp4" secondAttribute="trailing" id="yeq-Ov-Npi"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9p1-nP-fJp" userLabel="Items Heading">
-                                        <rect key="frame" x="0.0" y="399" width="375" height="22"/>
+                                        <rect key="frame" x="0.0" y="455" width="375" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ITEMS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXv-Yt-PjU">
                                                 <rect key="frame" x="16" y="0.0" width="343" height="21"/>
@@ -947,7 +947,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZ1-p5-P78" userLabel="Cart List">
-                                        <rect key="frame" x="0.0" y="421" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="477" width="375" height="74"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nux-o2-2nQ">
                                                 <rect key="frame" x="16" y="8" width="343" height="50"/>
@@ -975,17 +975,17 @@
                                     <constraint firstItem="Nji-Mp-hjI" firstAttribute="centerX" secondItem="blc-sQ-jfv" secondAttribute="centerX" id="9aa-ma-b0f"/>
                                     <constraint firstItem="Nji-Mp-hjI" firstAttribute="leading" secondItem="blc-sQ-jfv" secondAttribute="leading" id="DVP-Cq-6YD"/>
                                     <constraint firstItem="BZ1-p5-P78" firstAttribute="leading" secondItem="blc-sQ-jfv" secondAttribute="leading" id="FnO-VT-8sr"/>
-                                    <constraint firstItem="Nji-Mp-hjI" firstAttribute="top" secondItem="blc-sQ-jfv" secondAttribute="top" constant="32" id="JSb-IC-LBk"/>
+                                    <constraint firstItem="Nji-Mp-hjI" firstAttribute="top" secondItem="blc-sQ-jfv" secondAttribute="top" constant="64" id="JSb-IC-LBk"/>
                                     <constraint firstItem="a6a-aa-og1" firstAttribute="top" secondItem="3PK-Zc-OC4" secondAttribute="bottom" id="Q3B-ua-90E"/>
                                     <constraint firstAttribute="trailing" secondItem="Nji-Mp-hjI" secondAttribute="trailing" id="TD9-Hg-FqN"/>
                                     <constraint firstItem="9p1-nP-fJp" firstAttribute="leading" secondItem="blc-sQ-jfv" secondAttribute="leading" id="VLv-n3-A3K"/>
                                     <constraint firstAttribute="trailing" secondItem="9p1-nP-fJp" secondAttribute="trailing" id="W45-Gb-36v"/>
                                     <constraint firstItem="BZ1-p5-P78" firstAttribute="top" secondItem="9p1-nP-fJp" secondAttribute="bottom" id="Z9d-1D-476"/>
                                     <constraint firstAttribute="trailing" secondItem="BZ1-p5-P78" secondAttribute="trailing" id="aMK-gk-q2c"/>
-                                    <constraint firstItem="3PK-Zc-OC4" firstAttribute="top" secondItem="Nji-Mp-hjI" secondAttribute="bottom" constant="16" id="ix4-FR-WAw"/>
+                                    <constraint firstItem="3PK-Zc-OC4" firstAttribute="top" secondItem="Nji-Mp-hjI" secondAttribute="bottom" constant="32" id="ix4-FR-WAw"/>
                                     <constraint firstAttribute="trailing" secondItem="3PK-Zc-OC4" secondAttribute="trailing" id="nsf-cG-AAF"/>
                                     <constraint firstAttribute="trailing" secondItem="a6a-aa-og1" secondAttribute="trailing" id="rzb-Xa-M3q"/>
-                                    <constraint firstItem="9p1-nP-fJp" firstAttribute="top" secondItem="a6a-aa-og1" secondAttribute="bottom" constant="16" id="tgl-zT-cJu"/>
+                                    <constraint firstItem="9p1-nP-fJp" firstAttribute="top" secondItem="a6a-aa-og1" secondAttribute="bottom" constant="32" id="tgl-zT-cJu"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3j-7O-Qrf">
@@ -1015,6 +1015,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2XK-Bt-NTH"/>
                     </view>
+                    <connections>
+                        <outlet property="itemsTableView" destination="nux-o2-2nQ" id="QfP-ZZ-FJB"/>
+                        <outlet property="itemsTableViewHeight" destination="c0h-Vl-oBI" id="FW5-9v-xOm"/>
+                        <outlet property="parentScrollView" destination="blc-sQ-jfv" id="mId-KZ-3fH"/>
+                        <outlet property="storeNameLabel" destination="5VZ-3U-tQW" id="3LD-dq-seS"/>
+                        <outlet property="subtotalCostLabel" destination="6S8-mJ-Xb7" id="wfJ-Oo-xkG"/>
+                        <outlet property="successMessageLabel" destination="nKn-4X-5vy" id="13y-rG-Q2s"/>
+                        <outlet property="taxesCostLabel" destination="bQi-TM-HSf" id="f9O-ls-D4Z"/>
+                        <outlet property="totalCostLabel" destination="wao-NZ-Bp4" id="LdF-qA-Xhp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnZ-cM-U8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

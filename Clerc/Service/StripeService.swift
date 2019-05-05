@@ -13,7 +13,9 @@ import Alamofire
 class StripeService: NSObject, STPEphemeralKeyProvider {
     
     static let shared = StripeService()
+    
     let baseURL = URL(string: StripeConstants.BACKEND_URL)!
+    let utilityService = UtilityService.shared
     
     // Calls backend to charge the customer
     func completeCharge(_ result: STPPaymentResult, amount: Int, store: Store, completion: @escaping (_ success: Bool, _ txnId: String?, _ error: Error?) -> Void) {
@@ -59,6 +61,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
                         completion(true, txnData["charge_id"] as? String, nil)
                     case .failure(let error):
                         print("Charging customer failed: \(error)")
+                        print("Server failure message: \(String(describing: self.utilityService.getErrorResponse(from: responseJSON)))")
                         completion(false, nil, error)
                     }
             }
@@ -102,6 +105,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
                         completion(json as? [String: AnyObject], nil)
                     case .failure(let error):
                         print("Get ephemeral key failed: \(error)")
+                        print("Server failure message: \(String(describing: self.utilityService.getErrorResponse(from: responseJSON)))")
                         completion(nil, error)
                     }
             }
@@ -137,6 +141,7 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
                     return
                 case .failure(let error):
                     print("Make customer endpoint errored: \(error)")
+                    print("Server failure message: \(String(describing: self.utilityService.getErrorResponse(from: responseJSON)))")
                 }
                 // Did not succeed, call completion
                 completion(false, nil)

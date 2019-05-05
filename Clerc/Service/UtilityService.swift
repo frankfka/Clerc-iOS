@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 // Misc functions
 class UtilityService {
@@ -25,6 +26,16 @@ class UtilityService {
     // Calculates taxes
     public func getTaxes(for subtotal: Double, with store: Store) -> Double {
         return subtotal * store.taxRate
+    }
+    
+    // Returns the response JSON from AF failure cases
+    public func getErrorResponse(from response: DataResponse<Any>) -> [String : String]? {
+        if let data = response.data {
+            if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+                return json
+            }
+        }
+        return nil
     }
     
 }

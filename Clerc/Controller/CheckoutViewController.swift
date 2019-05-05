@@ -28,6 +28,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     var costBeforeTaxes: Double = 0.0
     var costAfterTaxes: Double = 0.0
     var taxes: Double = 0.0
+    var txnId: String? // Initialized after payment - passed to success VC
     
     // Stripe's class for standard payment flow
     var paymentContext: STPPaymentContext?
@@ -90,6 +91,21 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             // We are returning from the payment success view controller
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    // Pass the required stuff to the PaymentSuccessViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if (segue.identifier == "CheckoutToSuccessSegue") {
+            let successVC = segue.destination as! PaymentSuccessViewController
+            successVC.items = items
+            successVC.quantities = quantities
+            successVC.store = store
+            successVC.costBeforeTaxes = costBeforeTaxes
+            successVC.taxes = taxes
+            successVC.txnId = txnId
+        }
+        
     }
     
     // Initialization of State
@@ -200,6 +216,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                                                       items: self.items!,
                                                       quantities: self.quantities!,
                                                       txnId: txnId ?? "")
+                self.txnId = txnId
                 // Write to local realm database
                 let newTxn = Transaction()
                 newTxn.txnId = txnId
