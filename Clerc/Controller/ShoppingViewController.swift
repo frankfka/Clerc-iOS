@@ -72,11 +72,11 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Disable/enable the checkout and clear button
         if (scannedProducts.isEmpty) {
-            checkoutButton.isEnabled = false
-            clearButton.isEnabled = false
+            viewService.setButtonState(button: checkoutButton, enabled: false)
+            viewService.setButtonState(button: clearButton, enabled: false)
         } else {
-            checkoutButton.isEnabled = true
-            clearButton.isEnabled = true
+            viewService.setButtonState(button: checkoutButton, enabled: true)
+            viewService.setButtonState(button: clearButton, enabled: true)
         }
     }
     

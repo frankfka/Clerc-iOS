@@ -69,9 +69,11 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     // Calls backend to create an ephemeral key
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let url = self.baseURL.appendingPathComponent("customers").appendingPathComponent("create-ephemeral-key")
+        
         guard let currentCustomer = Customer.current else {
             print("No current customer!")
-            completion(nil, nil)
+            // Pass an NSError to the completion so that we can signal that we have encountered an error
+            completion(nil, NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil))
             return
         }
         
@@ -80,7 +82,8 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
             
             if token == nil {
                 print("Could not get ephemeral key - could not get JWT")
-                completion(nil, nil)
+                // Signal that we have an error
+                completion(nil, NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil))
                 return
             }
             

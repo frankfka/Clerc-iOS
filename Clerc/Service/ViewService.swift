@@ -111,4 +111,15 @@ class ViewService {
         SwiftEntryKit.display(entry: editItemPopUp, using: ViewConstants.EDIT_ITEM_POPUP_ATTRIBUTES)
     }
     
+    // Enables or disables a button
+    func setButtonState(button: UIButton, enabled: Bool) {
+        if enabled {
+            button.isEnabled = true
+            button.alpha = 1
+        } else {
+            button.isEnabled = false
+            button.alpha = 0.2
+        }
+    }
+    
 }

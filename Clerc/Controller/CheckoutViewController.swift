@@ -40,7 +40,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                     // Show loading
                     ViewService.shared.loadingAnimation(show: true, with: "Please Wait")
                     // Disable Pay Now Button
-                    self.paymentButtonEnabled(false)
+                    self.viewService.setButtonState(button: self.payNowButton, enabled: false)
                 }
                 else {
                     // Dismiss loading
@@ -123,7 +123,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     private func initializeUI() {
         
         // Disable payment button until payment context loads!
-        paymentButtonEnabled(false)
+        viewService.setButtonState(button: payNowButton, enabled: false)
         
         // Initialize labels
         subtotalCostLabel.text = textFormatterService.getCurrencyString(for: costBeforeTaxes)
@@ -142,17 +142,6 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         viewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableViewHeight)
         viewService.updateScrollViewSize(for: parentScrollView)
         
-    }
-    
-    // Helper function to enable/disable payment button
-    private func paymentButtonEnabled(_ enabled: Bool) {
-        if enabled {
-            payNowButton.isUserInteractionEnabled = true
-            payNowButton.alpha = 1
-        } else {
-            payNowButton.isUserInteractionEnabled = false
-            payNowButton.alpha = 0.2
-        }
     }
     
     // Present Stripe's payment method VC
@@ -192,7 +181,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             print("Payment context loaded with saved payment method")
             paymentMethodLabel.text = paymentOption.label
             // Payment is loaded, enable pay button
-            paymentButtonEnabled(true)
+            viewService.setButtonState(button: payNowButton, enabled: true)
         } else {
             // No saved payment information, prompt user to select a payment
             print("Payment context loaded without saved payment method")
@@ -240,15 +229,15 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             case .error:
                 print("User payment errored: \(error!)")
                 // Re-enable payment button for user to try again
-                paymentButtonEnabled(true)
-                ViewService.shared.showStandardErrorHUD()
+                viewService.setButtonState(button: payNowButton, enabled: true)
+                viewService.showStandardErrorHUD()
                 return
             case .success:
                 // Show confirmation screen
                 print("User payment succeeded")
                 // Set state and disable payment button
                 paymentDone = true
-                paymentButtonEnabled(false)
+                viewService.setButtonState(button: payNowButton, enabled: false)
                 // Show success screen
                 performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
                 return
