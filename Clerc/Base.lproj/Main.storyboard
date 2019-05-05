@@ -148,7 +148,7 @@
                                         <rect key="frame" x="16" y="32" width="343" height="86"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Past Purchases" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVq-H0-lsW">
-                                                <rect key="frame" x="0.0" y="0.0" width="157" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
@@ -169,6 +169,7 @@
                                             <constraint firstAttribute="trailing" secondItem="VMd-wG-oei" secondAttribute="trailing" id="IzB-Nh-Wer"/>
                                             <constraint firstItem="VMd-wG-oei" firstAttribute="top" secondItem="wVq-H0-lsW" secondAttribute="bottom" constant="8" id="Tk0-fF-N62"/>
                                             <constraint firstItem="wVq-H0-lsW" firstAttribute="leading" secondItem="cyA-xP-KcE" secondAttribute="leading" id="fI3-wv-rte"/>
+                                            <constraint firstAttribute="trailing" secondItem="wVq-H0-lsW" secondAttribute="trailing" id="hTP-T1-k31"/>
                                             <constraint firstItem="VMd-wG-oei" firstAttribute="leading" secondItem="cyA-xP-KcE" secondAttribute="leading" id="iBl-aN-bn4"/>
                                         </constraints>
                                     </view>
@@ -582,7 +583,7 @@
                                         <rect key="frame" x="0.0" y="196" width="375" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAYMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yox-Oc-edi">
-                                                <rect key="frame" x="16" y="0.0" width="79" height="21"/>
+                                                <rect key="frame" x="16" y="0.0" width="343" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
@@ -597,6 +598,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="yox-Oc-edi" secondAttribute="trailing" constant="16" id="Gvj-Jk-sjm"/>
                                             <constraint firstItem="yox-Oc-edi" firstAttribute="top" secondItem="Cvs-Ng-Whc" secondAttribute="top" id="Jjq-dd-58f"/>
                                             <constraint firstItem="nKP-23-UHr" firstAttribute="leading" secondItem="yox-Oc-edi" secondAttribute="leading" id="OhV-im-jP7"/>
                                             <constraint firstAttribute="bottom" secondItem="nKP-23-UHr" secondAttribute="bottom" id="bN1-ob-oAn"/>
@@ -611,7 +613,7 @@
                                         <rect key="frame" x="0.0" y="287" width="375" height="21.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CART" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-16-1TC">
-                                                <rect key="frame" x="16" y="0.0" width="45" height="20.5"/>
+                                                <rect key="frame" x="16" y="0.0" width="343" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
@@ -631,6 +633,7 @@
                                             <constraint firstItem="CQ5-16-1TC" firstAttribute="leading" secondItem="APr-iA-gHn" secondAttribute="leading" constant="16" id="bW9-t8-kP3"/>
                                             <constraint firstItem="CQ5-16-1TC" firstAttribute="top" secondItem="APr-iA-gHn" secondAttribute="top" id="cPa-sg-amL"/>
                                             <constraint firstItem="WGu-MP-Se6" firstAttribute="top" secondItem="CQ5-16-1TC" secondAttribute="bottom" id="g5N-Ok-4TB"/>
+                                            <constraint firstAttribute="trailing" secondItem="CQ5-16-1TC" secondAttribute="trailing" constant="16" id="m07-K3-ZgR"/>
                                             <constraint firstItem="WGu-MP-Se6" firstAttribute="leading" secondItem="APr-iA-gHn" secondAttribute="leading" constant="16" id="mFE-OZ-RP3"/>
                                             <constraint firstAttribute="trailing" secondItem="WGu-MP-Se6" secondAttribute="trailing" constant="16" id="wjq-yP-7U4"/>
                                             <constraint firstItem="WGu-MP-Se6" firstAttribute="top" secondItem="CQ5-16-1TC" secondAttribute="bottom" id="zcw-Rg-YYi"/>

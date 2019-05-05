@@ -33,10 +33,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     var paymentContext: STPPaymentContext?
     
     // Loading State
-    var isLoading: Bool = false {
+    var isPaymentLoading: Bool = false {
         didSet {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                if self.isLoading {
+                if self.isPaymentLoading {
                     // Show loading
                     ViewService.shared.loadingAnimation(show: true, with: "Please Wait")
                     // Disable Pay Now Button
@@ -45,8 +45,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 else {
                     // Dismiss loading
                     ViewService.shared.loadingAnimation(show: false, with: nil)
-                    // Enable Pay Now button
-//                    self.paymentButtonEnabled(true)
+                    // Enable Pay Now button\
+                    self.viewService.setButtonState(button: self.payNowButton, enabled: true)
                 }
             }, completion: nil)
         }
@@ -115,9 +115,6 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         paymentContext.hostViewController = self
         self.paymentContext = paymentContext
         
-        // We start in a loading state
-        isLoading = true
-        
     }
     // Initialize UI
     private func initializeUI() {
@@ -155,7 +152,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         ViewService.shared.showConfirmationDialog(title: "Confirm Payment", description: "Confirm your payment of \(TextFormatterService.shared.getCurrencyString(for: costBeforeTaxes)) to \(store!.name)") { (didConfirm) in
             // Submit payment only if they confirmed
             if (didConfirm) {
-                self.isLoading = true
+                self.isPaymentLoading = true
                 self.paymentContext!.requestPayment()
             }
         }
@@ -165,11 +162,9 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // MARK: Stripe Delegate Methods
     //
     
-    // Indicates that the Stripe class has failed to load - show error and go back to cart
+    // Indicates that the Stripe class has failed to load - show error and go back to shopping
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
         print("Error loading payment context \(error)")
-        // Exit loading state
-        isLoading = false
         ViewService.shared.showStandardErrorHUD()
         navigationController?.popViewController(animated: true)
     }
@@ -187,12 +182,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             print("Payment context loaded without saved payment method")
             paymentMethodLabel.text = "None"
         }
-        // Exit loading state
-        isLoading = false
     }
     
     // User confirms payment - call backend to complete the charge
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
+        // Call our backend to complete the charge
         StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!) { (success, txnId, error) in
             if success {
                 completion(nil) // Give the STP completion a nil value to indicate payment success
@@ -224,12 +218,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     
     // Backend finished charge with either a success, fail, or user cancellation
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
-        isLoading = false
+        isPaymentLoading = false
         switch status {
             case .error:
                 print("User payment errored: \(error!)")
-                // Re-enable payment button for user to try again
-                viewService.setButtonState(button: payNowButton, enabled: true)
                 viewService.showStandardErrorHUD()
                 return
             case .success:
