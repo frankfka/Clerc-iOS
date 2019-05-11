@@ -13,7 +13,7 @@ import SwiftEntryKit
 class ShoppingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var scannedProducts: [Product] = []
-    var quantities: [Int] = []
+    var quantities: [Double] = []
     let utilityService = UtilityService.shared
     let textFormatterService = TextFormatterService.shared
     let viewService = ViewService.shared
@@ -99,9 +99,8 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Don't keep the row selected
         tableView.deselectRow(at: indexPath, animated: true)
-        // Show edit dialog
-        viewService.showEditItemDialog(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
-            
+        viewService.showEditItemView(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
+
             if (newQuantity > 0) {
                 // Item not deleted, update the quantity
                 self.quantities[indexPath.row] = newQuantity
@@ -110,10 +109,9 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
                 self.quantities.remove(at: indexPath.row)
                 self.scannedProducts.remove(at: indexPath.row)
             }
-            
+
             // Update views
             self.updateUI()
-            
         }
     }
     
@@ -182,18 +180,40 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
             if let product = product {
                 controller.dismiss(animated: true) {
                     print("Product found: id: \(product.id), name: \(product.name)")
-                    // Add the product to the shopping list, then update the UI
-                    if let itemIndex = self.scannedProducts.firstIndex(of: product) {
-                        // First determine if the item has already been added - if so, we just increase the quantity
-                        self.quantities[itemIndex] = self.quantities[itemIndex] + 1
+                    
+                    if product.priceUnit == .unit {
+                        // Unit logic
+                        
+                        // Add the product to the shopping list, then update the UI
+                        if let itemIndex = self.scannedProducts.firstIndex(of: product) {
+                            // First determine if the item has already been added - if so, we just increase the quantity
+                            self.quantities[itemIndex] = self.quantities[itemIndex] + 1
+                            self.viewService.showHUD(success: true, message: "Updated item.")
+                        } else {
+                            // Else, just add to the scanned products & quantities array
+                            self.scannedProducts.append(product)
+                            self.quantities.append(1)
+                            self.viewService.showHUD(success: true, message: "Added to cart.")
+                        }
+                        // Show success dialog
+                        self.updateUI()
+                    
                     } else {
-                        // Else, just add to the scanned products & quantities array
-                        self.scannedProducts.append(product)
-                        self.quantities.append(1)
+                        // Weighed item logic
+                        
+                        if let itemIndex = self.scannedProducts.firstIndex(of: product) {
+                            // Product already in cart
+                            self.quantities[itemIndex] = self.quantities[itemIndex] + 1
+                            self.viewService.showHUD(success: true, message: "Updated item.")
+                        } else {
+                            // Else, just add to the scanned products & quantities array
+                            self.scannedProducts.append(product)
+                            self.quantities.append(1)
+                            self.viewService.showHUD(success: true, message: "Added to cart.")
+                        }
+                        
                     }
-                    // Show success dialog
-                    self.viewService.showHUD(success: true, message: "Added to cart.")
-                    self.updateUI()
+                    
                 }
             } else {
                 print("Could not find item barcode in Firebase")

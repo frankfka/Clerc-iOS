@@ -103,10 +103,9 @@ class ViewService {
     }
     
     // Creates and shows an edit item dialog
-    func showEditItemDialog(for product: Product, with quantity: Int, completion: @escaping (_ newQuantity: Int) -> Void) {
+    func showEditItemView(for product: Product, with quantity: Double, completion: @escaping (_ newQuantity: Double) -> Void) {
         // Create the dialog VC and initialize it
-        let editItemPopUp = EditItemView()
-        editItemPopUp.initialize(name: product.name, unitCost: product.cost, currentQuantity: quantity, completion: completion)
+        let editItemPopUp = EditItemView(product: product, currentQuantity: quantity, completion: completion)
         // Tell SwiftEntryKit to display with our standard attributes
         SwiftEntryKit.display(entry: editItemPopUp, using: ViewConstants.EDIT_ITEM_POPUP_ATTRIBUTES)
     }

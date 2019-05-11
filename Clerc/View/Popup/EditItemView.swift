@@ -13,10 +13,9 @@ import SwiftEntryKit
 class EditItemView: UIViewController {
     
     // State variables
-    var quantity: Int? // 1 by default
-    var unitCost: Double? // 0 by default
-    var productName: String?
-    var completion: ((_ newQty: Int)->Void)?
+    var quantity: Double
+    var product: Product
+    var completion: ((_ newQty: Double)->Void)
     
     // UI Variables
     @IBOutlet weak var updateButton: UIButton!
@@ -24,6 +23,17 @@ class EditItemView: UIViewController {
     @IBOutlet weak var unitCostLabel: UILabel!
     @IBOutlet weak var qtyStepper: ValueStepper!
     @IBOutlet weak var productNameLabel: UILabel!
+
+    init(product: Product, currentQuantity: Double, completion: @escaping ((_ newQty: Double)->Void)) {
+        self.product = product
+        self.quantity = currentQuantity
+        self.completion = completion
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,44 +43,44 @@ class EditItemView: UIViewController {
         updateButton.clipsToBounds = true
         
         // Assume everything is initialized
-        qtyStepper.value = Double(quantity!)
-        unitCostLabel.text = TextFormatterService.shared.getCurrencyString(for: unitCost!) + " ea."
-        productNameLabel.text = productName!
-        updateTotalCostLable()
+        qtyStepper.value = Double(quantity)
+        qtyStepper.minimumValue = 0
+        qtyStepper.maximumValue = 1000 // Cap to 1000 (hopefully nobody goes beyond this)
+        if (product.priceUnit != Product.PriceUnit.unit) {
+            qtyStepper.stepValue = 0.05
+            qtyStepper.numberFormatter.minimumFractionDigits = 2
+        }
+
+        unitCostLabel.text = TextFormatterService.shared.getCurrencyString(for: product.cost) +
+                TextFormatterService.shared.getPriceUnitLabel(product.priceUnit)
+        productNameLabel.text = product.name
+        updateTotalCostLabel()
         
     }
-    
-    // This should be an init constructor
-    func initialize(name: String, unitCost: Double, currentQuantity: Int, completion: @escaping ((_ newQty: Int)->Void)) {
-        self.productName = name
-        self.unitCost = unitCost
-        self.quantity = currentQuantity
-        self.completion = completion
-    }
-    
+
     @IBAction func updateButtonPressed(_ sender: Any) {
         // Pass back the quantity and dismiss
         SwiftEntryKit.dismiss {
-            self.completion!(self.quantity!)
+            self.completion(self.quantity)
         }
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         // Dismiss and pass 0 as quantity
         SwiftEntryKit.dismiss {
-            self.completion!(0)
+            self.completion(0)
         }
     }
     
     @IBAction func qtyValueChanged(_ sender: ValueStepper) {
         // Update total cost
-        quantity = Int(sender.value)
-        updateTotalCostLable()
+        quantity = sender.value
+        updateTotalCostLabel()
     }
     
     // Updates total cost label
-    private func updateTotalCostLable() {
-        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: Double(quantity!) * unitCost!)
+    private func updateTotalCostLabel() {
+        totalCostLabel.text = TextFormatterService.shared.getCurrencyString(for: quantity * product.cost)
     }
     
 }

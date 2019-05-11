@@ -14,12 +14,21 @@ class Product {
     let name: String
     let cost: Double
     let currency: String
+    let priceUnit: PriceUnit
     
-    init(id: String, name: String, cost: Double, currency: String) {
+    init(id: String, name: String, cost: Double, currency: String, priceUnit: PriceUnit) {
         self.id = id
         self.name = name
         self.cost = cost
         self.currency = currency
+        self.priceUnit = priceUnit
+    }
+    
+    // Enum for by-weight measurement
+    enum PriceUnit: String {
+        case lb = "lb"
+        case kg = "kg"
+        case unit = "unit"
     }
     
 }

@@ -85,12 +85,19 @@ class FirebaseService {
             // Check that the product exists first
             if let productDocument = productDocument, productDocument.exists {
                 // Product exists, we can now create the object
-                let productData = productDocument.data()
-                // TODO extra error checking here?
-                let productName = productData!["name"] as! String
-                let cost = productData!["cost"] as! Double
-                let currency = productData!["currency"] as! String
-                completionHandler(Product(id: productId, name: productName, cost: cost, currency: currency))
+                guard let productData = productDocument.data() else {
+                    print("Product data for product \(productId) is somehow nonexistent")
+                    completionHandler(nil)
+                    return
+                }
+                let productName = productData["name"] as! String
+                let cost = productData["cost"] as! Double
+                let currency = productData["currency"] as! String
+                let priceUnitString = productData["price_unit"] as? String
+                // Parse the price unit, default to unit pricing
+                let priceUnit = Product.PriceUnit(rawValue: priceUnitString ?? "unit") ?? Product.PriceUnit.unit // TODO remove unnecessary optionals when firebase structure is fixed
+                
+                completionHandler(Product(id: productId, name: productName, cost: cost, currency: currency, priceUnit: priceUnit))
             } else {
                 completionHandler(nil)
             }
@@ -101,7 +108,7 @@ class FirebaseService {
     // Does nothing in case of failure - TODO resolve this somehow?
     func writeTransaction(from userId: String, to storeId: String,
                           costBeforeTaxes: Double, taxes: Double, costAfterTaxes: Double,
-                          items: [Product], quantities: [Int], txnId: String) {
+                          items: [Product], quantities: [Double], txnId: String) {
         
         //
         // Create document data
@@ -113,6 +120,7 @@ class FirebaseService {
                 "id": item.id,
                 "name": item.name,
                 "cost": item.cost,
+                "price_unit": item.priceUnit,
                 "quantity": quantities[index]
                 ] as [String : Any]
             itemsData.append(itemData)

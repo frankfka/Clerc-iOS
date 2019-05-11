@@ -19,10 +19,17 @@ class ProductTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func loadUI(for product: Product, with quantity: Int) {
-        priceLabel.text = TextFormatterService.shared.getCurrencyString(for: product.cost * Double(quantity))
+    func loadUI(for product: Product, with quantity: Double) {
+        let textFormatter = TextFormatterService.shared
+        priceLabel.text = textFormatter.getCurrencyString(for: product.cost * quantity)
         nameLabel.text = product.name
-        costQtyLabel.text = "\(TextFormatterService.shared.getCurrencyString(for: product.cost)) x \(quantity)"
+        // Create the detail text based on the type of product
+        // FORMAT: $x.xx/lb x 2.32lb OR $x.xx ea. x 3
+        let costUnitText = textFormatter.getPriceUnitLabel(product.priceUnit)
+        let quantityText:String = (product.priceUnit == .unit) ?
+                String(Int(quantity)) : (textFormatter.getRoundedNumberString(number: quantity, maxFractionDigits: 2) + " \(product.priceUnit.rawValue)")
+        costQtyLabel.text = "\(textFormatter.getCurrencyString(for: product.cost))\(costUnitText) x \(quantityText)"
     }
+
     
 }

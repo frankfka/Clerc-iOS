@@ -26,7 +26,7 @@ class PaymentSuccessViewController: UIViewController {
     
     // State
     var items: [Product]?
-    var quantities: [Int]?
+    var quantities: [Double]?
     var store: Store?
     var costBeforeTaxes: Double = 0 // So we don't have to calculate again
     var taxes: Double = 0
@@ -82,7 +82,7 @@ extension PaymentSuccessViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell") as! ProductTableViewCell
         // Pass in params
-        let product = items?[indexPath.row] ?? Product(id: "", name: "", cost: 0, currency: "") // Should always exist but we'll have a backup
+        let product = items?[indexPath.row] ?? Product(id: "", name: "", cost: 0, currency: "", priceUnit: Product.PriceUnit.unit) // Should always exist but we'll have a backup
         let quantity = quantities?[indexPath.row] ?? 0
         productCell.loadUI(for: product, with: quantity)
         return productCell

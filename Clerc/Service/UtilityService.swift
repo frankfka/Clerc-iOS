@@ -15,10 +15,10 @@ class UtilityService {
     static let shared = UtilityService()
     
     // Calculates total in cart
-    public func getTotalCost(for items:[Product], with quantities:[Int]) -> Double {
+    public func getTotalCost(for items:[Product], with quantities:[Double]) -> Double {
         var totalPrice = 0.0
         for index in 0..<items.count {
-            totalPrice = totalPrice + items[index].cost * Double(quantities[index])
+            totalPrice = totalPrice + items[index].cost * quantities[index]
         }
         return totalPrice
     }

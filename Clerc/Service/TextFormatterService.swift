@@ -27,5 +27,24 @@ class TextFormatterService {
         }
         return dateFormatter.string(from: date)
     }
+
+    // Returns a rounded number in string form to display
+    func getRoundedNumberString(number: Double, maxFractionDigits: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = maxFractionDigits
+        return numberFormatter.string(from: NSNumber(value: number))!
+    }
+
+    // Returns the price unit label in string form to display
+    func getPriceUnitLabel(_ priceUnit: Product.PriceUnit) -> String {
+        switch priceUnit {
+            case .lb:
+                return "/lb"
+            case .kg:
+                return "/kg"
+            case .unit:
+                return " ea." // Leading space
+        }
+    }
     
 }
