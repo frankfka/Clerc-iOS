@@ -21,8 +21,8 @@
 		113DBB072234866C00383001 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB062234866C00383001 /* Product.swift */; };
 		113DBB092234CA3F00383001 /* ViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBB082234CA3F00383001 /* ViewService.swift */; };
 		1143DCDC2268016F0070AA1A /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143DCDB2268016F0070AA1A /* JWT.swift */; };
-		115E4A2B223C054B00E2EA79 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E4A29223C054B00E2EA79 /* EditItemView.swift */; };
-		115E4A2C223C054B00E2EA79 /* EditItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115E4A2A223C054B00E2EA79 /* EditItemView.xib */; };
+		115E4A2B223C054B00E2EA79 /* EditUnitItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E4A29223C054B00E2EA79 /* EditUnitItemView.swift */; };
+		115E4A2C223C054B00E2EA79 /* EditUnitItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 115E4A2A223C054B00E2EA79 /* EditUnitItemView.xib */; };
 		116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C702239EB7B00D0F32A /* StripeConstants.swift */; };
 		116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */; };
 		1170067E22604A91001094A1 /* UtilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1170067D22604A91001094A1 /* UtilityService.swift */; };
@@ -61,8 +61,8 @@
 		113DBB082234CA3F00383001 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
 		1143DCDB2268016F0070AA1A /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
 		11523ED322472587002D8CBE /* Clerc.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clerc.entitlements; sourceTree = "<group>"; };
-		115E4A29223C054B00E2EA79 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
-		115E4A2A223C054B00E2EA79 /* EditItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemView.xib; sourceTree = "<group>"; };
+		115E4A29223C054B00E2EA79 /* EditUnitItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitItemView.swift; sourceTree = "<group>"; };
+		115E4A2A223C054B00E2EA79 /* EditUnitItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditUnitItemView.xib; sourceTree = "<group>"; };
 		116D2C702239EB7B00D0F32A /* StripeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConstants.swift; sourceTree = "<group>"; };
 		116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
 		1170067D22604A91001094A1 /* UtilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityService.swift; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 			children = (
 				111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */,
 				111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */,
-				115E4A29223C054B00E2EA79 /* EditItemView.swift */,
-				115E4A2A223C054B00E2EA79 /* EditItemView.xib */,
+				115E4A29223C054B00E2EA79 /* EditUnitItemView.swift */,
+				115E4A2A223C054B00E2EA79 /* EditUnitItemView.xib */,
 				11B151ED228534340093FEFB /* EditWeighedItemView.swift */,
 				11B151EE228534340093FEFB /* EditWeighedItemView.xib */,
 			);
@@ -297,7 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				115E4A2C223C054B00E2EA79 /* EditItemView.xib in Resources */,
+				115E4A2C223C054B00E2EA79 /* EditUnitItemView.xib in Resources */,
 				11FE4C94226E9E7D00750A87 /* GoogleService-Info.plist in Resources */,
 				111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
@@ -433,7 +433,7 @@
 				113DBB092234CA3F00383001 /* ViewService.swift in Sources */,
 				113662122238B083006DCAA4 /* StripeService.swift in Sources */,
 				113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */,
-				115E4A2B223C054B00E2EA79 /* EditItemView.swift in Sources */,
+				115E4A2B223C054B00E2EA79 /* EditUnitItemView.swift in Sources */,
 				11B151EF228534340093FEFB /* EditWeighedItemView.swift in Sources */,
 				1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */,
 				116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */,

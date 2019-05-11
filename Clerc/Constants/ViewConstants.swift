@@ -45,6 +45,10 @@ class ViewConstants {
         attributes.entryInteraction = .absorbTouches
         attributes.screenInteraction = .dismiss
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
+        // For keyboard entry
+        let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20)
+        let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset)
+        attributes.positionConstraints.keyboardRelation = keyboardRelation
         return attributes
     }
     

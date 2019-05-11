@@ -1,5 +1,5 @@
 //
-//  EditItemView.swift
+//  EditUnitItemView.swift
 //  Clerc
 //
 //  Created by Frank Jia on 2019-03-15.
@@ -10,8 +10,11 @@ import UIKit
 import ValueStepper
 import SwiftEntryKit
 
-class EditItemView: UIViewController {
-    
+class EditUnitItemView: UIViewController {
+
+    // TODO: This is similar to EditWeighedItemView - can probably combine in the future
+    // This is also set up for both weighed items & per-unit items, but UI is good only for unit
+
     // State variables
     var quantity: Double
     var product: Product

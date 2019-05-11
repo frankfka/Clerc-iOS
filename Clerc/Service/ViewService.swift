@@ -103,11 +103,20 @@ class ViewService {
     }
     
     // Creates and shows an edit item dialog
-    func showEditItemView(for product: Product, with quantity: Double, completion: @escaping (_ newQuantity: Double) -> Void) {
+    func showEditUnitItemView(for product: Product, with quantity: Double, completion: @escaping (_ newQuantity: Double) -> Void) {
         // Create the dialog VC and initialize it
-        let editItemPopUp = EditItemView(product: product, currentQuantity: quantity, completion: completion)
+        let editItemPopUp = EditUnitItemView(product: product, currentQuantity: quantity, completion: completion)
         // Tell SwiftEntryKit to display with our standard attributes
         SwiftEntryKit.display(entry: editItemPopUp, using: ViewConstants.EDIT_ITEM_POPUP_ATTRIBUTES)
+    }
+    
+    // Creates and shows an edit item dialog for weighed items
+    // Note - quantity can be nil, because we can show this on first scan
+    func showEditWeighedItemView(for product: Product, with quantity: Double?, completion: @escaping (_ newQuantity: Double) -> Void) {
+        // Create the dialog VC and initialize it
+        let editWeighedItemPopUp = EditWeighedItemView(product: product, currentQuantity: quantity, completion: completion)
+        // Tell SwiftEntryKit to display with our standard attributes
+        SwiftEntryKit.display(entry: editWeighedItemPopUp, using: ViewConstants.EDIT_ITEM_POPUP_ATTRIBUTES)
     }
     
     // Enables or disables a button

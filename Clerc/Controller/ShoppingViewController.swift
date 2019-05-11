@@ -99,8 +99,10 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Don't keep the row selected
         tableView.deselectRow(at: indexPath, animated: true)
-        viewService.showEditItemView(for: scannedProducts[indexPath.row], with: quantities[indexPath.row]) { (newQuantity) in
-
+        
+        // First define the completion handler
+        let onQuantityChange: (Double) -> Void = { (newQuantity) in
+            
             if (newQuantity > 0) {
                 // Item not deleted, update the quantity
                 self.quantities[indexPath.row] = newQuantity
@@ -109,9 +111,17 @@ class ShoppingViewController: UIViewController, UITableViewDelegate, UITableView
                 self.quantities.remove(at: indexPath.row)
                 self.scannedProducts.remove(at: indexPath.row)
             }
-
+            
             // Update views
             self.updateUI()
+        }
+        
+        // Show the proper dialog for the product type
+        let product = scannedProducts[indexPath.row]
+        if product.priceUnit == .unit {
+            viewService.showEditUnitItemView(for: product, with: quantities[indexPath.row], completion: onQuantityChange)
+        } else {
+            viewService.showEditWeighedItemView(for: product, with: quantities[indexPath.row], completion: onQuantityChange)
         }
     }
     
@@ -171,19 +181,20 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
     
     // Function called when code is captured
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
-        
+
         // This barcode can realistically be of any time, so we don't check type here
         print("Barcode Data: \(code) | Type: \(type)")
-        
+
         // Call firebase to see if this is a valid store
         FirebaseService.shared.getProduct(from: store!.id, for: code) { (product) in
             if let product = product {
+                // Dismiss current viewcontroller & do the following
                 controller.dismiss(animated: true) {
                     print("Product found: id: \(product.id), name: \(product.name)")
-                    
+
                     if product.priceUnit == .unit {
                         // Unit logic
-                        
+
                         // Add the product to the shopping list, then update the UI
                         if let itemIndex = self.scannedProducts.firstIndex(of: product) {
                             // First determine if the item has already been added - if so, we just increase the quantity
@@ -195,25 +206,50 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
                             self.quantities.append(1)
                             self.viewService.showHUD(success: true, message: "Added to cart.")
                         }
-                        // Show success dialog
                         self.updateUI()
-                    
+
                     } else {
                         // Weighed item logic
-                        
-                        if let itemIndex = self.scannedProducts.firstIndex(of: product) {
-                            // Product already in cart
-                            self.quantities[itemIndex] = self.quantities[itemIndex] + 1
-                            self.viewService.showHUD(success: true, message: "Updated item.")
-                        } else {
-                            // Else, just add to the scanned products & quantities array
-                            self.scannedProducts.append(product)
-                            self.quantities.append(1)
-                            self.viewService.showHUD(success: true, message: "Added to cart.")
+
+                        // See if we can find the item within currently scanned items
+                        let possibleItemIndex = self.scannedProducts.firstIndex(of: product)
+                        // First define the completion handler
+                        let onQuantityChange: (Double) -> Void = { (newQuantity) in
+
+                            // Scanned product in cart
+                            if let index = possibleItemIndex {
+                                // Either update the quantity, or remove the product
+                                if (newQuantity > 0) {
+                                    // Item not deleted, update the quantity
+                                    self.quantities[index] = newQuantity
+                                } else {
+                                    // Item is deleted, remove the scanned product
+                                    self.quantities.remove(at: index)
+                                    self.scannedProducts.remove(at: index)
+                                }
+                            }
+                            // Scanned product not in cart
+                            else {
+                                // Add to cart
+                                if (newQuantity > 0) {
+                                    self.scannedProducts.append(product)
+                                    self.quantities.append(newQuantity)
+                                }
+                                // Do nothing if 0 is entered as a quantity or user presses delete
+                            }
+
+                            // Update views
+                            self.updateUI()
                         }
-                        
+
+                        // Logic for actually showing the view
+                        var currentQuantity: Double?
+                        if let index = possibleItemIndex {
+                            currentQuantity = self.quantities[index]
+                        }
+                        self.viewService.showEditWeighedItemView(for: product, with: currentQuantity, completion: onQuantityChange)
                     }
-                    
+
                 }
             } else {
                 print("Could not find item barcode in Firebase")
@@ -222,14 +258,13 @@ extension ShoppingViewController: BarcodeScannerCodeDelegate, BarcodeScannerDism
                 }
             }
         }
-        
     }
-    
+
     // Called when user clicks "Cancel" on the barcode scanning view controller
     func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
         // Dismiss the view controller
         controller.dismiss(animated: true, completion: nil)
     }
-    
+
 }
 
