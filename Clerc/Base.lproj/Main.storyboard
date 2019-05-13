@@ -90,6 +90,7 @@
                     </view>
                     <connections>
                         <outlet property="emptyDatasetTable" destination="dN9-24-KVe" id="Ktf-9L-gYs"/>
+                        <outlet property="loginButton" destination="NIV-Bd-kee" id="avo-va-B21"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="LoginToHomeSegue" id="KNW-5R-8ze"/>
                     </connections>
                 </viewController>
@@ -832,7 +833,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-aa-og1" userLabel="Summary">
-                                        <rect key="frame" x="0.0" y="259" width="375" height="164"/>
+                                        <rect key="frame" x="0.0" y="259" width="375" height="220"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wao-NZ-Bp4">
                                                 <rect key="frame" x="0.0" y="69" width="375" height="41"/>
@@ -898,16 +899,33 @@
                                                 <color key="textColor" name="Dark Text"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZ6-qm-Wai">
+                                                <rect key="frame" x="16" y="180" width="343" height="40"/>
+                                                <color key="backgroundColor" name="Primary"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="en2-x9-yIR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Email a Receipt">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="emailReceiptButtonPressed:" destination="sE7-sg-vwc" eventType="touchUpInside" id="fQa-IZ-HYV"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="POu-OT-IXG" secondAttribute="bottom" id="0YY-0X-S0r"/>
+                                            <constraint firstItem="MZ6-qm-Wai" firstAttribute="top" secondItem="POu-OT-IXG" secondAttribute="bottom" constant="16" id="3Xl-gd-seE"/>
+                                            <constraint firstAttribute="bottom" secondItem="MZ6-qm-Wai" secondAttribute="bottom" id="3ut-h4-cJ1"/>
                                             <constraint firstItem="oKn-Hh-v7L" firstAttribute="centerX" secondItem="a6a-aa-og1" secondAttribute="centerX" id="6JW-vQ-qzc"/>
                                             <constraint firstItem="oKn-Hh-v7L" firstAttribute="top" secondItem="5VZ-3U-tQW" secondAttribute="bottom" constant="8" id="6UX-v6-eqb"/>
                                             <constraint firstAttribute="trailing" secondItem="POu-OT-IXG" secondAttribute="trailing" id="7Zt-e2-PYU"/>
                                             <constraint firstItem="5VZ-3U-tQW" firstAttribute="leading" secondItem="a6a-aa-og1" secondAttribute="leading" id="981-oE-xF5"/>
                                             <constraint firstItem="POu-OT-IXG" firstAttribute="leading" secondItem="a6a-aa-og1" secondAttribute="leading" id="JED-zs-kFT"/>
                                             <constraint firstItem="wao-NZ-Bp4" firstAttribute="leading" secondItem="a6a-aa-og1" secondAttribute="leading" id="Nq1-Pv-lf3"/>
+                                            <constraint firstItem="MZ6-qm-Wai" firstAttribute="leading" secondItem="a6a-aa-og1" secondAttribute="leading" constant="16" id="Vze-q8-VyN"/>
+                                            <constraint firstAttribute="trailing" secondItem="MZ6-qm-Wai" secondAttribute="trailing" constant="16" id="Y9I-g1-y8J"/>
                                             <constraint firstAttribute="trailing" secondItem="5VZ-3U-tQW" secondAttribute="trailing" id="Z7x-4j-tkm"/>
                                             <constraint firstAttribute="trailing" secondItem="oKn-Hh-v7L" secondAttribute="trailing" id="eTz-Yy-9jJ"/>
                                             <constraint firstItem="5VZ-3U-tQW" firstAttribute="top" secondItem="a6a-aa-og1" secondAttribute="top" constant="16" id="fpc-Ga-ElA"/>
@@ -917,7 +935,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9p1-nP-fJp" userLabel="Items Heading">
-                                        <rect key="frame" x="0.0" y="455" width="375" height="22"/>
+                                        <rect key="frame" x="0.0" y="511" width="375" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ITEMS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXv-Yt-PjU">
                                                 <rect key="frame" x="16" y="0.0" width="343" height="21"/>
@@ -947,7 +965,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZ1-p5-P78" userLabel="Cart List">
-                                        <rect key="frame" x="0.0" y="477" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="533" width="375" height="74"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nux-o2-2nQ">
                                                 <rect key="frame" x="16" y="8" width="343" height="50"/>

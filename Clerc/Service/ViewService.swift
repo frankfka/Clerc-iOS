@@ -119,6 +119,11 @@ class ViewService {
         SwiftEntryKit.display(entry: editWeighedItemPopUp, using: ViewConstants.EDIT_ITEM_POPUP_ATTRIBUTES)
     }
     
+    // Creates and shows a transaction details dialog
+    func showTransactionDetailsView(for transaction: Transaction) {
+        SwiftEntryKit.display(entry: TransactionDetailView(transaction: transaction), using: ViewConstants.TXN_DETAIL_POPUP_ATTRIBUTES)
+    }
+    
     // Enables or disables a button
     func setButtonState(button: UIButton, enabled: Bool) {
         if enabled {

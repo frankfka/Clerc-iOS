@@ -13,11 +13,20 @@ import EmptyDataSet_Swift
 class LoginViewController: UIViewController, FUIAuthDelegate {
 
     @IBOutlet weak var emptyDatasetTable: UITableView!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    // State to enable/disable Login button
+    var shouldEnableLoginButton = true {
+        didSet {
+            ViewService.shared.setButtonState(button: loginButton, enabled: shouldEnableLoginButton)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emptyDatasetTable.emptyDataSetSource = self
         emptyDatasetTable.emptyDataSetDelegate = self
+        shouldEnableLoginButton = true
     }
     
     // Called when login button is pressed
@@ -40,6 +49,10 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
     
     // Called when user returns from Firebase Auth UI
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+       
+        // Disable login button when we enter loading phase
+        shouldEnableLoginButton = false
+        
         if error == nil && user != nil {
             // Start showing loading animation - this may take a while
             ViewService.shared.loadingAnimation(show: true)
@@ -64,6 +77,9 @@ class LoginViewController: UIViewController, FUIAuthDelegate {
             print("User did not sign in successfully")
             // Error is not nil if user cancels sign in, so do nothing for now
         }
+        
+        // All logic done, re-enable login
+        shouldEnableLoginButton = true
     }
     
 }

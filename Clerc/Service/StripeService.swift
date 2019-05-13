@@ -21,8 +21,8 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
     func completeCharge(_ result: STPPaymentResult, amount: Int, store: Store, completion: @escaping (_ success: Bool, _ txnId: String?, _ error: Error?) -> Void) {
         // Check that current customer exists
         guard let currentCustomer = Customer.current else {
-            // TODO this does nothing, but we would want to throw some sort of error
             print("No current customer!")
+            completion(false, nil, nil)
             return
         }
         // Get JWT token
@@ -145,6 +145,50 @@ class StripeService: NSObject, STPEphemeralKeyProvider {
                 }
                 // Did not succeed, call completion
                 completion(false, nil)
+        }
+    }
+    
+    // Calls backend to email a receipt
+    func emailReceipt(txnId: String, completion: @escaping (_ success: Bool) -> Void) {
+        
+        // Check that current customer exists
+        guard let currentCustomer = Customer.current else {
+            print("No current customer!")
+            completion(false)
+            return
+        }
+        
+        // Get JWT token & call backend if that was successful
+        JWT.getToken() { (token) in
+            
+            if token == nil {
+                print("Could not send email - could not get JWT")
+                // Signal that we have an error
+                completion(false)
+                return
+            }
+            
+            let url = self.baseURL.appendingPathComponent("customers").appendingPathComponent("email-receipt")
+            // Params for backend call
+            let emailParams = [
+                "txn_id": txnId,
+                "customer_name": currentCustomer.name ?? "",
+                "customer_email": currentCustomer.email ?? ""
+            ]
+            print("Requesting email receipt for transaction ID \(txnId)")
+            AF.request(url, method: .post, parameters: emailParams, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseJSON { responseJSON in
+                    switch responseJSON.result {
+                    case .success(_):
+                        print("Success sending email")
+                        completion(true)
+                    case .failure(let error):
+                        print("Receipt email failed: \(error)")
+                        print("Server failure message: \(String(describing: self.utilityService.getErrorResponse(from: responseJSON)))")
+                        completion(false)
+                    }
+            }
         }
     }
     

@@ -106,7 +106,7 @@ class FirebaseService {
     
     // Write a transaction to firebase
     // Does nothing in case of failure - TODO resolve this somehow?
-    func writeTransaction(from userId: String, to storeId: String,
+    func writeTransaction(from userId: String, to store: Store,
                           costBeforeTaxes: Double, taxes: Double, costAfterTaxes: Double,
                           items: [Product], quantities: [Double], txnId: String) {
         
@@ -128,7 +128,7 @@ class FirebaseService {
         let txnData = [
             "transaction_id": txnId,
             "customer_id": userId,
-            "store_id": storeId,
+            "store_id": store.id,
             "currency": StripeConstants.DEFAULT_CURRENCY,
             "amount": costAfterTaxes,
             "amount_before_taxes": costBeforeTaxes,

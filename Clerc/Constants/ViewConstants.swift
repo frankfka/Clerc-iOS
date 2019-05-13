@@ -51,5 +51,7 @@ class ViewConstants {
         attributes.positionConstraints.keyboardRelation = keyboardRelation
         return attributes
     }
+    // Attributes for receipt details view
+    static var TXN_DETAIL_POPUP_ATTRIBUTES: EKAttributes = EDIT_ITEM_POPUP_ATTRIBUTES
     
 }

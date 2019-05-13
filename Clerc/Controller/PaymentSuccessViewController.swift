@@ -13,6 +13,7 @@ class PaymentSuccessViewController: UIViewController {
     // Service
     let viewService = ViewService.shared
     let textFormatterService = TextFormatterService.shared
+    let backendService = StripeService.shared
     
     // UI Outlets
     @IBOutlet weak var successMessageLabel: UILabel!
@@ -64,6 +65,26 @@ class PaymentSuccessViewController: UIViewController {
         viewService.updateTableViewSize(tableView: itemsTableView, tableViewHeightConstraint: itemsTableViewHeight)
         viewService.updateScrollViewSize(for: parentScrollView)
         
+    }
+    
+    // Call backend to email receipt
+    @IBAction func emailReceiptButtonPressed(_ sender: UIButton) {
+        if let txnId = txnId {
+            // Show a loading HUD
+            self.viewService.loadingAnimation(show: true, with: "Sending email")
+            backendService.emailReceipt(txnId: txnId) { success in
+                // Dismiss loading
+                self.viewService.loadingAnimation(show: false)
+                if success {
+                    self.viewService.showHUD(success: true, message: "Receipt sent")
+                } else {
+                    self.viewService.showStandardErrorHUD()
+                }
+            }
+        } else {
+            // Transaction ID somehow null
+            self.viewService.showStandardErrorHUD()
+        }
     }
     
     // Dismiss when done pressed

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionDetailView" customModule="Clerc" customModuleProvider="target">
+            <connections>
+                <outlet property="dateLabel" destination="mhi-w5-LrG" id="ejf-dd-EW7"/>
+                <outlet property="storeNameLabel" destination="gOs-7H-6du" id="PD3-J1-aYq"/>
+                <outlet property="totalAmountLabel" destination="qB2-3e-vYI" id="PHu-Pk-hiQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOs-7H-6du">
+                    <rect key="frame" x="135" y="32" width="105" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May 27, 2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhi-w5-LrG">
+                    <rect key="frame" x="145" y="101" width="85" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" name="Light Text"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB2-3e-vYI">
+                    <rect key="frame" x="141.5" y="60" width="92.5" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2N-4B-7SO">
+                    <rect key="frame" x="16" y="133" width="343" height="40"/>
+                    <color key="backgroundColor" name="Primary"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="MrV-wD-hmZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Email a Receipt">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="emailReceiptPressed:" destination="-1" eventType="touchUpInside" id="Ao4-Yg-HVF"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mhi-w5-LrG" secondAttribute="trailing" constant="16" id="GJP-0G-MaA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qB2-3e-vYI" secondAttribute="trailing" constant="16" id="HEi-ia-oh6"/>
+                <constraint firstItem="mhi-w5-LrG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RJc-g7-dMW"/>
+                <constraint firstItem="gOs-7H-6du" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="SO7-xy-SjS"/>
+                <constraint firstItem="y2N-4B-7SO" firstAttribute="top" secondItem="mhi-w5-LrG" secondAttribute="bottom" constant="16" id="Scd-7j-7Ue"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="y2N-4B-7SO" secondAttribute="bottom" constant="32" id="To5-Xs-2XY"/>
+                <constraint firstItem="qB2-3e-vYI" firstAttribute="top" secondItem="gOs-7H-6du" secondAttribute="bottom" constant="4" id="Uik-GV-7ci"/>
+                <constraint firstItem="gOs-7H-6du" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="VP4-7f-qqT"/>
+                <constraint firstItem="mhi-w5-LrG" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bdt-94-Hhj"/>
+                <constraint firstItem="y2N-4B-7SO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="h1w-Oi-BHj"/>
+                <constraint firstItem="mhi-w5-LrG" firstAttribute="top" secondItem="qB2-3e-vYI" secondAttribute="bottom" id="hsc-Zd-YAG"/>
+                <constraint firstItem="qB2-3e-vYI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="kYd-5p-cEC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gOs-7H-6du" secondAttribute="trailing" constant="32" id="rEy-Sm-Kh4"/>
+                <constraint firstItem="qB2-3e-vYI" firstAttribute="top" secondItem="gOs-7H-6du" secondAttribute="bottom" constant="4" id="sMj-rc-79G"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y2N-4B-7SO" secondAttribute="trailing" constant="16" id="vz0-0K-vGB"/>
+                <constraint firstItem="qB2-3e-vYI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="wHY-gz-IKj"/>
+                <constraint firstItem="gOs-7H-6du" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="x0C-pp-LMQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="36.956521739130437" y="44.866071428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="Light Text">
+            <color red="0.45899999141693115" green="0.45899999141693115" blue="0.45899999141693115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color red="0.0" green="0.47450980392156861" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

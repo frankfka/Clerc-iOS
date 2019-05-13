@@ -209,7 +209,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 // Write the transaction to firebase
                 let currentCustomer = Customer.current! // Must exist - checked in initialization
                 self.firebaseService.writeTransaction(from: currentCustomer.firebaseID,
-                                                      to: self.store!.id,
+                                                      to: self.store!,
                                                       costBeforeTaxes: self.costBeforeTaxes,
                                                       taxes: self.taxes,
                                                       costAfterTaxes: self.costAfterTaxes,

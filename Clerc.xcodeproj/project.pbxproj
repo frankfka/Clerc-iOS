@@ -39,6 +39,8 @@
 		11B6ECDD22360BCD00C7716D /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDB22360BCD00C7716D /* ProductTableViewCell.swift */; };
 		11B6ECDE22360BCD00C7716D /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11B6ECDC22360BCD00C7716D /* ProductTableViewCell.xib */; };
 		11B6ECE02236101E00C7716D /* TextFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B6ECDF2236101E00C7716D /* TextFormatterService.swift */; };
+		11FD1C3C2288F5A300F4E038 /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD1C3A2288F5A300F4E038 /* TransactionDetailView.swift */; };
+		11FD1C3D2288F5A300F4E038 /* TransactionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11FD1C3B2288F5A300F4E038 /* TransactionDetailView.xib */; };
 		11FE4C94226E9E7D00750A87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */; };
 		AECA42B170F84009031D382F /* Pods_Clerc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ACF49A6D8A950982A240E /* Pods_Clerc.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,8 @@
 		11B6ECDB22360BCD00C7716D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		11B6ECDC22360BCD00C7716D /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		11B6ECDF2236101E00C7716D /* TextFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatterService.swift; sourceTree = "<group>"; };
+		11FD1C3A2288F5A300F4E038 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
+		11FD1C3B2288F5A300F4E038 /* TransactionDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDetailView.xib; sourceTree = "<group>"; };
 		11FE4C93226E9E7D00750A87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14DEB2D70CDDF8FE8FD474F9 /* Pods-Clerc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.debug.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.debug.xcconfig"; sourceTree = "<group>"; };
 		2E62220C9AE96ADA9A0319DC /* Pods-Clerc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clerc.release.xcconfig"; path = "Target Support Files/Pods-Clerc/Pods-Clerc.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 				115E4A2A223C054B00E2EA79 /* EditUnitItemView.xib */,
 				11B151ED228534340093FEFB /* EditWeighedItemView.swift */,
 				11B151EE228534340093FEFB /* EditWeighedItemView.xib */,
+				11FD1C3A2288F5A300F4E038 /* TransactionDetailView.swift */,
+				11FD1C3B2288F5A300F4E038 /* TransactionDetailView.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 				11FE4C94226E9E7D00750A87 /* GoogleService-Info.plist in Resources */,
 				111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */,
 				113DBAF322341ADB00383001 /* LaunchScreen.storyboard in Resources */,
+				11FD1C3D2288F5A300F4E038 /* TransactionDetailView.xib in Resources */,
 				11B151F0228534340093FEFB /* EditWeighedItemView.xib in Resources */,
 				113DBAF022341ADB00383001 /* Assets.xcassets in Resources */,
 				11B6ECDE22360BCD00C7716D /* ProductTableViewCell.xib in Resources */,
@@ -436,6 +443,7 @@
 				115E4A2B223C054B00E2EA79 /* EditUnitItemView.swift in Sources */,
 				11B151EF228534340093FEFB /* EditWeighedItemView.swift in Sources */,
 				1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */,
+				11FD1C3C2288F5A300F4E038 /* TransactionDetailView.swift in Sources */,
 				116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */,
 				11B6ECDD22360BCD00C7716D /* ProductTableViewCell.swift in Sources */,
 				113DBB072234866C00383001 /* Product.swift in Sources */,

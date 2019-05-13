@@ -115,6 +115,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return pastTransactions?.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let transaction = pastTransactions?[indexPath.row] {
+            // Show details view
+            viewService.showTransactionDetailsView(for: transaction)
+        } else {
+            viewService.showStandardErrorHUD()
+        }
+    }
+    
 }
 
 //
