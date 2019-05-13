@@ -1,5 +1,5 @@
 //
-//  StripeService.swift
+//  BackendService.swift
 //  Clerc
 //
 //  Created by Frank Jia on 2019-03-12.
@@ -10,9 +10,9 @@ import Foundation
 import Stripe
 import Alamofire
 
-class StripeService: NSObject, STPEphemeralKeyProvider {
+class BackendService: NSObject, STPEphemeralKeyProvider {
     
-    static let shared = StripeService()
+    static let shared = BackendService()
     
     let baseURL = URL(string: StripeConstants.BACKEND_URL)!
     let utilityService = UtilityService.shared

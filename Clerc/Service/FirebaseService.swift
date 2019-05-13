@@ -34,7 +34,7 @@ class FirebaseService {
             } else {
                 // User does not exist
                 // Create the Stripe customer first - don't proceed unless this succeeds
-                StripeService.shared.createCustomer() { (success, stripeId) in
+                BackendService.shared.createCustomer() { (success, stripeId) in
                     if success && stripeId != nil {
                         // Stripe customer created, save to Firebase
                         

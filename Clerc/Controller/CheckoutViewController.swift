@@ -121,10 +121,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         let config = STPPaymentConfiguration.shared()
         config.companyName = store!.name
         // Get the current customer and payment context
-        let customerContext = STPCustomerContext(keyProvider: StripeService.shared) // TODO may need to initialize earlier so that payment context is preloaded - can do so in a "SessionService" like on Android
+        let customerContext = STPCustomerContext(keyProvider: BackendService.shared) // TODO may need to initialize earlier so that payment context is preloaded - can do so in a "SessionService" like on Android
         let paymentContext = STPPaymentContext(customerContext: customerContext, configuration: config, theme: .default())
         // IMPORTANT: Total paid is cost after taxes!
-        paymentContext.paymentAmount = StripeService.getStripeCost(for: costAfterTaxes)
+        paymentContext.paymentAmount = BackendService.getStripeCost(for: costAfterTaxes)
         paymentContext.paymentCurrency = StripeConstants.DEFAULT_CURRENCY // Implement custom currencies when we need to
         // Set the required delegates
         paymentContext.delegate = self
@@ -203,7 +203,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     // User confirms payment - call backend to complete the charge
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
         // Call our backend to complete the charge
-        StripeService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!) { (success, txnId, error) in
+        BackendService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!) { (success, txnId, error) in
             if success {
                 completion(nil) // Give the STP completion a nil value to indicate payment success
                 // Write the transaction to firebase

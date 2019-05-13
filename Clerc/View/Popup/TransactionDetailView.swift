@@ -43,7 +43,7 @@ class TransactionDetailView: UIViewController {
         if let txnId = transaction.txnId {
             // Show a loading HUD
             viewService.loadingAnimation(show: true, with: "Sending email")
-            StripeService.shared.emailReceipt(txnId: txnId) { success in
+            BackendService.shared.emailReceipt(txnId: txnId) { success in
                 // Dismiss loading
                 viewService.loadingAnimation(show: false)
                 if success {

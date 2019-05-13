@@ -10,7 +10,7 @@
 		111B3F4B223BD7F300E65987 /* ConfirmDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */; };
 		111B3F4C223BD7F300E65987 /* ConfirmDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */; };
 		113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */; };
-		113662122238B083006DCAA4 /* StripeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113662112238B083006DCAA4 /* StripeService.swift */; };
+		113662122238B083006DCAA4 /* BackendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113662112238B083006DCAA4 /* BackendService.swift */; };
 		113DBAE922341AD700383001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAE822341AD700383001 /* AppDelegate.swift */; };
 		113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113DBAEA22341AD700383001 /* HomeViewController.swift */; };
 		113DBAEE22341AD700383001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113DBAEC22341AD700383001 /* Main.storyboard */; };
@@ -49,7 +49,7 @@
 		111B3F49223BD7F300E65987 /* ConfirmDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmDialogView.swift; sourceTree = "<group>"; };
 		111B3F4A223BD7F300E65987 /* ConfirmDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmDialogView.xib; sourceTree = "<group>"; };
 		1136620F2238ACAC006DCAA4 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
-		113662112238B083006DCAA4 /* StripeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeService.swift; sourceTree = "<group>"; };
+		113662112238B083006DCAA4 /* BackendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendService.swift; sourceTree = "<group>"; };
 		113DBAE522341AD700383001 /* Clerc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clerc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		113DBAE822341AD700383001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		113DBAEA22341AD700383001 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				113DBB022234857C00383001 /* FirebaseService.swift */,
 				113DBB082234CA3F00383001 /* ViewService.swift */,
 				11B6ECDF2236101E00C7716D /* TextFormatterService.swift */,
-				113662112238B083006DCAA4 /* StripeService.swift */,
+				113662112238B083006DCAA4 /* BackendService.swift */,
 				1170067D22604A91001094A1 /* UtilityService.swift */,
 			);
 			path = Service;
@@ -438,7 +438,7 @@
 				1143DCDC2268016F0070AA1A /* JWT.swift in Sources */,
 				11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */,
 				113DBB092234CA3F00383001 /* ViewService.swift in Sources */,
-				113662122238B083006DCAA4 /* StripeService.swift in Sources */,
+				113662122238B083006DCAA4 /* BackendService.swift in Sources */,
 				113662102238ACAC006DCAA4 /* CheckoutViewController.swift in Sources */,
 				115E4A2B223C054B00E2EA79 /* EditUnitItemView.swift in Sources */,
 				11B151EF228534340093FEFB /* EditWeighedItemView.swift in Sources */,

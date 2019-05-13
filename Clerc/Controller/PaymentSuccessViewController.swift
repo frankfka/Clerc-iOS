@@ -13,7 +13,7 @@ class PaymentSuccessViewController: UIViewController {
     // Service
     let viewService = ViewService.shared
     let textFormatterService = TextFormatterService.shared
-    let backendService = StripeService.shared
+    let backendService = BackendService.shared
     
     // UI Outlets
     @IBOutlet weak var successMessageLabel: UILabel!
