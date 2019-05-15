@@ -24,6 +24,7 @@ class PaymentSuccessViewController: UIViewController {
     @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var itemsTableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var parentScrollView: UIScrollView!
+    @IBOutlet weak var emailReceiptButton: UIButton!
     
     // State
     var items: [Product]?
@@ -70,18 +71,22 @@ class PaymentSuccessViewController: UIViewController {
     // Call backend to email receipt
     @IBAction func emailReceiptButtonPressed(_ sender: UIButton) {
         if let txnId = txnId {
-            // Show a loading HUD
+            // Show a loading HUD & disable button
             self.viewService.loadingAnimation(show: true, with: "Sending email")
+            self.viewService.setButtonState(button: emailReceiptButton, enabled: false)
             backendService.emailReceipt(txnId: txnId) { success in
                 // Dismiss loading
                 self.viewService.loadingAnimation(show: false)
                 if success {
-                    self.viewService.showHUD(success: true, message: "Receipt sent")
+                    self.viewService.showInfoDialog(title: "Email Receipt", description: "An email has been sent. If you do not see it in your inbox, please check your spam folder.")
                 } else {
                     self.viewService.showStandardErrorHUD()
+                    // Let user try again
+                    self.viewService.setButtonState(button: self.emailReceiptButton, enabled: true)
                 }
             }
         } else {
+            print("Transaction ID is nil - can't send email")
             // Transaction ID somehow null
             self.viewService.showStandardErrorHUD()
         }

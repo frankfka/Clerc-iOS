@@ -13,6 +13,7 @@ class TransactionDetailView: UIViewController {
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var sendEmailButton: UIButton!
     
     let transaction: Transaction
     
@@ -41,15 +42,18 @@ class TransactionDetailView: UIViewController {
     @IBAction func emailReceiptPressed(_ sender: UIButton) {
         let viewService = ViewService.shared
         if let txnId = transaction.txnId {
-            // Show a loading HUD
+            // Show a loading HUD & disable email button
+            viewService.setButtonState(button: sendEmailButton, enabled: false)
             viewService.loadingAnimation(show: true, with: "Sending email")
             BackendService.shared.emailReceipt(txnId: txnId) { success in
                 // Dismiss loading
                 viewService.loadingAnimation(show: false)
                 if success {
-                    viewService.showHUD(success: true, message: "Receipt sent")
+                    viewService.showInfoDialog(title: "Email Receipt", description: "An email has been sent. If you do not see it in your inbox, please check your spam folder.")
                 } else {
                     viewService.showStandardErrorHUD()
+                    // Let user try again
+                    viewService.setButtonState(button: self.sendEmailButton, enabled: true)
                 }
             }
         } else {

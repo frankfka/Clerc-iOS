@@ -208,6 +208,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 completion(nil) // Give the STP completion a nil value to indicate payment success
                 // Write the transaction to firebase
                 let currentCustomer = Customer.current! // Must exist - checked in initialization
+                print("Writing new transaction")
                 self.firebaseService.writeTransaction(from: currentCustomer.firebaseID,
                                                       to: self.store!,
                                                       costBeforeTaxes: self.costBeforeTaxes,
@@ -216,6 +217,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                                                       items: self.items!,
                                                       quantities: self.quantities!,
                                                       txnId: txnId ?? "")
+                print("Finished writing transaction")
                 self.txnId = txnId
                 // Write to local realm database
                 let newTxn = Transaction()
@@ -227,6 +229,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 try! self.realm.write {
                     self.realm.add(newTxn)
                 }
+                // Show success screen
+                self.performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
             } else {
                 completion(error)
             }
@@ -247,8 +251,6 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 // Set state and disable payment button
                 paymentDone = true
                 viewService.setButtonState(button: payNowButton, enabled: false)
-                // Show success screen
-                performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
                 return
             case .userCancellation:
                 return // Do nothing

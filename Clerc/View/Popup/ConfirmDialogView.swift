@@ -18,10 +18,21 @@ class ConfirmDialogView: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     
     // Completion handler to return result
-    var completion: ((_ didConfirm: Bool)->Void)?
-    var titleString: String?
-    var descString: String?
-    
+    var completion: ((_ didConfirm: Bool)->Void)
+    var titleString: String
+    var descString: String
+
+    init(title: String, desc: String, completionHandler: @escaping (_ didConfirm: Bool) -> Void) {
+        self.titleString = title
+        self.descString = desc
+        self.completion = completionHandler
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,28 +45,17 @@ class ConfirmDialogView: UIViewController {
         
     }
     
-    // Initialize the view controller. Might want to put this in init()
-    func initialize(title: String, desc: String, completionHandler: @escaping (_ didConfirm: Bool) -> Void) {
-        self.titleString = title
-        self.descString = desc
-        self.completion = completionHandler
-    }
-    
     // Dismiss and tell completion that user confirmed the dialog
     @IBAction func confirmButtonPressed(_ sender: Any) {
         SwiftEntryKit.dismiss {
-            if let completion = self.completion {
-                completion(true)
-            }
+            self.completion(true)
         }
     }
     
     // Dismiss and notify that user did not confirm
     @IBAction func cancelButtonPressed(_ sender: Any) {
         SwiftEntryKit.dismiss {
-            if let completion = self.completion {
-                completion(false)
-            }
+            self.completion(false)
         }
     }
     

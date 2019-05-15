@@ -171,6 +171,7 @@ class BackendService: NSObject, STPEphemeralKeyProvider {
             let url = self.baseURL.appendingPathComponent("customers").appendingPathComponent("email-receipt")
             // Params for backend call
             let emailParams = [
+                "token": token!,
                 "txn_id": txnId,
                 "customer_name": currentCustomer.name ?? "",
                 "customer_email": currentCustomer.email ?? ""

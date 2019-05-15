@@ -26,6 +26,8 @@
 		116D2C712239EB7B00D0F32A /* StripeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C702239EB7B00D0F32A /* StripeConstants.swift */; };
 		116D2C77223B2F6600D0F32A /* PaymentSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */; };
 		1170067E22604A91001094A1 /* UtilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1170067D22604A91001094A1 /* UtilityService.swift */; };
+		117499C1228BB52D00AADEBF /* InfoDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117499BF228BB52D00AADEBF /* InfoDialogView.swift */; };
+		117499C2228BB52D00AADEBF /* InfoDialogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 117499C0228BB52D00AADEBF /* InfoDialogView.xib */; };
 		1189A1D32237FAD900E92BED /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1189A1D22237FAD900E92BED /* ViewConstants.swift */; };
 		1192A06A2268D1B4009445D4 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192A0692268D1B4009445D4 /* Transaction.swift */; };
 		1192A06D2268F760009445D4 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1192A06B2268F760009445D4 /* TransactionTableViewCell.swift */; };
@@ -68,6 +70,8 @@
 		116D2C702239EB7B00D0F32A /* StripeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConstants.swift; sourceTree = "<group>"; };
 		116D2C76223B2F6600D0F32A /* PaymentSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessViewController.swift; sourceTree = "<group>"; };
 		1170067D22604A91001094A1 /* UtilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityService.swift; sourceTree = "<group>"; };
+		117499BF228BB52D00AADEBF /* InfoDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDialogView.swift; sourceTree = "<group>"; };
+		117499C0228BB52D00AADEBF /* InfoDialogView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoDialogView.xib; sourceTree = "<group>"; };
 		1189A1D22237FAD900E92BED /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		1192A0692268D1B4009445D4 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		1192A06B2268F760009445D4 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +208,8 @@
 				11B151EE228534340093FEFB /* EditWeighedItemView.xib */,
 				11FD1C3A2288F5A300F4E038 /* TransactionDetailView.swift */,
 				11FD1C3B2288F5A300F4E038 /* TransactionDetailView.xib */,
+				117499BF228BB52D00AADEBF /* InfoDialogView.swift */,
+				117499C0228BB52D00AADEBF /* InfoDialogView.xib */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 				11B6ECDE22360BCD00C7716D /* ProductTableViewCell.xib in Resources */,
 				113DBAEE22341AD700383001 /* Main.storyboard in Resources */,
 				1192A06E2268F760009445D4 /* TransactionTableViewCell.xib in Resources */,
+				117499C2228BB52D00AADEBF /* InfoDialogView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +441,7 @@
 			files = (
 				1192A06A2268D1B4009445D4 /* Transaction.swift in Sources */,
 				113DBAEB22341AD700383001 /* HomeViewController.swift in Sources */,
+				117499C1228BB52D00AADEBF /* InfoDialogView.swift in Sources */,
 				113DBB032234857C00383001 /* FirebaseService.swift in Sources */,
 				1143DCDC2268016F0070AA1A /* JWT.swift in Sources */,
 				11B6ECCF22359C9A00C7716D /* ShoppingViewController.swift in Sources */,

@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionDetailView" customModule="Clerc" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="mhi-w5-LrG" id="ejf-dd-EW7"/>
+                <outlet property="sendEmailButton" destination="y2N-4B-7SO" id="L5d-5o-gw1"/>
                 <outlet property="storeNameLabel" destination="gOs-7H-6du" id="PD3-J1-aYq"/>
                 <outlet property="totalAmountLabel" destination="qB2-3e-vYI" id="PHu-Pk-hiQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

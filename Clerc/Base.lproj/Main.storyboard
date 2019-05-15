@@ -611,7 +611,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APr-iA-gHn" userLabel="Cart Heading">
-                                        <rect key="frame" x="0.0" y="287" width="375" height="22"/>
+                                        <rect key="frame" x="0.0" y="328.5" width="375" height="22"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ITEMS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ5-16-1TC">
                                                 <rect key="frame" x="16" y="0.0" width="343" height="21"/>
@@ -641,7 +641,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqS-4e-Ewe" userLabel="Cart List">
-                                        <rect key="frame" x="0.0" y="309" width="375" height="74"/>
+                                        <rect key="frame" x="0.0" y="350.5" width="375" height="74"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nJG-qU-FUq">
                                                 <rect key="frame" x="16" y="8" width="343" height="50"/>
@@ -661,7 +661,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8T5-Mq-UAR">
-                                        <rect key="frame" x="0.0" y="218" width="375" height="69"/>
+                                        <rect key="frame" x="0.0" y="218" width="375" height="110.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09l-1h-jcq">
                                                 <rect key="frame" x="16" y="8" width="343" height="21"/>
@@ -685,18 +685,27 @@
                                                     <action selector="editPaymentTapped:" destination="7TP-3O-NQ6" eventType="touchUpInside" id="S6d-Qe-4zL"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your payment information is encrypted and safely stored." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJD-lD-27g">
+                                                <rect key="frame" x="16" y="61" width="343" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="Light Text"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="09l-1h-jcq" firstAttribute="leading" secondItem="8T5-Mq-UAR" secondAttribute="leading" constant="16" id="6SI-AZ-ohC"/>
+                                            <constraint firstAttribute="trailing" secondItem="aJD-lD-27g" secondAttribute="trailing" constant="16" id="7kx-eU-Wr1"/>
                                             <constraint firstItem="54K-EM-q9c" firstAttribute="centerY" secondItem="OzU-df-rbX" secondAttribute="centerY" id="A9e-mT-Chw"/>
                                             <constraint firstItem="09l-1h-jcq" firstAttribute="top" secondItem="8T5-Mq-UAR" secondAttribute="top" constant="8" id="CIP-nY-LOK"/>
+                                            <constraint firstItem="aJD-lD-27g" firstAttribute="leading" secondItem="8T5-Mq-UAR" secondAttribute="leading" constant="16" id="Ei8-9u-t1z"/>
                                             <constraint firstAttribute="trailing" secondItem="54K-EM-q9c" secondAttribute="trailing" constant="16" id="GZV-1i-G4O"/>
                                             <constraint firstItem="OzU-df-rbX" firstAttribute="top" secondItem="09l-1h-jcq" secondAttribute="bottom" id="LTR-pq-tHL"/>
-                                            <constraint firstAttribute="bottom" secondItem="OzU-df-rbX" secondAttribute="bottom" constant="16" id="Mdf-HZ-i6v"/>
+                                            <constraint firstAttribute="bottom" secondItem="aJD-lD-27g" secondAttribute="bottom" constant="16" id="V0v-R5-m7F"/>
                                             <constraint firstItem="54K-EM-q9c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OzU-df-rbX" secondAttribute="trailing" constant="16" id="jLB-rX-rqT"/>
                                             <constraint firstItem="OzU-df-rbX" firstAttribute="leading" secondItem="09l-1h-jcq" secondAttribute="leading" id="llx-oT-fJe"/>
                                             <constraint firstAttribute="trailing" secondItem="09l-1h-jcq" secondAttribute="trailing" constant="16" id="oap-Zs-pl1"/>
+                                            <constraint firstItem="aJD-lD-27g" firstAttribute="top" secondItem="OzU-df-rbX" secondAttribute="bottom" constant="8" id="zBc-sA-g13"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1034,6 +1043,7 @@
                         <viewLayoutGuide key="safeArea" id="2XK-Bt-NTH"/>
                     </view>
                     <connections>
+                        <outlet property="emailReceiptButton" destination="MZ6-qm-Wai" id="Pde-CC-vjV"/>
                         <outlet property="itemsTableView" destination="nux-o2-2nQ" id="QfP-ZZ-FJB"/>
                         <outlet property="itemsTableViewHeight" destination="c0h-Vl-oBI" id="FW5-9v-xOm"/>
                         <outlet property="parentScrollView" destination="blc-sQ-jfv" id="mId-KZ-3fH"/>

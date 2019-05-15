@@ -95,11 +95,13 @@ class ViewService {
     
     // Creates and shows a confirmation dialog
     func showConfirmationDialog(title: String, description: String, completion: @escaping (_ didConfirm: Bool) -> Void) {
-        // Create the dialog VC and initialize it
-        let confirmationDialog = ConfirmDialogView()
-        confirmationDialog.initialize(title: title, desc: description, completionHandler: completion)
-        // Tell SwiftEntryKit to display with our standard attributes
-        SwiftEntryKit.display(entry: confirmationDialog, using: ViewConstants.CONFIRM_POPUP_ATTRIBUTES)
+        SwiftEntryKit.display(entry: ConfirmDialogView(title: title, desc: description, completionHandler: completion),
+                using: ViewConstants.CONFIRM_POPUP_ATTRIBUTES)
+    }
+
+    // Creates and shows an info dialog
+    func showInfoDialog(title: String, description: String) {
+        SwiftEntryKit.display(entry: InfoDialogView(title: title, desc: description), using: ViewConstants.CONFIRM_POPUP_ATTRIBUTES)
     }
     
     // Creates and shows an edit item dialog

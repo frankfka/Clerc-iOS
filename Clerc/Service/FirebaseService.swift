@@ -109,7 +109,6 @@ class FirebaseService {
     func writeTransaction(from userId: String, to store: Store,
                           costBeforeTaxes: Double, taxes: Double, costAfterTaxes: Double,
                           items: [Product], quantities: [Double], txnId: String) {
-        
         //
         // Create document data
         //
@@ -120,7 +119,7 @@ class FirebaseService {
                 "id": item.id,
                 "name": item.name,
                 "cost": item.cost,
-                "price_unit": item.priceUnit,
+                "price_unit": item.priceUnit.rawValue,
                 "quantity": quantities[index]
                 ] as [String : Any]
             itemsData.append(itemData)
@@ -136,7 +135,6 @@ class FirebaseService {
             "date": Timestamp(date: Date()),
             "items": itemsData
             ] as [String : Any]
-        
         // Get a reference to the transaction document (which should not yet exist)
         getTxnDocRef(with: txnId).setData(txnData) { (error) in
             // Just print error for now
