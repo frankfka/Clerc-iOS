@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0c3b6e9-dce6-4208-9b52-151fe197d35e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Clerc/View/Popup/InfoDialogView.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Clerc/View/Popup/InfoDialogView.xib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Base.lproj/Main.storyboard" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/Controller/CheckoutViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Controller/CheckoutViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/Controller/PaymentSuccessViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Controller/PaymentSuccessViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/Service/BackendService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Service/BackendService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/Service/FirebaseService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Service/FirebaseService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/Service/ViewService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Service/ViewService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/View/Popup/ConfirmDialogView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/View/Popup/ConfirmDialogView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/View/Popup/ConfirmDialogView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/View/Popup/ConfirmDialogView.xib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.xib" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.xib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Clerc/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Clerc/Info.plist" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Caches/AppCode2019.1/DerivedData/Clerc-heyrgamxalwbrbenwtkaoadjzqyn/Build/Intermediates.noindex/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,82 +16,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/Controller/ShoppingViewController.swift">
+        <entry file="file://$PROJECT_DIR$/Clerc/Model/Product.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="185" column="54" lean-forward="true" selection-start-line="185" selection-start-column="54" selection-end-line="185" selection-end-column="54" />
+            <state relative-caret-position="360">
+              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Clerc/Service/FirebaseService.swift">
+        <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/EditWeighedItemView.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="133" column="27" lean-forward="true" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/Controller/PaymentSuccessViewController.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="25" column="59" lean-forward="true" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/Service/ViewService.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="90" column="48" lean-forward="true" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
-              <folding>
-                <element signature="e#135#152#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/Constants/ViewConstants.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/Controller/CheckoutViewController.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="209" column="97" lean-forward="true" selection-start-line="209" selection-start-column="97" selection-end-line="209" selection-end-column="97" />
-              <folding>
-                <element signature="e#146#158#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/InfoDialogView.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-              <folding>
-                <element signature="e#138#150#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="316">
+              <caret line="96" column="4" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="125" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -113,6 +38,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>User payment succeeded</find>
+      <find>showinfodialog</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,15 +75,17 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="993" />
+    <option name="x" value="800" />
+    <option name="y" value="94" />
+    <option name="width" value="1440" />
+    <option name="height" value="899" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -206,7 +134,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,20 +178,22 @@
       <workItem from="1557459840905" duration="4480000" />
       <workItem from="1557537612576" duration="1864000" />
       <workItem from="1557709934598" duration="255000" />
-      <workItem from="1557888186145" duration="2120000" />
+      <workItem from="1557888186145" duration="2470000" />
+      <workItem from="1558187502938" duration="1024000" />
+      <workItem from="1558493154403" duration="346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10460000" />
+    <option name="totallyTimeSpent" value="12180000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="993" extended-state="0" />
+    <frame x="800" y="94" width="1440" height="899" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Designer" order="1" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.14057508" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.19241774" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -299,16 +228,6 @@
     <entry file="file://$PROJECT_DIR$/Clerc/Model/Transaction.swift">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/Model/Product.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/EditWeighedItemView.swift">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pods/ValueStepper/Pod/Classes/ValueStepper.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -337,54 +256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/Service/ViewService.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="90" column="48" lean-forward="true" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
-          <folding>
-            <element signature="e#135#152#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="25" column="59" lean-forward="true" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/Constants/ViewConstants.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/Controller/PaymentSuccessViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/Controller/ShoppingViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="185" column="54" lean-forward="true" selection-start-line="185" selection-start-column="54" selection-end-line="185" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Clerc/Controller/CheckoutViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="209" column="97" lean-forward="true" selection-start-line="209" selection-start-column="97" selection-end-line="209" selection-end-column="97" />
-          <folding>
-            <element signature="e#146#158#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Clerc/Service/BackendService.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16">
@@ -406,10 +277,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/Controller/ShoppingViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2745">
+          <caret line="185" column="54" selection-start-line="185" selection-start-column="54" selection-end-line="185" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/Controller/PaymentSuccessViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/TransactionDetailView.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/Service/ViewService.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="90" column="48" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
+          <folding>
+            <element signature="e#135#152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/Constants/ViewConstants.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/Controller/CheckoutViewController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3105">
+          <caret line="209" column="97" selection-start-line="209" selection-start-column="97" selection-end-line="209" selection-end-column="97" />
+          <folding>
+            <element signature="e#146#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/InfoDialogView.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state relative-caret-position="285">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
           <folding>
             <element signature="e#138#150#0" expanded="true" />
           </folding>
@@ -418,8 +337,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Clerc/Service/FirebaseService.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="133" column="27" lean-forward="true" selection-start-line="133" selection-start-column="27" selection-end-line="133" selection-end-column="27" />
+        <state relative-caret-position="352">
+          <caret line="117" column="28" lean-forward="true" selection-start-line="117" selection-start-column="28" selection-end-line="117" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/Model/Product.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Clerc/View/Popup/EditWeighedItemView.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="96" column="4" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="125" selection-end-column="5" />
         </state>
       </provider>
     </entry>
