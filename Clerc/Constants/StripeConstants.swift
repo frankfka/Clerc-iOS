@@ -10,8 +10,8 @@ import Foundation
 
 class StripeConstants {
     
-    static let PUBLISHABLE_KEY = "pk_test_KGZ0YCcX5SwcaeWl8OwKoJEA"
-    static let BACKEND_URL = "https://paywithclerc-dev.appspot.com"
+    static let PUBLISHABLE_KEY = "pk_live_caJiQ6z9SPsQh8pXx5qbLAzI00uAHe2qjo"
+    static let BACKEND_URL = "https://paywithclerc.appspot.com"
     static let APPLE_MERCHANT_ID = "merchant.com.clerc"
     static let DEFAULT_CURRENCY = "cad"
     

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>761530653721-obbpuggnqgeps3s7q3gijne6h2p77gcg.apps.googleusercontent.com</string>
+	<string>1083854661561-g211se5lrktnn44koaugq1csnmtqsibh.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.761530653721-obbpuggnqgeps3s7q3gijne6h2p77gcg</string>
+	<string>com.googleusercontent.apps.1083854661561-g211se5lrktnn44koaugq1csnmtqsibh</string>
 	<key>API_KEY</key>
-	<string>AIzaSyADhjsfexdxHTM5C6nfi4s87idX0FDMllc</string>
+	<string>AIzaSyCtb8ikmBNkKP3O4fdMt3vF0ezgJA17sh0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>761530653721</string>
+	<string>1083854661561</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.paywithclerc.paywithclerc</string>
 	<key>PROJECT_ID</key>
-	<string>paywithclerc-dev</string>
+	<string>paywithclerc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>paywithclerc-dev.appspot.com</string>
+	<string>paywithclerc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:761530653721:ios:767551b476a7d44d</string>
+	<string>1:1083854661561:ios:767551b476a7d44d</string>
 	<key>DATABASE_URL</key>
-	<string>https://paywithclerc-dev.firebaseio.com</string>
+	<string>https://paywithclerc.firebaseio.com</string>
 </dict>
 </plist>
