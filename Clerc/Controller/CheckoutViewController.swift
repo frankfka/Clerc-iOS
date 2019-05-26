@@ -229,8 +229,6 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 try! self.realm.write {
                     self.realm.add(newTxn)
                 }
-                // Show success screen
-                self.performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
             } else {
                 completion(error)
             }
@@ -251,6 +249,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 // Set state and disable payment button
                 paymentDone = true
                 viewService.setButtonState(button: payNowButton, enabled: false)
+                // Show success screen
+                self.performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
                 return
             case .userCancellation:
                 return // Do nothing
