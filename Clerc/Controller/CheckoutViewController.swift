@@ -157,6 +157,49 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         
     }
     
+    // IMPORTANT: Actions to perform AFTER Stripe completes payment and our backend call returns
+    private func tryPostPaymentActions() {
+        // TxnID is set by callback from backend call
+        // paymentDone is set by Stripe Payment context
+        // BOTH need to be set for us to proceed
+        guard let txnId = self.txnId, paymentDone else {
+            print("Not yet ready to execute post-payment actions")
+            return
+        }
+        
+        // Disable payment button
+        viewService.setButtonState(button: payNowButton, enabled: false)
+        // Start loading animation
+        viewService.loadingAnimation(show: true)
+        // Write the transaction to firebase
+        let currentCustomer = Customer.current! // Must exist - checked in initialization
+        print("Writing new transaction")
+        self.firebaseService.writeTransaction(from: currentCustomer.firebaseID,
+                                              to: self.store!,
+                                              costBeforeTaxes: self.costBeforeTaxes,
+                                              taxes: self.taxes,
+                                              costAfterTaxes: self.costAfterTaxes,
+                                              items: self.items!,
+                                              quantities: self.quantities!,
+                                              txnId: txnId ?? "")
+        print("Finished writing transaction")
+        // Write to local realm database
+        let newTxn = Transaction()
+        newTxn.txnId = txnId
+        newTxn.storeName = self.store!.name
+        newTxn.txnDate = Date()
+        newTxn.amount = self.costAfterTaxes // No migrations yet, so just log the amount after taxes
+        newTxn.currency = StripeConstants.DEFAULT_CURRENCY
+        try! self.realm.write {
+            self.realm.add(newTxn)
+        }
+        // End loading animation
+        viewService.loadingAnimation(show: false)
+        
+        // Show success screen
+        self.performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
+    }
+    
     // Present Stripe's payment method VC
     @IBAction func editPaymentTapped(_ sender: UIButton) {
         self.paymentContext!.presentPaymentMethodsViewController()
@@ -206,29 +249,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         BackendService.shared.completeCharge(paymentResult, amount: self.paymentContext!.paymentAmount, store: store!) { (success, txnId, error) in
             if success {
                 completion(nil) // Give the STP completion a nil value to indicate payment success
-                // Write the transaction to firebase
-                let currentCustomer = Customer.current! // Must exist - checked in initialization
-                print("Writing new transaction")
-                self.firebaseService.writeTransaction(from: currentCustomer.firebaseID,
-                                                      to: self.store!,
-                                                      costBeforeTaxes: self.costBeforeTaxes,
-                                                      taxes: self.taxes,
-                                                      costAfterTaxes: self.costAfterTaxes,
-                                                      items: self.items!,
-                                                      quantities: self.quantities!,
-                                                      txnId: txnId ?? "")
-                print("Finished writing transaction")
+                // Set the transaction ID
                 self.txnId = txnId
-                // Write to local realm database
-                let newTxn = Transaction()
-                newTxn.txnId = txnId
-                newTxn.storeName = self.store!.name
-                newTxn.txnDate = Date()
-                newTxn.amount = self.costAfterTaxes // No migrations yet, so just log the amount after taxes
-                newTxn.currency = StripeConstants.DEFAULT_CURRENCY
-                try! self.realm.write {
-                    self.realm.add(newTxn)
-                }
+                // See if we're ready to proceed
+                self.tryPostPaymentActions()
             } else {
                 completion(error)
             }
@@ -246,11 +270,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             case .success:
                 // Show confirmation screen
                 print("User payment succeeded")
-                // Set state and disable payment button
+                // Set state
                 paymentDone = true
-                viewService.setButtonState(button: payNowButton, enabled: false)
-                // Show success screen
-                self.performSegue(withIdentifier: "CheckoutToSuccessSegue", sender: self)
+                // See if we're ready to proceed
+                self.tryPostPaymentActions()
                 return
             case .userCancellation:
                 return // Do nothing
